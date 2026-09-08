@@ -17,8 +17,10 @@
     /* Knight Warrior Font Import */
     @font-face {
       font-family: 'Knight Warrior';
-      src: local('Knight Warrior'), local('KNIGHT WARRIOR'), url('https://fonts.cdnfonts.com/s/95191/KnightWarrior.woff') format('woff');
-      font-weight: 400;
+      src: local('Knight Warrior'), local('KNIGHT WARRIOR'),
+           url('public/fonts/KnightWarrior.woff') format('woff'),
+           url('https://fonts.cdnfonts.com/s/105453/KnightWarrior-w16n8.woff') format('woff');
+      font-weight: 100 900;
       font-style: normal;
       font-display: swap;
     }
@@ -26,7 +28,7 @@
     :root {
       --bg-dark: #05030A;
       --bg-card: rgba(14, 11, 26, 0.65);
-      --font-hero: "Knight Warrior", "Chakra Petch", system-ui, -apple-system, sans-serif;
+      --font-hero: "Knight Warrior", "KNIGHT WARRIOR", system-ui, sans-serif;
       --font-display: "Chakra Petch", system-ui, -apple-system, sans-serif;
       --font-body: "Outfit", system-ui, -apple-system, sans-serif;
       --font-mono: "IBM Plex Mono", monospace;
@@ -60,10 +62,11 @@
     h1, h2, h3, h4, h5, h6,
     .hero-title, .entry-title, .people-title, .chatrooms-title,
     .guilds-title, .showcase-title, .app-banner-title, .hiring-title,
-    .final-cta-title, .services-title, .legal-title, .service-title,
-    .card-title, .bento-title {
-      font-weight: 800 !important;
-      letter-spacing: 0.02em;
+    .final-cta-title, .services-title, .legal-title {
+      font-family: var(--font-hero) !important;
+      letter-spacing: 0px;
+      text-transform: uppercase;
+      text-align: center;
     }
 
     /* ---------------------------------------------------- Hero Section --- */
@@ -334,13 +337,14 @@
     }
 
     .hero-title {
-      font-family: var(--font-hero);
-      font-weight: 800;
-      font-style: normal;
-      font-size: clamp(3rem, 7.5vw, 112px);
-      line-height: clamp(2.6rem, 6.5vw, 96.32px);
-      letter-spacing: 0px;
-      text-transform: uppercase;
+      font-family: var(--font-hero) !important;
+      font-weight: 400 !important;
+      font-style: normal !important;
+      font-size: clamp(3rem, 7.5vw, 120px) !important;
+      line-height: clamp(2.6rem, 6.5vw, 104px) !important;
+      letter-spacing: 0px !important;
+      text-transform: uppercase !important;
+      text-align: center !important;
     }
 
     .hero-title-line1 {
@@ -517,16 +521,18 @@
     }
 
     .entry-title {
-      font-family: var(--font-hero);
-      font-weight: 800;
-      font-style: normal;
-      font-size: clamp(3.2rem, 7.2vw, 108px);
-      line-height: clamp(2.8rem, 6.5vw, 94px);
-      letter-spacing: 0px;
-      text-transform: uppercase;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      font-family: var(--font-hero) !important;
+      font-weight: 400 !important;
+      font-style: normal !important;
+      font-size: clamp(3.2rem, 8.5vw, 150px) !important;
+      line-height: clamp(2.8rem, 7.5vw, 130px) !important;
+      letter-spacing: 0px !important;
+      text-transform: uppercase !important;
+      text-align: center !important;
+      vertical-align: middle !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
     }
 
     .entry-title-white {
@@ -1222,13 +1228,14 @@
     }
 
     .people-title {
-      font-family: var(--font-hero);
-      font-weight: 800;
-      font-style: normal;
-      font-size: clamp(2.8rem, 6vw, 90px);
-      line-height: clamp(2.5rem, 5.5vw, 80px);
-      letter-spacing: 0px;
-      text-transform: uppercase;
+      font-family: var(--font-hero) !important;
+      font-weight: 400 !important;
+      font-style: normal !important;
+      font-size: clamp(2.8rem, 7.5vw, 120px) !important;
+      line-height: clamp(2.5rem, 6.8vw, 104px) !important;
+      letter-spacing: 0px !important;
+      text-transform: uppercase !important;
+      text-align: center !important;
     }
 
     .people-title-white { display: block; color: #FFFFFF; }
@@ -1479,7 +1486,16 @@
       .header-wrapper { margin-top: 0.5rem; padding: 0 0.75rem; }
       .navbar { padding: 0.5rem 0.85rem; }
       .hero-content { padding-top: 7rem; padding-bottom: 3.5rem; text-align: center; }
-      .hero-title { font-size: clamp(2.2rem, 8vw, 3.8rem); line-height: 1.1; }
+      .hero-title {
+      font-family: var(--font-hero) !important;
+      font-weight: 400 !important;
+      font-style: normal !important;
+      font-size: clamp(3rem, 7.5vw, 120px) !important;
+      line-height: clamp(2.6rem, 6.5vw, 104px) !important;
+      letter-spacing: 0px !important;
+      text-transform: uppercase !important;
+      text-align: center !important;
+    }
       .hero-desc { font-size: 0.95rem; line-height: 1.5; max-width: 100%; }
       .hero-actions { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; gap: 0.75rem; }
       .hero-actions .btn-primary, .hero-actions .btn-secondary { width: 100%; justify-content: center; text-align: center; }

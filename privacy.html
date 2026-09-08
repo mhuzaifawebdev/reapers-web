@@ -16,8 +16,10 @@
     /* Knight Warrior Font Import */
     @font-face {
       font-family: 'Knight Warrior';
-      src: local('Knight Warrior'), local('KNIGHT WARRIOR'), url('https://fonts.cdnfonts.com/s/95191/KnightWarrior.woff') format('woff');
-      font-weight: 400;
+      src: local('Knight Warrior'), local('KNIGHT WARRIOR'),
+           url('public/fonts/KnightWarrior.woff') format('woff'),
+           url('https://fonts.cdnfonts.com/s/105453/KnightWarrior-w16n8.woff') format('woff');
+      font-weight: 100 900;
       font-style: normal;
       font-display: swap;
     }
@@ -25,7 +27,7 @@
     :root {
       --bg-dark: #05030A;
       --bg-card: rgba(14, 11, 26, 0.75);
-      --font-hero: "Knight Warrior", "Chakra Petch", system-ui, -apple-system, sans-serif;
+      --font-hero: "Knight Warrior", "KNIGHT WARRIOR", system-ui, sans-serif;
       --font-display: "Chakra Petch", system-ui, -apple-system, sans-serif;
       --font-body: "Outfit", system-ui, -apple-system, sans-serif;
       --font-mono: "IBM Plex Mono", monospace;
