@@ -249,7 +249,8 @@
       width: 100%;
       max-width: 1280px;
       margin: 0 auto;
-      padding: 16rem 1.5rem 6rem;
+      padding: 16rem 1.5rem 4rem;
+      text-align: left;
     }
 
     .hero-tagline {
@@ -261,7 +262,7 @@
       margin-bottom: 0.75rem;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       gap: 0.35rem 0.5rem;
       width: 100%;
@@ -344,7 +345,7 @@
       line-height: clamp(2.6rem, 6.5vw, 104px) !important;
       letter-spacing: 0px !important;
       text-transform: uppercase !important;
-      text-align: center !important;
+      text-align: left !important;
     }
 
     .hero-title-line1 {
@@ -432,7 +433,7 @@
       background: radial-gradient(83.98% 124.46% at 50% 0%, rgba(38, 119, 255, 0.12) 0%, rgba(38, 119, 255, 0) 60%), #05030A;
       overflow: hidden;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -1478,14 +1479,14 @@
         font-size: clamp(0.72rem, 3.6vw, 0.95rem) !important;
         letter-spacing: 0.1em !important;
         gap: 0.25rem 0.4rem !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         flex-wrap: wrap !important;
         width: 100% !important;
       }
       .nav-links { display: none; }
       .header-wrapper { margin-top: 0.5rem; padding: 0 0.75rem; }
       .navbar { padding: 0.5rem 0.85rem; }
-      .hero-content { padding-top: 7rem; padding-bottom: 3.5rem; text-align: center; }
+      .hero-content { padding-top: 7rem; padding-bottom: 3.5rem; text-align: left; }
       .hero-title {
       font-family: var(--font-hero) !important;
       font-weight: 400 !important;
@@ -1494,7 +1495,7 @@
       line-height: clamp(2.6rem, 6.5vw, 104px) !important;
       letter-spacing: 0px !important;
       text-transform: uppercase !important;
-      text-align: center !important;
+      text-align: left !important;
     }
       .hero-desc { font-size: 0.95rem; line-height: 1.5; max-width: 100%; }
       .hero-actions { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; gap: 0.75rem; }
@@ -2349,10 +2350,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.38;
+      opacity: 0.55;
       z-index: 0;
       pointer-events: none;
-      filter: saturate(1.2) contrast(1.1);
+      filter: saturate(1.15) contrast(1.08);
     }
 
     /* Liquid Ripple / Bubble Hover Class for All Buttons */
@@ -2730,7 +2731,7 @@
     .toc-bar, .hiring-filters {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       gap: 0.65rem 0.8rem;
       max-width: 1100px;
@@ -2797,7 +2798,7 @@
   <!-- Main Hero Container -->
   <div class="hero-container" data-sc-act="flow">
     <!-- Background Video Backdrop -->
-    <video autoplay loop muted playsinline src="public/videos/vid-1.mp4" class="hero-video-bg" data-sc-parallax="-0.15"></video>
+    <video autoplay loop muted playsinline poster="public/hero.webp" src="public/videos/hero.mp4" class="hero-video-bg" data-sc-parallax="-0.15"></video>
     <header class="header-wrapper">
       <nav class="navbar">
         <ul class="nav-links">
@@ -3257,7 +3258,7 @@
             </div>
           </div>
 
-          <video id="showcaseVideo" autoplay loop muted playsinline src="public/videos/vid-1.mp4" class="showcase-video-elem"></video>
+          <video id="showcaseVideo" autoplay loop muted playsinline src="public/videos/hero.mp4" class="showcase-video-elem"></video>
 
           <div class="video-bottom-overlay">
             <div class="now-playing-meta">
