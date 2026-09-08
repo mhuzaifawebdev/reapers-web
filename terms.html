@@ -1146,6 +1146,15 @@
 
     const cyberAudio = new CyberAudioEngine();
 
+      // Global First-Gesture Audio Unlock (resumes AudioContext on ANY first click/tap/keypress anywhere on page)
+      const unlockAudio = () => {
+        if (typeof cyberAudio !== 'undefined') cyberAudio.init();
+      };
+      document.addEventListener('click', unlockAudio, { once: true });
+      document.addEventListener('pointerdown', unlockAudio, { once: true });
+      document.addEventListener('keydown', unlockAudio, { once: true });
+
+
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.btn-download, .btn-bubble').forEach(el => {
         el.addEventListener('mouseenter', () => cyberAudio.playHover('default'));

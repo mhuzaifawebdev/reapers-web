@@ -3992,6 +3992,15 @@
 
     const cyberAudio = new CyberAudioEngine();
 
+      // Global First-Gesture Audio Unlock (resumes AudioContext on ANY first click/tap/keypress anywhere on page)
+      const unlockAudio = () => {
+        if (typeof cyberAudio !== 'undefined') cyberAudio.init();
+      };
+      document.addEventListener('click', unlockAudio, { once: true });
+      document.addEventListener('pointerdown', unlockAudio, { once: true });
+      document.addEventListener('keydown', unlockAudio, { once: true });
+
+
     // Attach Contextual Audio Listeners to Interactive Elements
     document.addEventListener('DOMContentLoaded', () => {
       // Interactive Hero & Entry Title Words Click & Glitch Animations
