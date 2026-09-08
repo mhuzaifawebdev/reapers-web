@@ -26,7 +26,7 @@
     }
 
     :root {
-      --bg-dark: #05030A;
+      --bg-dark: #08000F;
       --bg-card: rgba(14, 11, 26, 0.65);
       --font-hero: "Knight Warrior", "KNIGHT WARRIOR", system-ui, sans-serif;
       --font-display: "Chakra Petch", system-ui, -apple-system, sans-serif;
@@ -49,11 +49,17 @@
       padding: 0;
     }
 
+    html {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
     body {
       background-color: var(--bg-dark);
       color: #FFFFFF;
       font-family: var(--font-body);
       overflow-x: hidden;
+      max-width: 100vw;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
@@ -74,13 +80,11 @@
       position: relative;
       width: 100%;
       min-height: 100vh;
-      background-image: url('public/hero.webp');
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
+      background: var(--bg-dark);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden;
     }
 
     .hero-container::before {
@@ -88,8 +92,8 @@
       position: absolute;
       inset: 0;
       background: 
-        radial-gradient(circle at 50% 30%, rgba(5, 3, 10, 0.15) 0%, rgba(5, 3, 10, 0.65) 70%),
-        linear-gradient(to bottom, rgba(5, 3, 10, 0.4) 0%, rgba(5, 3, 10, 0.1) 40%, rgba(5, 3, 10, 0.85) 80%, #05030A 100%);
+        radial-gradient(circle at 50% 30%, rgba(8, 0, 15, 0.15) 0%, rgba(8, 0, 15, 0.65) 70%),
+        linear-gradient(to bottom, rgba(8, 0, 15, 0.4) 0%, rgba(8, 0, 15, 0.1) 40%, rgba(8, 0, 15, 0.85) 80%, #08000F 100%);
       pointer-events: none;
       z-index: 1;
     }
@@ -341,11 +345,13 @@
       font-family: var(--font-hero) !important;
       font-weight: 400 !important;
       font-style: normal !important;
-      font-size: clamp(3rem, 7.5vw, 120px) !important;
-      line-height: clamp(2.6rem, 6.5vw, 104px) !important;
+      font-size: clamp(2.4rem, 7.5vw, 120px) !important;
+      line-height: clamp(2.1rem, 6.5vw, 104px) !important;
       letter-spacing: 0px !important;
       text-transform: uppercase !important;
       text-align: left !important;
+      max-width: 100%;
+      overflow-wrap: break-word;
     }
 
     .hero-title-line1 {
@@ -374,6 +380,7 @@
       background-color: var(--bg-dark);
       padding: 4rem 1.5rem 7rem;
       margin-top: -2rem;
+      overflow: hidden;
     }
 
     .stats-container {
@@ -388,18 +395,20 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      min-width: 0;
     }
 
     .stat-number-wrap {
       display: flex;
       align-items: baseline;
       gap: 0.35rem;
+      flex-wrap: wrap;
     }
 
     .stat-number {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(3.8rem, 5.5vw, 5.2rem);
+      font-size: clamp(2.6rem, 5.5vw, 5.2rem);
       color: #FFFFFF;
       line-height: 1;
       letter-spacing: -0.02em;
@@ -408,7 +417,7 @@
     .stat-plus {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(2.8rem, 4vw, 3.8rem);
+      font-size: clamp(1.9rem, 4vw, 3.8rem);
       background: var(--reapers-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -430,7 +439,7 @@
       position: relative;
       width: 100%;
       padding: 9rem 1.5rem 11rem;
-      background: radial-gradient(83.98% 124.46% at 50% 0%, rgba(38, 119, 255, 0.12) 0%, rgba(38, 119, 255, 0) 60%), #05030A;
+      background: radial-gradient(83.98% 124.46% at 50% 0%, rgba(38, 119, 255, 0.12) 0%, rgba(38, 119, 255, 0) 60%), #08000F;
       overflow: hidden;
       display: flex;
       justify-content: flex-start;
@@ -525,8 +534,8 @@
       font-family: var(--font-hero) !important;
       font-weight: 400 !important;
       font-style: normal !important;
-      font-size: clamp(3.2rem, 8.5vw, 150px) !important;
-      line-height: clamp(2.8rem, 7.5vw, 130px) !important;
+      font-size: clamp(2.4rem, 8.5vw, 150px) !important;
+      line-height: clamp(2.1rem, 7.5vw, 130px) !important;
       letter-spacing: 0px !important;
       text-transform: uppercase !important;
       text-align: center !important;
@@ -534,6 +543,8 @@
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
+      max-width: 100%;
+      overflow-wrap: break-word;
     }
 
     .entry-title-white {
@@ -616,12 +627,14 @@
       align-items: flex-start;
       gap: 2rem;
       text-align: left;
+      flex-wrap: wrap;
     }
 
     .entry-sub-item.left {
       opacity: 0;
       transform: translateX(-40px);
       transition: opacity 0.8s ease 0.75s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.75s;
+      min-width: 0;
     }
 
     .entry-sub-item.right {
@@ -629,6 +642,7 @@
       opacity: 0;
       transform: translateX(40px);
       transition: opacity 0.8s ease 0.9s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s;
+      min-width: 0;
     }
 
     .entry-sequence-section.sc-in .entry-sub-item.left,
@@ -640,7 +654,7 @@
     .sub-line-white {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-size: clamp(1rem, 2vw, 1.5rem);
       letter-spacing: 0.04em;
       color: #FFFFFF;
       text-transform: uppercase;
@@ -650,7 +664,7 @@
     .sub-line-grey {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-size: clamp(1rem, 2vw, 1.5rem);
       letter-spacing: 0.04em;
       color: #8C88A8;
       text-transform: uppercase;
@@ -661,7 +675,7 @@
     .sub-line-gradient {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-size: clamp(1rem, 2vw, 1.5rem);
       letter-spacing: 0.04em;
       background: linear-gradient(90deg, #00E5FF 0%, #D83CFF 100%);
       -webkit-background-clip: text;
@@ -671,261 +685,100 @@
       margin-top: 2px;
     }
 
-    /* ------------------------------------------- Video Showcase Section --- */
-    .showcase-section {
+    
+    /* ------------------------------------------- Guilds & Partners Section --- */
+    .guilds-section {
       position: relative;
       width: 100%;
-      padding: 9rem 1.5rem 10rem;
-      background: radial-gradient(80% 80% at 50% 30%, rgba(109, 53, 255, 0.15) 0%, rgba(5, 3, 10, 0) 70%), #05030A;
-      overflow: hidden;
+      padding: 5rem 1.5rem;
+      background: #08000F;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
+      overflow: hidden;
     }
 
-    .showcase-container {
+    .guilds-container {
       max-width: 1280px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 3.5rem;
+      gap: 2.5rem;
     }
 
-    .video-showcase-box {
-      position: relative;
-      width: 100%;
-      background: #0A0816;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      clip-path: polygon(
-        16px 0, 100% 0, 100% calc(100% - 16px),
-        calc(100% - 16px) 100%, 0 100%, 0 16px
-      );
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .video-viewport {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000000;
-      overflow: hidden;
-    }
-
-    .showcase-video-elem {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: opacity 0.3s ease;
-    }
-
-    .video-top-bar {
-      position: absolute;
-      top: 0;
-      inset-x: 0;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(to bottom, rgba(5, 3, 10, 0.85) 0%, rgba(5, 3, 10, 0) 100%);
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .demo-chips { display: flex; align-items: center; gap: 0.5rem; }
-
-    .demo-chip {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      padding: 0.3rem 0.75rem;
-      border-radius: 4px;
-      text-transform: uppercase;
-    }
-
-    .chip-cyan {
-      background: rgba(0, 229, 255, 0.2);
-      color: var(--cyan-neon);
-      border: 1px solid rgba(0, 229, 255, 0.4);
-    }
-
-    .chip-dark {
-      background: rgba(255, 255, 255, 0.06);
-      color: #D1CDE5;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .live-pill {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      padding: 0.35rem 0.85rem;
-      background: rgba(216, 60, 255, 0.15);
-      border: 1px solid rgba(216, 60, 255, 0.4);
-      border-radius: 20px;
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      white-space: nowrap;
-    }
-
-    .live-watch-count { color: var(--cyan-neon); font-variant-numeric: tabular-nums; }
-
-    /* Showcase signature moment: the "arena floor fills up" peak. Once the
-       section's scroll progress (--sc-p, published by data-sc-act) crosses
-       ~0.8, .live-pill--peak is added (see JS) and this fires once. */
-    @keyframes livePeakPulse {
-      0%   { box-shadow: 0 0 0 rgba(216, 60, 255, 0); }
-      35%  { box-shadow: 0 0 22px rgba(216, 60, 255, 0.85), 0 0 40px rgba(0, 229, 255, 0.35); }
-      100% { box-shadow: 0 0 0 rgba(216, 60, 255, 0); }
-    }
-    .live-pill.live-pill--peak { animation: livePeakPulse 900ms ease-out; }
-
-    .video-bottom-overlay {
-      position: absolute;
-      bottom: 0;
-      inset-x: 0;
-      padding: 2rem 1.75rem 1.5rem;
-      background: linear-gradient(to top, rgba(5, 3, 10, 0.95) 0%, rgba(5, 3, 10, 0.4) 60%, rgba(5, 3, 10, 0) 100%);
+    .guilds-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      z-index: 5;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .now-playing-meta { display: flex; flex-direction: column; gap: 0.2rem; }
-
-    .now-playing-label {
+    .guilds-kicker-right {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       color: #8C88A8;
       text-transform: uppercase;
     }
 
-    .now-playing-title {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(1.6rem, 3.2vw, 2.5rem);
-      letter-spacing: 0.04em;
-      color: #FFFFFF;
-      text-transform: uppercase;
-      line-height: 1.1;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    .guilds-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+      width: 100%;
     }
 
-    .video-actions { display: flex; align-items: center; gap: 0.85rem; }
-
-    .icon-btn-video {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      background: rgba(15, 12, 28, 0.7);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #FFFFFF;
-      font-size: 1.1rem;
-      cursor: pointer;
+    .guild-card {
+      background: rgba(15, 12, 28, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    .icon-btn-video:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: var(--cyan-neon);
-      box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
-    }
-
-    .btn-watch-demo { padding: 0.75rem 1.6rem; font-size: 0.85rem; }
-
-    .video-tabs-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(8, 6, 18, 0.95);
-    }
-
-    .video-tab-item {
-      padding: 1.35rem 1.5rem;
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
+      gap: 1rem;
       transition: all 0.3s ease;
-      position: relative;
+      min-width: 0;
     }
 
-    .video-tab-item:last-child { border-right: none; }
-
-    .video-tab-item.active {
-      background: rgba(0, 229, 255, 0.08);
-      border-left: 3px solid var(--cyan-neon);
+    .guild-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(0, 229, 255, 0.4);
+      transform: translateY(-4px);
     }
 
-    .video-tab-item:hover:not(.active) { background: rgba(255, 255, 255, 0.03); }
-
-    .tab-meta-left { display: flex; align-items: center; gap: 1.25rem; }
-
-    .tab-num {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 1.8rem;
-      color: #4A4663;
-      transition: color 0.3s ease;
+    .guild-logo-img {
+      height: 48px;
+      max-width: 140px;
+      object-fit: contain;
+      filter: grayscale(0.2) brightness(0.95);
+      transition: filter 0.3s ease, transform 0.3s ease;
     }
 
-    .video-tab-item.active .tab-num {
-      color: var(--cyan-neon);
-      text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+    .guild-card:hover .guild-logo-img {
+      filter: grayscale(0) brightness(1.1);
+      transform: scale(1.05);
     }
 
-    .tab-text-wrap { display: flex; flex-direction: column; gap: 2px; }
-
-    .tab-title-text {
+    .guild-name {
       font-family: var(--font-mono);
+      font-size: 0.72rem;
       font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      color: #9D99B5;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-    }
-
-    .video-tab-item.active .tab-title-text { color: #FFFFFF; }
-
-    .tab-sub-text {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: #6E698A;
+      letter-spacing: 0.12em;
+      color: #A09CB8;
       text-transform: uppercase;
     }
 
-    .tab-arrow {
-      font-family: var(--font-mono);
-      font-size: 1rem;
-      color: var(--cyan-neon);
-      opacity: 0;
-      transform: translateX(-5px);
-      transition: all 0.3s ease;
-    }
 
-    .video-tab-item.active .tab-arrow { opacity: 1; transform: translateX(0); }
-
-    /* -------------------------------------- Chatrooms & Communities --- */
+    /* === RESTORED MISSING SECTIONS FROM HEAD === */
+/* -------------------------------------- Chatrooms & Communities --- */
     .chatrooms-section {
       position: relative;
       width: 100%;
-      padding: 9rem 1.5rem 10rem;
-      background-color: #05030A;
+      padding: 4rem 1.5rem 10rem;
+      background-color: #08000F;
       overflow: hidden;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -977,6 +830,7 @@
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
+      min-width: 0;
     }
 
     .widget-kicker-title {
@@ -1007,6 +861,13 @@
       color: #8C88A8;
       cursor: pointer;
       transition: all 0.2s ease;
+      gap: 0.5rem;
+    }
+
+    .channel-item span:first-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .channel-item.active {
@@ -1021,7 +882,7 @@
       color: #FFFFFF;
     }
 
-    .channel-count { font-size: 0.68rem; opacity: 0.7; }
+    .channel-count { font-size: 0.68rem; opacity: 0.7; flex-shrink: 0; }
 
     .chat-stream-area {
       padding: 1.5rem 1.5rem 1.25rem;
@@ -1029,6 +890,7 @@
       flex-direction: column;
       justify-content: space-between;
       border-right: 1px solid rgba(255, 255, 255, 0.08);
+      min-width: 0;
     }
 
     .stream-header {
@@ -1037,6 +899,8 @@
       align-items: center;
       padding-bottom: 1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .stream-title {
@@ -1047,6 +911,10 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .stream-status {
@@ -1058,6 +926,8 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     .chat-messages {
@@ -1067,7 +937,7 @@
       margin: 1.5rem 0;
     }
 
-    .message-item { display: flex; align-items: flex-start; gap: 0.85rem; }
+    .message-item { display: flex; align-items: flex-start; gap: 0.85rem; min-width: 0; }
 
     .user-avatar {
       width: 32px;
@@ -1085,7 +955,7 @@
       flex-shrink: 0;
     }
 
-    .message-body { display: flex; flex-direction: column; gap: 2px; }
+    .message-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 
     .user-name {
       font-family: var(--font-mono);
@@ -1103,9 +973,11 @@
       font-size: 0.85rem;
       color: #D1CDE3;
       line-height: 1.4;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
-    .reactions-bar { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .reactions-bar { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
 
     .reaction-chip {
       padding: 0.25rem 0.6rem;
@@ -1128,7 +1000,7 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      background: rgba(5, 3, 10, 0.6);
+      background: rgba(8, 0, 15, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       padding: 0.5rem 0.85rem;
@@ -1136,6 +1008,7 @@
 
     .chat-input-field {
       width: 100%;
+      min-width: 0;
       background: transparent;
       border: none;
       outline: none;
@@ -1169,6 +1042,7 @@
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
+      min-width: 0;
     }
 
     .activity-boxes { display: flex; flex-direction: column; gap: 0.75rem; }
@@ -1181,6 +1055,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 0.5rem;
     }
 
     .activity-label {
@@ -1202,12 +1077,13 @@
     .val-purple { color: var(--purple-neon); }
     .val-magenta { color: var(--magenta-neon); }
 
-    /* ------------------------------------- People Behind The Arena --- */
+    
+/* ------------------------------------- People Behind The Arena --- */
     .people-section {
       position: relative;
       width: 100%;
-      padding: 9rem 1.5rem 10rem;
-      background: radial-gradient(70.71% 70.71% at 50% 50%, rgba(108, 43, 255, 0.26) 0%, rgba(108, 43, 255, 0) 66%), #05030A;
+      padding: 9rem 1.5rem 3rem;
+      background: radial-gradient(70.71% 70.71% at 50% 50%, rgba(108, 43, 255, 0.26) 0%, rgba(108, 43, 255, 0) 66%), #08000F;
       overflow: hidden;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -1232,11 +1108,13 @@
       font-family: var(--font-hero) !important;
       font-weight: 400 !important;
       font-style: normal !important;
-      font-size: clamp(2.8rem, 7.5vw, 120px) !important;
-      line-height: clamp(2.5rem, 6.8vw, 104px) !important;
+      font-size: clamp(2.2rem, 7.5vw, 120px) !important;
+      line-height: clamp(2rem, 6.8vw, 104px) !important;
       letter-spacing: 0px !important;
       text-transform: uppercase !important;
       text-align: center !important;
+      max-width: 100%;
+      overflow-wrap: break-word;
     }
 
     .people-title-white { display: block; color: #FFFFFF; }
@@ -1256,296 +1134,13 @@
       text-align: right;
     }
 
-    /* Bento Grid */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 1.25rem;
-      width: 100%;
-    }
-
-    .bento-card-1 { grid-column: span 7; grid-row: span 2; height: 100%; min-height: 440px; }
-
-    .bento-top-right {
-      grid-column: span 5;
-      grid-row: span 2;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      height: 100%;
-    }
-
-    .bento-card-2 { width: 100%; flex: 1; min-height: 205px; }
-
-    .bento-top-right-sub {
-      display: flex;
-      gap: 1.25rem;
-      width: 100%;
-      flex: 1;
-      min-height: 205px;
-    }
-
-    .bento-top-right-sub .bento-card { flex: 1; height: 100%; }
-
-    .bento-card-4 { grid-column: span 4; min-height: 230px; }
-    .bento-card-5 { grid-column: span 5; min-height: 230px; }
-    .bento-card-10 { grid-column: span 3; min-height: 230px; }
-    .bento-card-6 { grid-column: span 3; min-height: 230px; }
-    .bento-card-7 { grid-column: span 4; min-height: 230px; }
-    .bento-card-11 { grid-column: span 2; min-height: 230px; }
-    .bento-card-9 { grid-column: span 3; min-height: 230px; }
-
-    .bento-card {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #0E0B1A;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .bento-card:hover {
-      transform: translateY(-3px) scale(1.012);
-      border-color: rgba(0, 229, 255, 0.4);
-      box-shadow: 0 10px 30px rgba(108, 43, 255, 0.35);
-    }
-
-    .bento-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .bento-card:hover .bento-img { transform: scale(1.06); }
-
-    .bento-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(5, 3, 10, 0.95) 0%, rgba(5, 3, 10, 0.35) 45%, rgba(5, 3, 10, 0) 75%);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding: 1rem 1.25rem;
-      pointer-events: none;
-    }
-
-    .bento-meta { display: flex; flex-direction: column; gap: 2px; }
-
-    .bento-title-text {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: #FFFFFF;
-      text-transform: uppercase;
-    }
-
-    .bento-sub-text {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: #8C88A8;
-    }
-
-    .bento-num {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--cyan-neon);
-      opacity: 0.9;
-    }
-
-    .bento-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      color: #7A7596;
-      text-transform: uppercase;
-    }
-
-    /* ------------------------------------- Guilds & Communities --- */
-    .guilds-section {
-      position: relative;
-      width: 100%;
-      padding: 6rem 1.5rem 8rem;
-      background-color: #05030A;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .guilds-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 3.5rem;
-    }
-
-    .guilds-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .guilds-kicker-right {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      color: #7D7899;
-      text-transform: uppercase;
-    }
-
-    .guilds-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.25rem;
-      width: 100%;
-    }
-
-    .guild-card {
-      background: rgba(14, 11, 26, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 12px;
-      padding: 1.5rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .guild-card:hover {
-      background: rgba(14, 11, 26, 0.9);
-      border-color: rgba(0, 229, 255, 0.35);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-    }
-
-    .guild-logo-img {
-      height: 38px;
-      width: auto;
-      object-fit: contain;
-      filter: brightness(0.9) contrast(1.1);
-    }
-
-    .guild-name {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: #FFFFFF;
-      text-transform: uppercase;
-    }
-
-    /* ------------------------------------- Media Queries --- */
-    /* ------------------------------------- Media Queries --- */
-    html, body {
-      overflow-x: hidden !important;
-      max-width: 100vw !important;
-    }
-
-    @media (max-width: 1024px) {
-      .navbar { padding: 0.6rem 1.25rem; }
-      .nav-links { gap: 1.25rem; }
-      .hero-content { padding-top: 10rem; }
-      .chat-widget { grid-template-columns: 1fr; }
-      .chat-sidebar-channels, .chat-sidebar-stats { border: none; }
-      .people-header { flex-direction: column; align-items: flex-start; }
-      .people-desc { text-align: left; }
-      .bento-grid { grid-template-columns: repeat(6, 1fr); }
-      .bento-card-1 { grid-column: span 6; grid-row: span 1; min-height: 320px; }
-      .bento-top-right { grid-column: span 6; }
-      .bento-card-4 { grid-column: span 3; }
-      .bento-card-5 { grid-column: span 3; }
-      .bento-card-10 { grid-column: span 3; }
-      .bento-card-6 { grid-column: span 3; }
-      .bento-card-7 { grid-column: span 3; }
-      .bento-card-11 { grid-column: span 3; }
-      .bento-card-9 { grid-column: span 3; }
-      .guilds-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 768px) {
-      .hero-tagline {
-        font-size: clamp(0.72rem, 3.6vw, 0.95rem) !important;
-        letter-spacing: 0.1em !important;
-        gap: 0.25rem 0.4rem !important;
-        justify-content: flex-start !important;
-        flex-wrap: wrap !important;
-        width: 100% !important;
-      }
-      .nav-links { display: none; }
-      .header-wrapper { margin-top: 0.5rem; padding: 0 0.75rem; }
-      .navbar { padding: 0.5rem 0.85rem; }
-      .hero-content { padding-top: 7rem; padding-bottom: 3.5rem; text-align: left; }
-      .hero-title {
-      font-family: var(--font-hero) !important;
-      font-weight: 400 !important;
-      font-style: normal !important;
-      font-size: clamp(3rem, 7.5vw, 120px) !important;
-      line-height: clamp(2.6rem, 6.5vw, 104px) !important;
-      letter-spacing: 0px !important;
-      text-transform: uppercase !important;
-      text-align: left !important;
-    }
-      .hero-desc { font-size: 0.95rem; line-height: 1.5; max-width: 100%; }
-      .hero-actions { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; gap: 0.75rem; }
-      .hero-actions .btn-primary, .hero-actions .btn-secondary { width: 100%; justify-content: center; text-align: center; }
-      .stats-container { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; padding: 2.5rem 1rem; }
-      .entry-sub-grid { flex-direction: column; align-items: center; text-align: center; gap: 2rem; }
-      .entry-sub-item.right { text-align: center; }
-      .bg-logo-watermark { width: 85vw; opacity: 0.08; }
-      .video-tabs-row { grid-template-columns: 1fr; }
-      .video-tab-item { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-      .people-section, .entry-sequence, .chatrooms-section, .guilds-section, .showcase-section, .hiring-section { padding: 4rem 1rem; }
-      .people-title, .entry-title, .chatrooms-title, .guilds-title, .showcase-title, .hiring-title { font-size: clamp(2rem, 8vw, 3.2rem); }
-      .chat-messages-container { max-height: 280px; }
-      .hiring-header-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .hiring-header-desc { text-align: left; max-width: 100%; }
-      .final-cta-section { padding: 4rem 1rem 0; }
-      .final-cta-content { padding: 3rem 1rem; gap: 1.5rem; }
-      .final-cta-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
-      .cta-form-row { flex-direction: column; width: 100%; gap: 0.75rem; }
-      .cta-email-input, .btn-cta-download { width: 100%; text-align: center; justify-content: center; }
-      .site-footer-bar { flex-direction: column; gap: 0.75rem; text-align: center; margin-top: 3rem; }
-      .footer-watermark-text { font-size: clamp(3.2rem, 16vw, 120px); }
-    }
-
-    @media (max-width: 640px) {
-      .bento-grid { grid-template-columns: 1fr; }
-      .bento-top-right { grid-column: span 1; }
-      .bento-top-right-sub { flex-direction: column; }
-      .bento-card { grid-column: span 1 !important; min-height: 220px !important; }
-      .guilds-grid { grid-template-columns: 1fr; }
-      .stats-container { grid-template-columns: 1fr; gap: 1.5rem; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-tagline {
-        font-size: clamp(0.68rem, 3.8vw, 0.85rem) !important;
-        letter-spacing: 0.06em !important;
-        gap: 0.2rem 0.3rem !important;
-      }
-      .btn-download span { font-size: 0.7rem; }
-      .nav-brand .brand-name { font-size: 1.1rem; }
-    }
-  
-
-    /* App Banner Section */
+    
+/* App Banner Section */
     .app-banner-section {
       position: relative;
       width: 100%;
       padding: 7rem 1.5rem;
-      background-color: #05030A;
+      background-color: #08000F;
       overflow: hidden;
     }
 
@@ -1575,7 +1170,8 @@
       min-height: 480px;
     }
 
-    /* Watermark Emblem Logo Background (public/bg-logo.webp) */
+    
+/* Watermark Emblem Logo Background (public/bg-logo.webp) */
     .app-banner-watermark {
       position: absolute;
       left: 32%;
@@ -1589,7 +1185,8 @@
       z-index: 1;
     }
 
-    /* Left Copy Column */
+    
+/* Left Copy Column */
     .app-banner-copy {
       position: relative;
       z-index: 5;
@@ -1597,14 +1194,15 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      min-width: 0;
     }
 
     .app-banner-title {
       font-family: var(--font-hero);
       font-weight: 800;
       font-style: normal;
-      font-size: clamp(2.8rem, 5.2vw, 76px);
-      line-height: clamp(2.5rem, 4.8vw, 68px);
+      font-size: clamp(2.2rem, 5.2vw, 76px);
+      line-height: clamp(2rem, 4.8vw, 68px);
       letter-spacing: 0px;
       text-transform: uppercase;
       color: #FFFFFF;
@@ -1619,7 +1217,8 @@
       font-weight: 500;
     }
 
-    /* Features List 2-Columns */
+    
+/* Features List 2-Columns */
     .app-features-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1637,6 +1236,7 @@
       letter-spacing: 0.15em;
       color: rgba(255, 255, 255, 0.85);
       text-transform: uppercase;
+      min-width: 0;
     }
 
     .app-feature-num {
@@ -1644,11 +1244,13 @@
       color: rgba(255, 255, 255, 0.55);
     }
 
-    /* Right Column - 3D Mobile Phone Mockups Stage */
+    
+/* Right Column - 3D Mobile Phone Mockups Stage */
     .app-phones-stage {
       position: relative;
       z-index: 5;
       width: 520px;
+      max-width: 100%;
       height: 420px;
       display: flex;
       align-items: center;
@@ -1656,51 +1258,31 @@
       flex-shrink: 0;
     }
 
-    .phone-img {
+    .app-phones-group-link {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .app-phones-group-img {
       position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
       object-fit: contain;
-      transition: transform 0.4s ease;
       filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+      transition: transform 0.4s ease;
     }
 
-    .phone-left {
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%) rotate(-6deg) scale(0.88);
-      width: 220px;
-      z-index: 2;
+    .app-phones-group-link:hover .app-phones-group-img {
+      transform: translate(-50%, -50%) scale(1.03);
     }
 
-    .phone-center {
-      left: 24%;
-      top: 50%;
-      transform: translateY(-50%) scale(1.04);
-      width: 240px;
-      z-index: 4;
-    }
 
-    .phone-right {
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%) rotate(6deg) scale(0.88);
-      width: 220px;
-      z-index: 3;
-    }
-
-    .app-phones-stage:hover .phone-left { transform: translateY(-52%) rotate(-9deg) scale(0.9); }
-    .app-phones-stage:hover .phone-center { transform: translateY(-53%) scale(1.07); }
-    .app-phones-stage:hover .phone-right { transform: translateY(-52%) rotate(9deg) scale(0.9); }
-
-    /* Floating Badges / Buttons */
-    .badge-download-floating {
-      position: absolute;
-      left: 14%;
-      bottom: 28%;
-      z-index: 10;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      transform: scale(0.95);
-    }
-
+/* Floating Badges / Buttons */
     .badge-early-access {
       position: absolute;
       right: 2%;
@@ -1720,6 +1302,7 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       transition: all 0.25s ease;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .badge-early-access:hover {
@@ -1729,7 +1312,8 @@
       transform: translateY(-2px);
     }
 
-    /* App Banner Section Mobile Responsive Fixes */
+    
+/* App Banner Section Mobile Responsive Fixes */
     @media (max-width: 1024px) {
       .app-banner-section { padding: 4rem 1.25rem; }
       .app-banner-box {
@@ -1757,10 +1341,6 @@
         position: relative;
         flex-shrink: 0;
       }
-      .phone-center { width: 180px; left: 50%; top: 40%; transform: translate(-50%, -50%) scale(1); z-index: 4; }
-      .phone-left { width: 140px; left: 5%; top: 40%; transform: translateY(-50%) rotate(-6deg) scale(0.85); z-index: 2; }
-      .phone-right { width: 140px; right: 5%; top: 40%; transform: translateY(-50%) rotate(6deg) scale(0.85); z-index: 3; }
-      .badge-download-floating { position: relative; left: auto; bottom: auto; transform: none; margin-top: 1.25rem; z-index: 10; display: inline-flex; justify-content: center; }
       .badge-early-access { position: relative; right: auto; bottom: auto; transform: none; margin-top: 0.65rem; z-index: 10; display: inline-flex; justify-content: center; }
     }
 
@@ -1776,18 +1356,385 @@
       .app-features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem 0.5rem; }
       .app-feature-item { font-size: 0.68rem; gap: 0.35rem; }
       .app-phones-stage { height: 220px; max-width: 290px; }
-      .phone-left { width: 105px; left: -2%; transform: translateY(-50%) rotate(-5deg) scale(0.8); }
-      .phone-center { width: 135px; left: 50%; transform: translate(-50%, -50%) scale(0.95); }
-      .phone-right { width: 110px; right: -2%; transform: translateY(-50%) rotate(5deg) scale(0.8); }
     }
 
 
-    /* ---------------------------------------------------- Hiring / LFG Section --- */
+    
+
+    @media (max-width: 991px) {
+      .guilds-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .guilds-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ------------------------------------------- Video Showcase Section --- */
+    .showcase-section {
+      position: relative;
+      width: 100%;
+      padding: 7rem 1.5rem 8rem;
+      background: radial-gradient(80% 80% at 50% 30%, rgba(109, 53, 255, 0.15) 0%, rgba(8, 0, 15, 0) 70%), #08000F;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .showcase-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* Showcase Section Header - Matches Figma 2-Column Row */
+    .showcase-section .people-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      margin-bottom: 0.5rem;
+      gap: 2rem;
+    }
+
+    .showcase-section .people-title {
+      line-height: 1.1;
+    }
+
+    .text-white-heading {
+      color: #FFFFFF !important;
+      -webkit-text-fill-color: #FFFFFF !important;
+    }
+
+    .text-cyan-heading {
+      color: #00E5FF !important;
+      -webkit-text-fill-color: #00E5FF !important;
+    }
+
+    .text-magenta-heading {
+      color: #D83CFF !important;
+      -webkit-text-fill-color: #D83CFF !important;
+    }
+
+    .showcase-section .people-desc {
+      max-width: 420px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #8C88A8;
+      margin-bottom: 0.5rem;
+      text-align: right;
+    }
+
+    @media (max-width: 991px) {
+      .showcase-section .people-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .showcase-section .people-desc {
+        text-align: left;
+        max-width: 100%;
+      }
+    }
+
+    .video-showcase-box {
+      position: relative;
+      width: 100%;
+      background: #0A0816;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+      overflow: hidden;
+    }
+
+    .showcase-video-elem {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-top-bar {
+      position: absolute;
+      top: 0;
+      inset-x: 0;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(8, 0, 15, 0.85) 0%, rgba(8, 0, 15, 0) 100%);
+      z-index: 5;
+      pointer-events: none;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .demo-chips { display: flex; align-items: center; gap: 0.6rem; pointer-events: auto; flex-wrap: wrap; }
+
+    .demo-chip {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 0.85rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .chip-cyan {
+      background: rgba(0, 229, 255, 0.15);
+      color: #00E5FF;
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+    }
+
+    .chip-dark {
+      background: rgba(255, 255, 255, 0.06);
+      color: #A09CB8;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .live-pill {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      padding: 0.3rem 0.85rem;
+      background: rgba(216, 60, 255, 0.2);
+      border: 1px solid rgba(216, 60, 255, 0.5);
+      border-radius: 50px;
+      color: #D83CFF;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+      pointer-events: auto;
+      box-shadow: 0 0 12px rgba(216, 60, 255, 0.25);
+    }
+
+    .live-watch-count { color: #00E5FF; font-variant-numeric: tabular-nums; }
+
+    @keyframes livePeakPulse {
+      0%   { box-shadow: 0 0 0 rgba(216, 60, 255, 0); }
+      35%  { box-shadow: 0 0 22px rgba(216, 60, 255, 0.85), 0 0 40px rgba(0, 229, 255, 0.35); }
+      100% { box-shadow: 0 0 0 rgba(216, 60, 255, 0); }
+    }
+    .live-pill.live-pill--peak { animation: livePeakPulse 900ms ease-out; }
+
+    /* Video Bottom Overlay - Matches Figma media_1788881814363.png */
+    .video-bottom-overlay {
+      position: absolute;
+      bottom: 0;
+      inset-x: 0;
+      padding: 1.75rem 2rem 1.5rem;
+      background: linear-gradient(to top, rgba(8, 0, 15, 0.95) 0%, rgba(8, 0, 15, 0.4) 60%, rgba(8, 0, 15, 0) 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 5;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .now-playing-meta { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; flex: 1 1 auto; }
+
+    .now-playing-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #8C88A8;
+      text-transform: uppercase;
+    }
+
+    .now-playing-title {
+      font-family: 'Outfit', var(--font-display), sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.3rem, 3.2vw, 2.4rem);
+      letter-spacing: 0.02em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      line-height: 1.1;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .video-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-shrink: 0;
+      margin-left: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .icon-btn-video {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(15, 12, 28, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .icon-btn-video:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #00E5FF;
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+    }
+
+    .btn-watch-demo span { display: inline-block !important; }
+    .btn-watch-demo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.5rem !important;
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 0.8rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
+      color: #FFFFFF !important;
+      background: linear-gradient(90deg, #00E5FF 0%, #7B2CBF 50%, #D83CFF 100%) !important;
+      border: none !important;
+      border-radius: 50px !important;
+      box-shadow: 0 4px 20px rgba(0, 229, 255, 0.4), 0 0 25px rgba(216, 60, 255, 0.4) !important;
+      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-watch-demo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(0, 229, 255, 0.6), 0 0 30px rgba(216, 60, 255, 0.6) !important;
+    }
+
+    .video-tabs-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: #0A0816;
+    }
+
+    .video-tab-item {
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      min-width: 0;
+    }
+
+    .video-tab-item:last-child { border-right: none; }
+
+    .video-tab-item.active {
+      background: rgba(0, 229, 255, 0.08);
+      border-left: none;
+    }
+
+    .video-tab-item:hover:not(.active) { background: rgba(255, 255, 255, 0.03); }
+
+    .tab-meta-left { display: flex; align-items: center; gap: 1.25rem; min-width: 0; }
+
+    .tab-num {
+      font-family: 'Outfit', var(--font-display), sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #373A50;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .video-tab-item.active .tab-num {
+      color: #00E5FF;
+      text-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
+    }
+
+    .tab-text-wrap { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+
+    .tab-title-text {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: #A09CB8;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .video-tab-item.active .tab-title-text { color: #FFFFFF; }
+
+    .tab-sub-text {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: #5E5978;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .video-tab-item.active .tab-sub-text { color: #6B7280; }
+
+    .tab-arrow {
+      color: #373A50;
+      font-size: 1rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .video-tab-item.active .tab-arrow {
+      color: #00E5FF;
+      transform: translateX(4px);
+    }
+
+    @media (max-width: 768px) {
+      .video-tabs-row { grid-template-columns: 1fr; }
+      .video-tab-item { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+      .video-bottom-overlay { flex-direction: column; align-items: flex-start; gap: 0.85rem; }
+      .now-playing-meta { width: 100%; }
+      .now-playing-title { white-space: normal; overflow: visible; text-overflow: clip; }
+      .video-actions { margin-left: 0; }
+    }
+
+
+/* ---------------------------------------------------- Hiring / LFG Section --- */
     .hiring-section {
       position: relative;
       width: 100%;
       padding: 7rem 1.5rem;
-      background-color: #05030A;
+      background-color: #08000F;
       overflow: hidden;
     }
 
@@ -1824,15 +1771,18 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      min-width: 0;
     }
 
     .hiring-title {
       font-family: var(--font-hero);
       font-weight: 800;
-      font-size: clamp(2.8rem, 5vw, 72px);
+      font-size: clamp(2.2rem, 5vw, 72px);
       line-height: 1.05;
       letter-spacing: 0px;
       text-transform: uppercase;
+      max-width: 100%;
+      overflow-wrap: break-word;
     }
 
     .hiring-title-white {
@@ -1877,6 +1827,7 @@
       cursor: pointer;
       transition: all 0.25s ease;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .filter-pill:hover {
@@ -1913,6 +1864,7 @@
       gap: 1.8rem;
       transition: all 0.3s ease;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      min-width: 0;
     }
 
     .role-card:hover {
@@ -1926,6 +1878,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .studio-name {
@@ -1946,6 +1899,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      white-space: nowrap;
     }
 
     .status-badge.recruiting {
@@ -2042,6 +1996,8 @@
       text-transform: uppercase;
       text-decoration: none;
       transition: all 0.3s ease;
+      text-align: center;
+      flex-wrap: wrap;
     }
 
     .post-role-bar:hover {
@@ -2113,10 +2069,12 @@
     .final-cta-title {
       font-family: var(--font-hero);
       font-weight: 800;
-      font-size: clamp(3rem, 6.5vw, 84px);
+      font-size: clamp(2.2rem, 6.5vw, 84px);
       line-height: 1.02;
       letter-spacing: 0px;
       text-transform: uppercase;
+      max-width: 100%;
+      overflow-wrap: break-word;
     }
 
     .final-cta-title-white {
@@ -2143,6 +2101,7 @@
 
     .cta-email-input {
       flex: 1;
+      min-width: 0;
       height: 52px;
       padding: 0 1.5rem;
       background: rgba(14, 11, 26, 0.75);
@@ -2214,6 +2173,7 @@
       align-items: center;
       gap: 1.75rem;
       list-style: none;
+      flex-wrap: wrap;
     }
 
     .footer-link {
@@ -2277,12 +2237,12 @@
       .nav-actions { gap: 0.4rem !important; }
       .icon-btn { width: 36px !important; height: 36px !important; }
       .icon-btn svg { width: 16px !important; height: 16px !important; }
-      .btn-download {
+      .nav-actions .btn-download {
         padding: 0.5rem 0.8rem !important;
         font-size: 0.72rem !important;
         gap: 0.35rem !important;
       }
-      .btn-download span { display: none !important; }
+      .nav-actions .btn-download span { display: none !important; }
 
       .site-footer-bar { flex-direction: column !important; gap: 1.25rem !important; text-align: center !important; }
       .footer-nav-links { flex-wrap: wrap !important; justify-content: center !important; gap: 0.85rem 1.25rem !important; }
@@ -2322,25 +2282,6 @@
       0% { transform: translateY(-50%) scale(1) rotate(0deg); opacity: 0.05; }
       50% { transform: translateY(-52%) scale(1.04) rotate(1deg); opacity: 0.09; }
       100% { transform: translateY(-50%) scale(1) rotate(0deg); opacity: 0.05; }
-    }
-
-    /* 3D Mobile Phones Continuous Floating Sync */
-    @keyframes floatPhoneLeft {
-      0% { transform: translateY(-50%) rotate(-6deg) scale(0.88); }
-      50% { transform: translateY(-55%) rotate(-8deg) scale(0.91); }
-      100% { transform: translateY(-50%) rotate(-6deg) scale(0.88); }
-    }
-
-    @keyframes floatPhoneCenter {
-      0% { transform: translateY(-50%) scale(1.04); }
-      50% { transform: translateY(-44%) scale(1.08); }
-      100% { transform: translateY(-50%) scale(1.04); }
-    }
-
-    @keyframes floatPhoneRight {
-      0% { transform: translateY(-50%) rotate(6deg) scale(0.88); }
-      50% { transform: translateY(-54%) rotate(8deg) scale(0.91); }
-      100% { transform: translateY(-50%) rotate(6deg) scale(0.88); }
     }
 
     /* Hero Background Video Backdrop */
@@ -2385,7 +2326,7 @@
       opacity: 1;
     }
 
-    /* Scroll Reveal Animations — tuned override of ScrollCraft's own
+    /* Scroll Reveal Animations - tuned override of ScrollCraft's own
        [data-sc-in] defaults (14px/620ms) to keep this page's original,
        slightly heavier 35px/800ms rise. */
     [data-sc-in] {
@@ -2610,12 +2551,134 @@
       animation: gradientShift 5s ease infinite !important;
     }
 
-    /* Phone Floating Animations */
-    .phone-left { animation: floatPhoneLeft 6s ease-in-out infinite !important; }
-    .phone-center { animation: floatPhoneCenter 5.5s ease-in-out infinite !important; }
-    .phone-right { animation: floatPhoneRight 6.5s ease-in-out infinite !important; }
-
     /* Bento Gallery Collapsible Accordion */
+
+/* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .bento-top-right {
+      grid-column: span 5;
+      grid-row: span 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      height: 100%;
+    }
+
+    .bento-top-right-sub {
+      display: flex;
+      gap: 1.25rem;
+      width: 100%;
+      flex: 1;
+      min-height: 205px;
+    }
+
+    .bento-top-right-sub .bento-card { flex: 1; height: 100%; }
+
+    .bento-card-bottom { grid-column: span 4; height: 240px; }
+
+    .bento-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0E0B1A;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      min-width: 0;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-3px) scale(1.012);
+      border-color: rgba(0, 229, 255, 0.4);
+      box-shadow: 0 10px 30px rgba(108, 43, 255, 0.35);
+    }
+
+    .bento-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .bento-card:hover .bento-img { transform: scale(1.06); }
+
+    .bento-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8, 0, 15, 0.95) 0%, rgba(8, 0, 15, 0.35) 45%, rgba(8, 0, 15, 0) 75%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 1rem 1.25rem;
+      pointer-events: none;
+      gap: 0.5rem;
+    }
+
+    .bento-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+
+    .bento-title-text {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      overflow-wrap: break-word;
+    }
+
+    .bento-sub-text {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: #8C88A8;
+    }
+
+    .bento-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cyan-neon);
+      opacity: 0.9;
+      flex-shrink: 0;
+    }
+
+    .bento-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      color: #7A7596;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    
+    /* Bento Card Hero & Modifier Classes (used in rewritten HTML) */
+    .bento-card-hero {
+      grid-column: span 7;
+      grid-row: span 2;
+      height: 100%;
+      min-height: 440px;
+    }
+
+    .bento-card-top-right {
+      width: 100%;
+      flex: 1;
+      min-height: 205px;
+    }
+
     .bento-wrapper {
       position: relative;
       width: 100%;
@@ -2659,6 +2722,23 @@
       color: var(--cyan-neon);
       box-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
       transform: translateY(-2px);
+    }
+
+    @media (max-width: 1024px) {
+      .bento-grid { grid-template-columns: repeat(6, 1fr); }
+      .bento-card-hero { grid-column: span 6; grid-row: span 1; height: auto; min-height: 320px; }
+      .bento-top-right { grid-column: span 6; height: auto; }
+      .bento-card-bottom { grid-column: span 2; }
+    }
+
+    @media (max-width: 640px) {
+      .bento-grid { grid-template-columns: 1fr; gap: 0.85rem; }
+      .bento-card-hero { grid-column: span 1; grid-row: span 1; height: auto; min-height: 260px; }
+      .bento-top-right { grid-column: span 1; height: auto; }
+      .bento-card-top-right { min-height: 220px; }
+      .bento-top-right-sub { flex-direction: column; }
+      .bento-top-right-sub .bento-card { min-height: 220px; }
+      .bento-card-bottom { grid-column: span 1; height: 220px; }
     }
 
 
@@ -2784,11 +2864,246 @@
       animation: none !important;
     }
     
+    
+    /* --- EXACT FIGMA IMAGE 1 OVERRIDES FOR HIRING SECTION --- */
+    .hiring-header-row {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: flex-end !important;
+      gap: 2rem !important;
+      width: 100% !important;
+      flex-wrap: wrap !important;
+    }
+
+    .hiring-header-left {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      text-align: left !important;
+    }
+
+    .hiring-title {
+      font-family: var(--font-hero) !important;
+      font-weight: 400 !important;
+      font-style: normal !important;
+      font-size: clamp(2.2rem, 6.5vw, 100px) !important;
+      line-height: clamp(2rem, 5.8vw, 88px) !important;
+      letter-spacing: 0px !important;
+      text-transform: uppercase !important;
+      text-align: left !important;
+      margin-top: 0.5rem !important;
+    }
+
+    .hiring-header-desc {
+      max-width: 440px !important;
+      font-family: var(--font-body) !important;
+      font-size: 0.95rem !important;
+      line-height: 1.55 !important;
+      color: #9D99B5 !important;
+      text-align: right !important;
+    }
+
+    .hiring-filters {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      gap: 0.75rem !important;
+      width: 100% !important;
+      margin: 1.25rem 0 1.5rem !important;
+    }
+
+    .filter-pill, .toc-pill {
+      font-family: var(--font-display) !important;
+      font-size: 0.75rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.15em !important;
+      text-transform: uppercase !important;
+      padding: 0.6rem 1.45rem !important;
+      border-radius: 9999px !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      color: #8C88A8 !important;
+      white-space: nowrap !important;
+      text-decoration: none !important;
+      transition: all 0.25s ease !important;
+    }
+
+    .filter-pill:hover, .toc-pill:hover {
+      background: rgba(0, 229, 255, 0.08) !important;
+      border-color: var(--cyan-neon) !important;
+      color: var(--cyan-neon) !important;
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.25) !important;
+      transform: translateY(-2px) !important;
+    }
+
+    .filter-pill.active {
+      background: rgba(0, 229, 255, 0.08) !important;
+      border: 1.5px solid var(--cyan-neon) !important;
+      color: var(--cyan-neon) !important;
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.25) !important;
+    }
+
+    /* Mission Titles in Clean Sans-Serif (Figma Spec) */
+    .role-mission-title {
+      font-family: var(--font-body) !important;
+      font-weight: 600 !important;
+      font-size: 1.18rem !important;
+      color: #FFFFFF !important;
+      line-height: 1.35 !important;
+      letter-spacing: 0px !important;
+      text-transform: none !important;
+      margin-top: 0.2rem !important;
+      margin-bottom: 0 !important;
+    }
+
+    .studio-name {
+      font-family: var(--font-body) !important;
+      font-weight: 700 !important;
+      font-size: 1.05rem !important;
+      color: #FFFFFF !important;
+    }
+
+    .status-badge {
+      font-family: var(--font-mono) !important;
+      font-size: 0.68rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.12em !important;
+      padding: 0.35rem 0.85rem !important;
+      border-radius: 9999px !important;
+    }
+
+    .post-role-bar {
+      width: 100% !important;
+      border-radius: 9999px !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      padding: 1.1rem 2rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.6rem !important;
+      color: #9D99B5 !important;
+      font-family: var(--font-mono) !important;
+      font-size: 0.78rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.18em !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+      transition: all 0.25s ease !important;
+      margin-top: 1.5rem !important;
+    }
+
+    /* ==========================================================================
+       MOBILE OVERFLOW FIXES
+       These target exactly the elements that were breaking on phones:
+       the chat widget's fixed 3-column grid, the video top-bar's non-
+       wrapping chip row, the 3-col stats grid, and the split entry-sub-grid.
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .chat-widget {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+      }
+      .chat-sidebar-channels {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+      .chat-stream-area {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+      }
+
+      .hero-content {
+        padding: 8.5rem 1.25rem 3rem !important;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 9vw, 3.4rem) !important;
+        line-height: 1.15 !important;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr !important;
+        gap: 2.25rem !important;
+      }
+      .stat-number { font-size: clamp(2.4rem, 14vw, 3.6rem) !important; }
+      .stat-plus { font-size: clamp(1.8rem, 10vw, 2.6rem) !important; }
+
+      .entry-sub-grid {
+        flex-direction: column !important;
+        gap: 1.75rem !important;
+      }
+      .entry-sub-item.right {
+        text-align: left !important;
+      }
+
+      .guilds-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+      }
+
+      .people-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+      }
+      .people-desc,
+      .showcase-section .people-desc,
+      .hiring-header-desc {
+        text-align: left !important;
+        max-width: 100% !important;
+      }
+
+      .chat-sidebar-channels,
+      .chat-stream-area,
+      .chat-sidebar-stats {
+        padding: 1.15rem 1.15rem !important;
+      }
+      .chat-messages { max-height: 200px !important; }
+      .channel-item span:first-child { max-width: 60vw; }
+
+      .video-top-bar {
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+        padding: 0.85rem 1rem !important;
+      }
+      .demo-chips { flex-wrap: wrap !important; gap: 0.4rem !important; }
+      .demo-chip, .live-pill {
+        font-size: 0.6rem !important;
+        padding: 0.28rem 0.6rem !important;
+      }
+
+      .video-bottom-overlay { padding: 1.1rem 1.1rem 0.9rem !important; }
+      .now-playing-title { font-size: 1.3rem !important; }
+      .video-actions { margin-left: 0 !important; }
+
+      .app-banner-watermark { width: 60vw !important; opacity: 0.1 !important; }
+
+      .final-cta-content { padding: 2.5rem 1.25rem !important; }
+      .cta-form-row { max-width: 100% !important; }
+
+      .post-role-bar { flex-direction: column !important; gap: 0.4rem !important; text-align: center !important; }
+
+      .bento-footer { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+    }
+
+    @media (max-width: 991px) and (min-width: 768px) {
+      .stats-container { grid-template-columns: repeat(3, 1fr) !important; }
+    }
+
     </style>
   <!-- High-Priority Hero Asset Preloading -->
   <link rel="preload" as="image" href="public/reapers-logo.webp">
-  <link rel="preload" as="image" href="public/hero.webp">
-  <link rel="preload" as="image" href="public/mobile-center.webp">
+<link rel="stylesheet" href="responsive-fix.css">
 </head>
 <body>
 
@@ -2798,7 +3113,7 @@
   <!-- Main Hero Container -->
   <div class="hero-container" data-sc-act="flow">
     <!-- Background Video Backdrop -->
-    <video autoplay loop muted playsinline poster="public/hero.webp" src="public/videos/hero.mp4" class="hero-video-bg" data-sc-parallax="-0.15"></video>
+    <video autoplay loop muted playsinline src="public/videos/hero.mp4" class="hero-video-bg" data-sc-parallax="-0.15"></video>
     <header class="header-wrapper">
       <nav class="navbar">
         <ul class="nav-links">
@@ -2915,7 +3230,7 @@
     </div>
   </section>
 
-  <!-- The People Behind The Arena Section -->
+    <!-- The People Behind The Arena Section -->
   <section class="people-section" id="community" data-sc-act="flow">
     <div class="people-container">
       <div class="people-header" data-sc-in>
@@ -2928,134 +3243,97 @@
         </p>
       </div>
 
-      <div class="bento-wrapper bento-collapsed" id="bentoWrapper">
-        <div class="bento-grid" data-sc-in data-sc-stagger="60">
-        <div class="bento-card bento-card-1" data-sc-reveal="iris" data-sc-reveal-at="0.05 0.55">
-          <img src="public/events/indie.webp" alt="Lahore Indie Gamedev Meetup" class="bento-img">
-          <div class="bento-overlay">
-            <div class="bento-meta">
-              <div class="bento-title-text">LAHORE INDIE GAMEDEV MEETUP</div>
-              <div class="bento-sub-text">LAHORE / 2026</div>
-            </div>
-            <div class="bento-num">01</div>
-          </div>
-        </div>
-
-        <div class="bento-top-right">
-          <div class="bento-card bento-card-2">
-            <img src="public/events/present.webp" alt="National Game Jam" class="bento-img">
+      <div class="bento-wrapper">
+        <div class="bento-grid">
+          <!-- Card 01: Hero Top-Left -->
+          <div class="bento-card bento-card-hero">
+            <img src="public/events/PGDA-event.webp" alt="Lahore Indie Gamedev Meetup" class="bento-img">
             <div class="bento-overlay">
               <div class="bento-meta">
-                <div class="bento-title-text">NATIONAL GAME JAM</div>
+                <div class="bento-title-text">LAHORE INDIE GAMEDEV MEETUP</div>
+                <div class="bento-sub-text">LAHORE / 2026</div>
               </div>
-              <div class="bento-num">02</div>
+              <div class="bento-num">01</div>
             </div>
           </div>
 
-          <div class="bento-top-right-sub">
-            <div class="bento-card bento-card-3">
-              <img src="public/events/PGDA-event.webp" alt="Game Dev Meetup" class="bento-img">
+          <!-- Top-Right Container (Card 02, 03, 04) -->
+          <div class="bento-top-right">
+            <!-- Card 02: National Game Jam -->
+            <div class="bento-card bento-card-top-right">
+              <img src="public/events/present.webp" alt="National Game Jam" class="bento-img">
               <div class="bento-overlay">
                 <div class="bento-meta">
-                  <div class="bento-title-text">GAME DEV MEETUP</div>
+                  <div class="bento-title-text">NATIONAL GAME JAM</div>
                 </div>
-                <div class="bento-num">03</div>
+                <div class="bento-num">02</div>
               </div>
             </div>
 
-            <div class="bento-card bento-card-8">
-              <img src="Pics/Pics/Mentoring Sessions/DSC01093.webp" alt="Expert Session" class="bento-img">
-              <div class="bento-overlay">
-                <div class="bento-meta">
-                  <div class="bento-title-text">EXPERT SESSION</div>
+            <!-- Sub Row: Card 03 & Card 04 -->
+            <div class="bento-top-right-sub">
+              <!-- Card 03: Game Dev Meetup -->
+              <div class="bento-card">
+                <img src="Pics/Pics/Events/WhatsApp Image 2026-09-04 at 1.13.50 PM.webp" alt="Game Dev Meetup" class="bento-img">
+                <div class="bento-overlay">
+                  <div class="bento-meta">
+                    <div class="bento-title-text">GAME DEV MEETUP</div>
+                  </div>
+                  <div class="bento-num">03</div>
                 </div>
-                <div class="bento-num">08</div>
+              </div>
+
+              <!-- Card 04: Expert Session -->
+              <div class="bento-card">
+                <img src="Pics/Pics/Mentoring Sessions/DSC00761.JPG.webp" alt="Expert Session" class="bento-img">
+                <div class="bento-overlay">
+                  <div class="bento-meta">
+                    <div class="bento-title-text">EXPERT SESSION</div>
+                  </div>
+                  <div class="bento-num">04</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="bento-card bento-card-4">
-          <img src="Pics/Pics/Events/DSC_0025.webp" alt="Networking Night" class="bento-img">
-          <div class="bento-overlay">
-            <div class="bento-meta">
-              <div class="bento-title-text">NETWORKING NIGHT</div>
+          <!-- Bottom Row: 3 Equal Cards (Card 05, 06, 07) -->
+          <!-- Card 05: Networking Night -->
+          <div class="bento-card bento-card-bottom">
+            <img src="Pics/Pics/Events/DSC_0025.webp" alt="Networking Night" class="bento-img">
+            <div class="bento-overlay">
+              <div class="bento-meta">
+                <div class="bento-title-text">NETWORKING NIGHT</div>
+              </div>
+              <div class="bento-num">05</div>
             </div>
-            <div class="bento-num">04</div>
           </div>
-        </div>
 
-        <div class="bento-card bento-card-5">
-          <img src="Pics/Pics/Mentoring Sessions/DSC00761.JPG.webp" alt="Mentorship" class="bento-img">
-          <div class="bento-overlay">
-            <div class="bento-meta">
-              <div class="bento-title-text">MENTORSHIP</div>
+          <!-- Card 06: Mentorship -->
+          <div class="bento-card bento-card-bottom">
+            <img src="Pics/Pics/Mentoring Sessions/DSC01093.webp" alt="Mentorship" class="bento-img">
+            <div class="bento-overlay">
+              <div class="bento-meta">
+                <div class="bento-title-text">MENTORSHIP</div>
+              </div>
+              <div class="bento-num">06</div>
             </div>
-            <div class="bento-num">05</div>
           </div>
-        </div>
 
-        <div class="bento-card bento-card-10">
-          <img src="Pics/Pics/Events/WhatsApp Image 2026-09-04 at 1.13.50 PM.webp" alt="1:1 Review" class="bento-img">
-          <div class="bento-overlay">
-            <div class="bento-meta">
-              <div class="bento-title-text">1:1 REVIEW</div>
+          <!-- Card 07: 1:1 Review -->
+          <div class="bento-card bento-card-bottom">
+            <img src="Pics/Pics/Mentoring Sessions/WhatsApp Image 2026-09-04 at 1.13.51 PM.webp" alt="1:1 Review" class="bento-img">
+            <div class="bento-overlay">
+              <div class="bento-meta">
+                <div class="bento-title-text">1:1 REVIEW</div>
+              </div>
+              <div class="bento-num">07</div>
             </div>
-            <div class="bento-num">10</div>
           </div>
-        </div>
-
-        <div class="bento-card bento-card-6">
-          <img src="Pics/Pics/Events/WhatsApp Image 2026-09-04 at 1.13.51 PM (1).webp" alt="Reapers Community" class="bento-img">
-          <div class="bento-overlay">
-            <div class="bento-meta">
-              <div class="bento-title-text">REAPERS COMMUNITY</div>
-            </div>
-            <div class="bento-num">06</div>
-          </div>
-        </div>
-
-        <div class="bento-card bento-card-7">
-          <img src="public/events/team.webp" alt="Community Session" class="bento-img">
-          <div class="bento-overlay">
-            <div class="bento-meta">
-              <div class="bento-title-text">COMMUNITY SESSION</div>
-            </div>
-            <div class="bento-num">07</div>
-          </div>
-        </div>
-
-        <div class="bento-card bento-card-11">
-          <img src="Pics/Pics/Mentoring Sessions/WhatsApp Image 2026-09-04 at 1.13.52 PM (1).webp" alt="Guild Gathering" class="bento-img">
-          <div class="bento-overlay">
-            <div class="bento-meta">
-              <div class="bento-title-text">GUILD GATHERING</div>
-            </div>
-            <div class="bento-num">11</div>
-          </div>
-        </div>
-
-        <div class="bento-card bento-card-9">
-          <img src="Pics/Pics/Events/lahoremeetup2026_7.webp" alt="Esports Floor" class="bento-img">
-          <div class="bento-overlay">
-            <div class="bento-meta">
-              <div class="bento-title-text">ESPORTS FLOOR</div>
-            </div>
-            <div class="bento-num">09</div>
-          </div>
-        </div>
-      </div> <!-- /.bento-grid -->
-        
-        <div class="bento-expand-bar">
-          <button id="bentoExpandBtn" class="bento-expand-btn btn-bubble">
-            <span>VIEW FULL ARCHIVE (12 FRAMES)</span>
-            <span id="expandIcon">▼</span>
-          </button>
-        </div>
+        </div> <!-- /.bento-grid -->
       </div> <!-- /.bento-wrapper -->
 
       <div class="bento-footer">
-        <span>ARCHIVE — 12 FRAMES</span>
+        <span>ARCHIVE — 7 FRAMES</span>
         <span>REAPERS COMMUNITY</span>
       </div>
     </div>
@@ -3227,16 +3505,15 @@
 
       <div class="people-header" data-sc-in>
         <div>
-          <div class="entry-kicker" style="margin-bottom: 1rem;">
+          <div class="entry-kicker" style="margin-bottom: 0.8rem;">
             <span class="kicker-dot-wrap">
-              <span class="dot-cyan">●</span>
-              <span class="dot-purple">●</span>
+              <span class="dot-magenta">●</span>
             </span>
             <span class="kicker-text">// LIVE FEED · DEMO SHOWCASE</span>
           </div>
           <h2 class="people-title showcase-title-zoom" id="showcaseTitleHeading">
-            <span class="people-title-white">DISCOVER</span>
-            <span class="people-title-gradient">WHAT'S BEING BUILT<span class="dot-magenta">.</span></span>
+            <span class="text-white-heading">DISCOVER</span><br>
+            <span class="text-white-heading">WHAT'S </span><span class="text-cyan-heading">BEING</span> <span class="text-magenta-heading">BUILT.</span>
           </h2>
         </div>
         <p class="people-desc">
@@ -3248,7 +3525,7 @@
         <div class="video-viewport" data-sc-reveal="left" data-sc-reveal-at="0.05 0.55">
           <div class="video-top-bar">
             <div class="demo-chips">
-              <span class="demo-chip chip-cyan" id="demoTagChip">DEMO #1</span>
+              <span class="demo-chip chip-cyan" id="demoTagChip">DEMO 01</span>
               <span class="demo-chip chip-dark" id="demoEngineChip">UNREAL 5</span>
               <span class="demo-chip chip-dark" id="demoGenreChip">ACTION RPG</span>
             </div>
@@ -3258,7 +3535,7 @@
             </div>
           </div>
 
-          <video id="showcaseVideo" autoplay loop muted playsinline src="public/videos/hero.mp4" class="showcase-video-elem"></video>
+          <video id="showcaseVideo" autoplay loop muted playsinline src="public/videos/vid-1.mp4" class="showcase-video-elem"></video>
 
           <div class="video-bottom-overlay">
             <div class="now-playing-meta">
@@ -3268,8 +3545,8 @@
             
             <div class="video-actions">
               <button id="videoMuteBtn" class="icon-btn-video" title="Toggle Sound">🔇</button>
-              <a href="#download" class="btn-download btn-watch-demo">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <a href="#download" class="btn-watch-demo">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 <span>WATCH DEMO</span>
               </a>
             </div>
@@ -3285,7 +3562,7 @@
                 <span class="tab-sub-text">ACTION RPG</span>
               </div>
             </div>
-            <span class="tab-arrow">→</span>
+            <span class="tab-arrow">➔</span>
           </div>
 
           <div class="video-tab-item" data-index="1">
@@ -3296,7 +3573,7 @@
                 <span class="tab-sub-text">MULTIPLAYER BRAWLER</span>
               </div>
             </div>
-            <span class="tab-arrow">→</span>
+            <span class="tab-arrow">➔</span>
           </div>
 
           <div class="video-tab-item" data-index="2">
@@ -3307,7 +3584,7 @@
                 <span class="tab-sub-text">TACTICAL FPS</span>
               </div>
             </div>
-            <span class="tab-arrow">→</span>
+            <span class="tab-arrow">➔</span>
           </div>
         </div> <!-- /.video-tabs-row -->
       </div> <!-- /.video-showcase-box -->
@@ -3358,25 +3635,10 @@
           </div>
         </div>
 
-        <!-- Right 3D Mobile Phones Stage -->
+        <!-- Right Mobile Phones Group (single flattened Figma export — phones + Download App button baked in) -->
         <div class="app-phones-stage">
-          <!-- Left Mobile Mockup -->
-          <div class="parallax-fill-layer" data-sc-parallax="-0.08">
-            <img src="public/mobile-left.webp" alt="Reapers App Left Screen" class="phone-img phone-left">
-          </div>
-
-          <!-- Center Mobile Mockup (no parallax — it's the depth anchor the other two separate from) -->
-          <img src="public/mobile-center.webp" alt="Reapers App Center Screen" class="phone-img phone-center">
-
-          <!-- Right Mobile Mockup -->
-          <div class="parallax-fill-layer" data-sc-parallax="0.08">
-            <img src="public/mobile-right.webp" alt="Reapers App Right Screen" class="phone-img phone-right">
-          </div>
-
-          <!-- Floating Download App Button -->
-          <a href="#download" class="btn-download badge-download-floating">
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            <span>DOWNLOAD APP</span>
+          <a href="#download" class="app-phones-group-link" aria-label="Download the Reapers app">
+            <img src="public/group.png" alt="Reapers App preview on three phone screens" class="app-phones-group-img">
           </a>
 
           <!-- Floating Early Access Badge -->
@@ -3586,7 +3848,7 @@
         {
           num: '01',
           title: 'ASHFALL PROTOCOL',
-          tag: 'DEMO #1',
+          tag: 'DEMO 01',
           engine: 'UNREAL 5',
           genre: 'ACTION RPG',
           src: 'public/videos/vid-1.mp4'
@@ -3594,7 +3856,7 @@
         {
           num: '02',
           title: 'NEON PULSE ARENA',
-          tag: 'DEMO #2',
+          tag: 'DEMO 02',
           engine: 'UNITY 6',
           genre: 'MULTIPLAYER BRAWLER',
           src: 'public/videos/vid-4.mp4'
@@ -3602,7 +3864,7 @@
         {
           num: '03',
           title: 'APEX FORGE',
-          tag: 'DEMO #3',
+          tag: 'DEMO 03',
           engine: 'UNREAL 5.4',
           genre: 'TACTICAL FPS',
           src: 'public/videos/vid-6.mp4'
