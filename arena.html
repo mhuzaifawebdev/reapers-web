@@ -1,0 +1,4357 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Reapers Arena - Pakistan's Unified Gaming Arena</title>
+  <meta name="description" content="Reapers: Pakistan's Unified Gaming Arena. Play, Connect, Create, Dominate.">
+  <link rel="icon" href="public/reapers-logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="scrollcraft.css">
+
+  <style>
+    /* Knight Warrior Font Import */
+    @font-face {
+      font-family: 'Knight Warrior';
+      src: local('Knight Warrior'), local('KNIGHT WARRIOR'), url('https://fonts.cdnfonts.com/s/95191/KnightWarrior.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-dark: #05030A;
+      --bg-card: rgba(14, 11, 26, 0.65);
+      --font-hero: "Knight Warrior", "Chakra Petch", system-ui, -apple-system, sans-serif;
+      --font-display: "Chakra Petch", system-ui, -apple-system, sans-serif;
+      --font-body: "Outfit", system-ui, -apple-system, sans-serif;
+      --font-mono: "IBM Plex Mono", monospace;
+
+      /* Primary Figma Gradient */
+      --reapers-gradient: linear-gradient(95.18deg, #00E5FF 0.16%, #6D35FF 36.28%, #D83CFF 72.41%);
+      --cyan-neon: #00E5FF;
+      --purple-neon: #6D35FF;
+      --magenta-neon: #D83CFF;
+
+      --chamfer-lg: 18px;
+      --chamfer-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Global Ultra-Bold Headings */
+    h1, h2, h3, h4, h5, h6,
+    .hero-title, .entry-title, .people-title, .chatrooms-title,
+    .guilds-title, .showcase-title, .app-banner-title, .hiring-title,
+    .final-cta-title, .services-title, .legal-title, .service-title,
+    .card-title, .bento-title {
+      font-weight: 800 !important;
+      letter-spacing: 0.02em;
+    }
+
+    /* ---------------------------------------------------- Hero Section --- */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background-image: url('public/hero.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(5, 3, 10, 0.15) 0%, rgba(5, 3, 10, 0.65) 70%),
+        linear-gradient(to bottom, rgba(5, 3, 10, 0.4) 0%, rgba(5, 3, 10, 0.1) 40%, rgba(5, 3, 10, 0.85) 80%, #05030A 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Floating Glass Header - Exact Figma Specs */
+    .header-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1280px;
+      margin: 39px auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .navbar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 92px;
+      padding: 0 2.25rem;
+      background: linear-gradient(95deg, rgba(8, 12, 28, 0.78) 0%, rgba(14, 11, 26, 0.78) 50%, rgba(18, 8, 28, 0.78) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+      filter: drop-shadow(0 0 1px rgba(0, 229, 255, 0.4)) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7));
+    }
+
+    .navbar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      background: linear-gradient(90deg, rgba(0, 229, 255, 0.5) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(216, 60, 255, 0.5) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-link a {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: #9D99B5;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+    }
+
+    .nav-link a:hover,
+    .nav-link.active a {
+      color: #FFFFFF;
+      text-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
+    }
+
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.4));
+      transition: transform 0.3s ease;
+    }
+
+    .nav-brand:hover .brand-logo-img { transform: scale(1.08); }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      color: #FFFFFF;
+      margin-top: 2px;
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      color: #C0BDD5;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border-color: rgba(0, 229, 255, 0.4);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+    }
+
+    .icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1.4rem;
+      background: var(--reapers-gradient);
+      border: none;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(109, 53, 255, 0.45);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(216, 60, 255, 0.6);
+      filter: brightness(1.1);
+    }
+
+    .btn-download svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* Hero Text Content */
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16rem 1.5rem 6rem;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(0.78rem, 2.5vw, 1.15rem);
+      font-weight: 800;
+      letter-spacing: clamp(0.08em, 1.2vw, 0.2em);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.35rem 0.5rem;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .tag-white { color: #FFFFFF; }
+    .tag-cyan { color: var(--cyan-neon); text-shadow: 0 0 10px rgba(0, 229, 255, 0.5); }
+    .tag-magenta { color: var(--magenta-neon); text-shadow: 0 0 10px rgba(216, 60, 255, 0.5); }
+
+    /* Interactive Hero Word FX & Glitch Animations */
+    .hero-tagline .tag-word,
+    .hero-title .interactive-word {
+      display: inline-block;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.25s ease, text-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .hero-title .interactive-word {
+      margin-right: 0.22em;
+    }
+
+    .hero-title .interactive-word:last-child {
+      margin-right: 0;
+    }
+
+    .hero-tagline .tag-word:hover {
+      transform: translateY(-3px) scale(1.12);
+      filter: drop-shadow(0 0 14px currentColor);
+    }
+
+    .hero-title-line1 .interactive-word:hover {
+      transform: translateY(-4px) scale(1.06);
+      text-shadow: 0 0 35px var(--cyan-neon), 0 0 60px var(--magenta-neon);
+    }
+
+    .hero-title-line2 .interactive-word:hover {
+      transform: translateY(-4px) scale(1.06);
+      filter: drop-shadow(0 0 25px var(--cyan-neon)) drop-shadow(0 0 45px var(--magenta-neon));
+    }
+
+    @keyframes wordGlitchClick {
+      0% {
+        transform: scale(1) translate(0, 0);
+        filter: brightness(1) drop-shadow(0 0 0px var(--cyan-neon));
+      }
+      20% {
+        transform: scale(1.2) translate(-4px, 3px) skewX(12deg);
+        filter: brightness(2.2) drop-shadow(0 0 40px var(--cyan-neon));
+      }
+      40% {
+        transform: scale(1.15) translate(4px, -3px) skewX(-10deg);
+        filter: brightness(2.5) drop-shadow(0 0 50px var(--magenta-neon));
+      }
+      60% {
+        transform: scale(1.18) translate(-2px, -2px);
+        filter: brightness(2) drop-shadow(0 0 35px var(--purple-neon));
+      }
+      80% {
+        transform: scale(1.08) translate(1px, 1px);
+        filter: brightness(1.4) drop-shadow(0 0 20px var(--cyan-neon));
+      }
+      100% {
+        transform: scale(1) translate(0, 0);
+        filter: brightness(1);
+      }
+    }
+
+    .word-clicked {
+      animation: wordGlitchClick 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .hero-title {
+      font-family: var(--font-hero);
+      font-weight: 800;
+      font-style: normal;
+      font-size: clamp(3rem, 7.5vw, 112px);
+      line-height: clamp(2.6rem, 6.5vw, 96.32px);
+      letter-spacing: 0px;
+      text-transform: uppercase;
+    }
+
+    .hero-title-line1 {
+      display: block;
+      color: #FFFFFF;
+      text-shadow: none;
+      filter: none;
+    }
+
+    .hero-title-line2 {
+      display: block;
+    }
+
+    .hero-title-line2 .interactive-word {
+      background: linear-gradient(95deg, #00E5FF 0%, #3B82F6 40%, #D83CFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: none;
+      text-shadow: none;
+    }
+
+    /* ---------------------------------------------------- Stats Section --- */
+    .stats-section {
+      position: relative;
+      z-index: 10;
+      background-color: var(--bg-dark);
+      padding: 4rem 1.5rem 7rem;
+      margin-top: -2rem;
+    }
+
+    .stats-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .stat-number-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(3.8rem, 5.5vw, 5.2rem);
+      color: #FFFFFF;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-plus {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.8rem, 4vw, 3.8rem);
+      background: var(--reapers-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: #8C88A6;
+      text-transform: uppercase;
+      margin-top: 0.75rem;
+    }
+
+    /* ------------------------------------------- Entry Sequence Section --- */
+    .entry-sequence-section {
+      position: relative;
+      width: 100%;
+      padding: 9rem 1.5rem 11rem;
+      background: radial-gradient(83.98% 124.46% at 50% 0%, rgba(38, 119, 255, 0.12) 0%, rgba(38, 119, 255, 0) 60%), #05030A;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Parallax wrapper: gives data-sc-parallax's inline transform a stable,
+       full-size containing block so the absolutely-positioned watermark img
+       inside it keeps resolving its top/left against the SECTION, not the
+       (transformed) wrapper. */
+    .parallax-fill-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* Watermark background logos initial hidden state & scroll entrance */
+    .bg-logo-watermark {
+      position: absolute;
+      top: 45%;
+      width: min(540px, 48vw);
+      height: auto;
+      opacity: 0;
+      mix-blend-mode: luminosity;
+      filter: brightness(0.3) blur(10px);
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+      will-change: transform, opacity, filter;
+    }
+
+    .bg-logo-left { left: -9%; transform: translateY(-50%) scale(0.65) rotate(-18deg); }
+    .bg-logo-right { right: -9%; transform: translateY(-50%) scale(0.65) rotate(18deg) scaleX(-1); }
+
+    .entry-sequence-section.sc-in .bg-logo-left {
+      opacity: 0.14;
+      transform: translateY(-50%) scale(1) rotate(-6deg);
+      filter: brightness(0.7) contrast(1.4) blur(0px);
+      transition-delay: 0.1s;
+    }
+
+    .entry-sequence-section.sc-in .bg-logo-right {
+      opacity: 0.14;
+      transform: translateY(-50%) scale(1) rotate(6deg) scaleX(-1);
+      filter: brightness(0.7) contrast(1.4) blur(0px);
+      transition-delay: 0.25s;
+    }
+
+    .entry-container {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Staggered entrance animations for section children */
+    .entry-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      transform: translateY(-20px) scale(0.9);
+      transition: opacity 0.6s ease 0.15s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+    }
+
+    .entry-sequence-section.sc-in .entry-kicker {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .kicker-dot-wrap { display: flex; gap: 3px; font-size: 0.5rem; }
+    .dot-cyan { color: #00E5FF; text-shadow: 0 0 8px rgba(0, 229, 255, 0.8); }
+    .dot-purple { color: #6D35FF; text-shadow: 0 0 8px rgba(109, 53, 255, 0.8); }
+
+    .kicker-text {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      color: #8E8AAB;
+      text-transform: uppercase;
+    }
+
+    .entry-title {
+      font-family: var(--font-hero);
+      font-weight: 800;
+      font-style: normal;
+      font-size: clamp(3.2rem, 7.2vw, 108px);
+      line-height: clamp(2.8rem, 6.5vw, 94px);
+      letter-spacing: 0px;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .entry-title-white {
+      color: #FFFFFF;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+      opacity: 0;
+      transform: perspective(600px) rotateX(25deg) translateY(30px);
+      filter: blur(6px);
+      transition: opacity 0.8s ease 0.3s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, filter 0.8s ease 0.3s;
+    }
+
+    .entry-title-gradient {
+      background: var(--reapers-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 20px rgba(109, 53, 255, 0.5));
+      opacity: 0;
+      transform: perspective(600px) rotateX(25deg) translateY(30px);
+      transition: opacity 0.8s ease 0.45s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
+    }
+
+    .entry-sequence-section.sc-in .entry-title-white,
+    .entry-sequence-section.sc-in .entry-title-gradient {
+      opacity: 1;
+      transform: perspective(600px) rotateX(0deg) translateY(0);
+      filter: blur(0px);
+    }
+
+    .dot-magenta {
+      color: var(--magenta-neon);
+      -webkit-text-fill-color: var(--magenta-neon);
+      text-shadow: 0 0 15px rgba(216, 60, 255, 0.9);
+    }
+
+    /* Neon Divider Laser Sweep */
+    .entry-divider {
+      position: relative;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 15%, rgba(255, 255, 255, 0.12) 85%, transparent 100%);
+      margin: 5.5rem 0 3.5rem;
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: opacity 0.6s ease 0.6s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+      overflow: hidden;
+    }
+
+    .entry-sequence-section.sc-in .entry-divider {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .entry-divider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -30%;
+      width: 30%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #00E5FF, #D83CFF, transparent);
+      box-shadow: 0 0 15px #00E5FF;
+      opacity: 0;
+    }
+
+    .entry-sequence-section.sc-in .entry-divider::after {
+      animation: laserSweep 1.6s ease-in-out 1.2s 1 normal forwards;
+    }
+
+    @keyframes laserSweep {
+      0% { left: -30%; opacity: 0; }
+      30% { opacity: 1; }
+      100% { left: 130%; opacity: 0; }
+    }
+
+    .entry-sub-grid {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .entry-sub-item.left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease 0.75s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.75s;
+    }
+
+    .entry-sub-item.right {
+      text-align: right;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease 0.9s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s;
+    }
+
+    .entry-sequence-section.sc-in .entry-sub-item.left,
+    .entry-sequence-section.sc-in .entry-sub-item.right {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .sub-line-white {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      letter-spacing: 0.04em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+
+    .sub-line-grey {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      letter-spacing: 0.04em;
+      color: #8C88A8;
+      text-transform: uppercase;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    .sub-line-gradient {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      letter-spacing: 0.04em;
+      background: linear-gradient(90deg, #00E5FF 0%, #D83CFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    /* ------------------------------------------- Video Showcase Section --- */
+    .showcase-section {
+      position: relative;
+      width: 100%;
+      padding: 9rem 1.5rem 10rem;
+      background: radial-gradient(80% 80% at 50% 30%, rgba(109, 53, 255, 0.15) 0%, rgba(5, 3, 10, 0) 70%), #05030A;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .showcase-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .video-showcase-box {
+      position: relative;
+      width: 100%;
+      background: #0A0816;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      clip-path: polygon(
+        16px 0, 100% 0, 100% calc(100% - 16px),
+        calc(100% - 16px) 100%, 0 100%, 0 16px
+      );
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+      overflow: hidden;
+    }
+
+    .showcase-video-elem {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-top-bar {
+      position: absolute;
+      top: 0;
+      inset-x: 0;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(5, 3, 10, 0.85) 0%, rgba(5, 3, 10, 0) 100%);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .demo-chips { display: flex; align-items: center; gap: 0.5rem; }
+
+    .demo-chip {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .chip-cyan {
+      background: rgba(0, 229, 255, 0.2);
+      color: var(--cyan-neon);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+    }
+
+    .chip-dark {
+      background: rgba(255, 255, 255, 0.06);
+      color: #D1CDE5;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .live-pill {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      padding: 0.35rem 0.85rem;
+      background: rgba(216, 60, 255, 0.15);
+      border: 1px solid rgba(216, 60, 255, 0.4);
+      border-radius: 20px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    .live-watch-count { color: var(--cyan-neon); font-variant-numeric: tabular-nums; }
+
+    /* Showcase signature moment: the "arena floor fills up" peak. Once the
+       section's scroll progress (--sc-p, published by data-sc-act) crosses
+       ~0.8, .live-pill--peak is added (see JS) and this fires once. */
+    @keyframes livePeakPulse {
+      0%   { box-shadow: 0 0 0 rgba(216, 60, 255, 0); }
+      35%  { box-shadow: 0 0 22px rgba(216, 60, 255, 0.85), 0 0 40px rgba(0, 229, 255, 0.35); }
+      100% { box-shadow: 0 0 0 rgba(216, 60, 255, 0); }
+    }
+    .live-pill.live-pill--peak { animation: livePeakPulse 900ms ease-out; }
+
+    .video-bottom-overlay {
+      position: absolute;
+      bottom: 0;
+      inset-x: 0;
+      padding: 2rem 1.75rem 1.5rem;
+      background: linear-gradient(to top, rgba(5, 3, 10, 0.95) 0%, rgba(5, 3, 10, 0.4) 60%, rgba(5, 3, 10, 0) 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 5;
+    }
+
+    .now-playing-meta { display: flex; flex-direction: column; gap: 0.2rem; }
+
+    .now-playing-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #8C88A8;
+      text-transform: uppercase;
+    }
+
+    .now-playing-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+      letter-spacing: 0.04em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      line-height: 1.1;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .video-actions { display: flex; align-items: center; gap: 0.85rem; }
+
+    .icon-btn-video {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: rgba(15, 12, 28, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .icon-btn-video:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--cyan-neon);
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    }
+
+    .btn-watch-demo { padding: 0.75rem 1.6rem; font-size: 0.85rem; }
+
+    .video-tabs-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(8, 6, 18, 0.95);
+    }
+
+    .video-tab-item {
+      padding: 1.35rem 1.5rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .video-tab-item:last-child { border-right: none; }
+
+    .video-tab-item.active {
+      background: rgba(0, 229, 255, 0.08);
+      border-left: 3px solid var(--cyan-neon);
+    }
+
+    .video-tab-item:hover:not(.active) { background: rgba(255, 255, 255, 0.03); }
+
+    .tab-meta-left { display: flex; align-items: center; gap: 1.25rem; }
+
+    .tab-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: #4A4663;
+      transition: color 0.3s ease;
+    }
+
+    .video-tab-item.active .tab-num {
+      color: var(--cyan-neon);
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+    }
+
+    .tab-text-wrap { display: flex; flex-direction: column; gap: 2px; }
+
+    .tab-title-text {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: #9D99B5;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .video-tab-item.active .tab-title-text { color: #FFFFFF; }
+
+    .tab-sub-text {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: #6E698A;
+      text-transform: uppercase;
+    }
+
+    .tab-arrow {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--cyan-neon);
+      opacity: 0;
+      transform: translateX(-5px);
+      transition: all 0.3s ease;
+    }
+
+    .video-tab-item.active .tab-arrow { opacity: 1; transform: translateX(0); }
+
+    /* -------------------------------------- Chatrooms & Communities --- */
+    .chatrooms-section {
+      position: relative;
+      width: 100%;
+      padding: 9rem 1.5rem 10rem;
+      background-color: #05030A;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .chat-glow-orb {
+      position: absolute;
+      width: 414px;
+      height: 414px;
+      left: 50%;
+      top: 55%;
+      transform: translate(-50%, -50%) rotate(-157.38deg);
+      border-radius: 33554400px;
+      background: radial-gradient(70.71% 70.71% at 50% 50%, rgba(0, 229, 255, 0.22) 0%, rgba(0, 229, 255, 0) 66%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .chatrooms-container {
+      position: relative;
+      z-index: 5;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .chat-widget {
+      position: relative;
+      width: 100%;
+      background: rgba(12, 10, 26, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      clip-path: polygon(
+        16px 0, 100% 0, 100% calc(100% - 16px),
+        calc(100% - 16px) 100%, 0 100%, 0 16px
+      );
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      display: grid;
+      grid-template-columns: 240px 1fr 240px;
+      min-height: 480px;
+    }
+
+    .chat-sidebar-channels {
+      padding: 1.5rem 1.25rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .widget-kicker-title {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: #7A7596;
+      text-transform: uppercase;
+    }
+
+    .channels-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      list-style: none;
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #8C88A8;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .channel-item.active {
+      background: rgba(0, 229, 255, 0.12);
+      color: var(--cyan-neon);
+      border-left: 2px solid var(--cyan-neon);
+      box-shadow: inset 0 0 12px rgba(0, 229, 255, 0.1);
+    }
+
+    .channel-item:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.04);
+      color: #FFFFFF;
+    }
+
+    .channel-count { font-size: 0.68rem; opacity: 0.7; }
+
+    .chat-stream-area {
+      padding: 1.5rem 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stream-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .stream-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stream-status {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--cyan-neon);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .chat-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .message-item { display: flex; align-items: flex-start; gap: 0.85rem; }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .message-body { display: flex; flex-direction: column; gap: 2px; }
+
+    .user-name {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .name-cyan { color: var(--cyan-neon); }
+    .name-blue { color: #4361EE; }
+    .name-magenta { color: var(--magenta-neon); }
+
+    .message-text {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: #D1CDE3;
+      line-height: 1.4;
+    }
+
+    .reactions-bar { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+
+    .reaction-chip {
+      padding: 0.25rem 0.6rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: #A4A0BF;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .reaction-chip:hover { background: rgba(255, 255, 255, 0.08); color: #FFFFFF; }
+
+    .chat-input-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(5, 3, 10, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 0.5rem 0.85rem;
+    }
+
+    .chat-input-field {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: #FFFFFF;
+    }
+
+    .chat-input-field::placeholder { color: #6E698A; }
+
+    .send-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--reapers-gradient);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .send-btn:hover { transform: scale(1.05); }
+    .send-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .chat-sidebar-stats {
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .activity-boxes { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .activity-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .activity-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: #8C88A8;
+      text-transform: uppercase;
+    }
+
+    .activity-val {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .val-cyan { color: var(--cyan-neon); }
+    .val-purple { color: var(--purple-neon); }
+    .val-magenta { color: var(--magenta-neon); }
+
+    /* ------------------------------------- People Behind The Arena --- */
+    .people-section {
+      position: relative;
+      width: 100%;
+      padding: 9rem 1.5rem 10rem;
+      background: radial-gradient(70.71% 70.71% at 50% 50%, rgba(108, 43, 255, 0.26) 0%, rgba(108, 43, 255, 0) 66%), #05030A;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .people-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .people-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .people-title {
+      font-family: var(--font-hero);
+      font-weight: 800;
+      font-style: normal;
+      font-size: clamp(2.8rem, 6vw, 90px);
+      line-height: clamp(2.5rem, 5.5vw, 80px);
+      letter-spacing: 0px;
+      text-transform: uppercase;
+    }
+
+    .people-title-white { display: block; color: #FFFFFF; }
+    .people-title-gradient {
+      display: block;
+      background: var(--reapers-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .people-desc {
+      max-width: 480px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #9793B2;
+      text-align: right;
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .bento-card-1 { grid-column: span 7; grid-row: span 2; height: 100%; min-height: 440px; }
+
+    .bento-top-right {
+      grid-column: span 5;
+      grid-row: span 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      height: 100%;
+    }
+
+    .bento-card-2 { width: 100%; flex: 1; min-height: 205px; }
+
+    .bento-top-right-sub {
+      display: flex;
+      gap: 1.25rem;
+      width: 100%;
+      flex: 1;
+      min-height: 205px;
+    }
+
+    .bento-top-right-sub .bento-card { flex: 1; height: 100%; }
+
+    .bento-card-4 { grid-column: span 4; min-height: 230px; }
+    .bento-card-5 { grid-column: span 5; min-height: 230px; }
+    .bento-card-10 { grid-column: span 3; min-height: 230px; }
+    .bento-card-6 { grid-column: span 3; min-height: 230px; }
+    .bento-card-7 { grid-column: span 4; min-height: 230px; }
+    .bento-card-11 { grid-column: span 2; min-height: 230px; }
+    .bento-card-9 { grid-column: span 3; min-height: 230px; }
+
+    .bento-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0E0B1A;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .bento-card:hover {
+      transform: translateY(-3px) scale(1.012);
+      border-color: rgba(0, 229, 255, 0.4);
+      box-shadow: 0 10px 30px rgba(108, 43, 255, 0.35);
+    }
+
+    .bento-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .bento-card:hover .bento-img { transform: scale(1.06); }
+
+    .bento-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5, 3, 10, 0.95) 0%, rgba(5, 3, 10, 0.35) 45%, rgba(5, 3, 10, 0) 75%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 1rem 1.25rem;
+      pointer-events: none;
+    }
+
+    .bento-meta { display: flex; flex-direction: column; gap: 2px; }
+
+    .bento-title-text {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .bento-sub-text {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: #8C88A8;
+    }
+
+    .bento-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cyan-neon);
+      opacity: 0.9;
+    }
+
+    .bento-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      color: #7A7596;
+      text-transform: uppercase;
+    }
+
+    /* ------------------------------------- Guilds & Communities --- */
+    .guilds-section {
+      position: relative;
+      width: 100%;
+      padding: 6rem 1.5rem 8rem;
+      background-color: #05030A;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .guilds-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .guilds-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .guilds-kicker-right {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: #7D7899;
+      text-transform: uppercase;
+    }
+
+    .guilds-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .guild-card {
+      background: rgba(14, 11, 26, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .guild-card:hover {
+      background: rgba(14, 11, 26, 0.9);
+      border-color: rgba(0, 229, 255, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .guild-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0.9) contrast(1.1);
+    }
+
+    .guild-name {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    /* ------------------------------------- Media Queries --- */
+    /* ------------------------------------- Media Queries --- */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+
+    @media (max-width: 1024px) {
+      .navbar { padding: 0.6rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      .hero-content { padding-top: 10rem; }
+      .chat-widget { grid-template-columns: 1fr; }
+      .chat-sidebar-channels, .chat-sidebar-stats { border: none; }
+      .people-header { flex-direction: column; align-items: flex-start; }
+      .people-desc { text-align: left; }
+      .bento-grid { grid-template-columns: repeat(6, 1fr); }
+      .bento-card-1 { grid-column: span 6; grid-row: span 1; min-height: 320px; }
+      .bento-top-right { grid-column: span 6; }
+      .bento-card-4 { grid-column: span 3; }
+      .bento-card-5 { grid-column: span 3; }
+      .bento-card-10 { grid-column: span 3; }
+      .bento-card-6 { grid-column: span 3; }
+      .bento-card-7 { grid-column: span 3; }
+      .bento-card-11 { grid-column: span 3; }
+      .bento-card-9 { grid-column: span 3; }
+      .guilds-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-tagline {
+        font-size: clamp(0.72rem, 3.6vw, 0.95rem) !important;
+        letter-spacing: 0.1em !important;
+        gap: 0.25rem 0.4rem !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+      }
+      .nav-links { display: none; }
+      .header-wrapper { margin-top: 0.5rem; padding: 0 0.75rem; }
+      .navbar { padding: 0.5rem 0.85rem; }
+      .hero-content { padding-top: 7rem; padding-bottom: 3.5rem; text-align: center; }
+      .hero-title { font-size: clamp(2.2rem, 8vw, 3.8rem); line-height: 1.1; }
+      .hero-desc { font-size: 0.95rem; line-height: 1.5; max-width: 100%; }
+      .hero-actions { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; gap: 0.75rem; }
+      .hero-actions .btn-primary, .hero-actions .btn-secondary { width: 100%; justify-content: center; text-align: center; }
+      .stats-container { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; padding: 2.5rem 1rem; }
+      .entry-sub-grid { flex-direction: column; align-items: center; text-align: center; gap: 2rem; }
+      .entry-sub-item.right { text-align: center; }
+      .bg-logo-watermark { width: 85vw; opacity: 0.08; }
+      .video-tabs-row { grid-template-columns: 1fr; }
+      .video-tab-item { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+      .people-section, .entry-sequence, .chatrooms-section, .guilds-section, .showcase-section, .hiring-section { padding: 4rem 1rem; }
+      .people-title, .entry-title, .chatrooms-title, .guilds-title, .showcase-title, .hiring-title { font-size: clamp(2rem, 8vw, 3.2rem); }
+      .chat-messages-container { max-height: 280px; }
+      .hiring-header-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .hiring-header-desc { text-align: left; max-width: 100%; }
+      .final-cta-section { padding: 4rem 1rem 0; }
+      .final-cta-content { padding: 3rem 1rem; gap: 1.5rem; }
+      .final-cta-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+      .cta-form-row { flex-direction: column; width: 100%; gap: 0.75rem; }
+      .cta-email-input, .btn-cta-download { width: 100%; text-align: center; justify-content: center; }
+      .site-footer-bar { flex-direction: column; gap: 0.75rem; text-align: center; margin-top: 3rem; }
+      .footer-watermark-text { font-size: clamp(3.2rem, 16vw, 120px); }
+    }
+
+    @media (max-width: 640px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-top-right { grid-column: span 1; }
+      .bento-top-right-sub { flex-direction: column; }
+      .bento-card { grid-column: span 1 !important; min-height: 220px !important; }
+      .guilds-grid { grid-template-columns: 1fr; }
+      .stats-container { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-tagline {
+        font-size: clamp(0.68rem, 3.8vw, 0.85rem) !important;
+        letter-spacing: 0.06em !important;
+        gap: 0.2rem 0.3rem !important;
+      }
+      .btn-download span { font-size: 0.7rem; }
+      .nav-brand .brand-name { font-size: 1.1rem; }
+    }
+  
+
+    /* App Banner Section */
+    .app-banner-section {
+      position: relative;
+      width: 100%;
+      padding: 7rem 1.5rem;
+      background-color: #05030A;
+      overflow: hidden;
+    }
+
+    .app-banner-container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .app-banner-box {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(95.18deg, #00E5FF 0.16%, #6D35FF 36.28%, #D83CFF 72.41%);
+      clip-path: polygon(
+        55px 0,
+        100% 0,
+        100% calc(100% - 55px),
+        calc(100% - 55px) 100%,
+        0 100%,
+        0 55px
+      );
+      padding: 5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(109, 53, 255, 0.4);
+      min-height: 480px;
+    }
+
+    /* Watermark Emblem Logo Background (public/bg-logo.png) */
+    .app-banner-watermark {
+      position: absolute;
+      left: 32%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 520px;
+      height: auto;
+      opacity: 0.16;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Left Copy Column */
+    .app-banner-copy {
+      position: relative;
+      z-index: 5;
+      max-width: 540px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .app-banner-title {
+      font-family: var(--font-hero);
+      font-weight: 800;
+      font-style: normal;
+      font-size: clamp(2.8rem, 5.2vw, 76px);
+      line-height: clamp(2.5rem, 4.8vw, 68px);
+      letter-spacing: 0px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .app-banner-desc {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.92);
+      font-weight: 500;
+    }
+
+    /* Features List 2-Columns */
+    .app-features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem 2.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .app-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+    }
+
+    .app-feature-num {
+      font-size: 0.68rem;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* Right Column - 3D Mobile Phone Mockups Stage */
+    .app-phones-stage {
+      position: relative;
+      z-index: 5;
+      width: 520px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .phone-img {
+      position: absolute;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+    }
+
+    .phone-left {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) rotate(-6deg) scale(0.88);
+      width: 220px;
+      z-index: 2;
+    }
+
+    .phone-center {
+      left: 24%;
+      top: 50%;
+      transform: translateY(-50%) scale(1.04);
+      width: 240px;
+      z-index: 4;
+    }
+
+    .phone-right {
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%) rotate(6deg) scale(0.88);
+      width: 220px;
+      z-index: 3;
+    }
+
+    .app-phones-stage:hover .phone-left { transform: translateY(-52%) rotate(-9deg) scale(0.9); }
+    .app-phones-stage:hover .phone-center { transform: translateY(-53%) scale(1.07); }
+    .app-phones-stage:hover .phone-right { transform: translateY(-52%) rotate(9deg) scale(0.9); }
+
+    /* Floating Badges / Buttons */
+    .badge-download-floating {
+      position: absolute;
+      left: 14%;
+      bottom: 28%;
+      z-index: 10;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transform: scale(0.95);
+    }
+
+    .badge-early-access {
+      position: absolute;
+      right: 2%;
+      bottom: 8%;
+      z-index: 10;
+      background: rgba(12, 10, 26, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(216, 60, 255, 0.5);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      text-transform: uppercase;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .badge-early-access:hover {
+      background: rgba(12, 10, 26, 0.95);
+      border-color: var(--cyan-neon);
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* App Banner Section Mobile Responsive Fixes */
+    @media (max-width: 1024px) {
+      .app-banner-section { padding: 4rem 1.25rem; }
+      .app-banner-box {
+        flex-direction: column;
+        padding: 3rem 1.5rem;
+        gap: 2.5rem;
+        text-align: center;
+        clip-path: polygon(28px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px);
+        min-height: auto;
+        width: 100%;
+      }
+      .app-banner-copy { align-items: center; text-align: center; max-width: 100%; }
+      .app-banner-title { font-size: clamp(2.2rem, 7vw, 3.8rem); line-height: 1.1; text-align: center; }
+      .app-banner-desc { font-size: 0.95rem; line-height: 1.5; text-align: center; max-width: 520px; margin: 0 auto; }
+      .app-features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem 1rem; width: 100%; max-width: 440px; margin: 0.5rem auto 0; text-align: left; }
+      .app-feature-item { font-size: 0.75rem; justify-content: flex-start; }
+      .app-phones-stage {
+        width: 100%;
+        max-width: 380px;
+        height: 300px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .phone-center { width: 180px; left: 50%; top: 40%; transform: translate(-50%, -50%) scale(1); z-index: 4; }
+      .phone-left { width: 140px; left: 5%; top: 40%; transform: translateY(-50%) rotate(-6deg) scale(0.85); z-index: 2; }
+      .phone-right { width: 140px; right: 5%; top: 40%; transform: translateY(-50%) rotate(6deg) scale(0.85); z-index: 3; }
+      .badge-download-floating { position: relative; left: auto; bottom: auto; transform: none; margin-top: 1.25rem; z-index: 10; display: inline-flex; justify-content: center; }
+      .badge-early-access { position: relative; right: auto; bottom: auto; transform: none; margin-top: 0.65rem; z-index: 10; display: inline-flex; justify-content: center; }
+    }
+
+    @media (max-width: 640px) {
+      .app-banner-section { padding: 2.5rem 0.75rem; }
+      .app-banner-box {
+        padding: 2.25rem 1rem;
+        gap: 1.75rem;
+        clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+      }
+      .app-banner-title { font-size: clamp(1.8rem, 8.5vw, 2.6rem); line-height: 1.1; }
+      .app-banner-desc { font-size: 0.88rem; }
+      .app-features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem 0.5rem; }
+      .app-feature-item { font-size: 0.68rem; gap: 0.35rem; }
+      .app-phones-stage { height: 220px; max-width: 290px; }
+      .phone-left { width: 105px; left: -2%; transform: translateY(-50%) rotate(-5deg) scale(0.8); }
+      .phone-center { width: 135px; left: 50%; transform: translate(-50%, -50%) scale(0.95); }
+      .phone-right { width: 110px; right: -2%; transform: translateY(-50%) rotate(5deg) scale(0.8); }
+    }
+
+
+    /* ---------------------------------------------------- Hiring / LFG Section --- */
+    .hiring-section {
+      position: relative;
+      width: 100%;
+      padding: 7rem 1.5rem;
+      background-color: #05030A;
+      overflow: hidden;
+    }
+
+    .hiring-glow-orb {
+      position: absolute;
+      top: 20%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(108, 43, 255, 0.15) 0%, rgba(108, 43, 255, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hiring-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .hiring-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hiring-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hiring-title {
+      font-family: var(--font-hero);
+      font-weight: 800;
+      font-size: clamp(2.8rem, 5vw, 72px);
+      line-height: 1.05;
+      letter-spacing: 0px;
+      text-transform: uppercase;
+    }
+
+    .hiring-title-white {
+      color: #FFFFFF;
+    }
+
+    .hiring-title-gradient {
+      background: var(--reapers-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hiring-header-desc {
+      max-width: 420px;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #9D99B5;
+      text-align: right;
+    }
+
+    /* Filter Pills */
+    .hiring-filters {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .filter-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.6rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #9D99B5;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .filter-pill:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border-color: rgba(0, 229, 255, 0.3);
+    }
+
+    .filter-pill.active {
+      background: rgba(0, 229, 255, 0.08);
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.25);
+    }
+
+    /* 3-Column Mission / Role Cards */
+    .hiring-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .role-card {
+      position: relative;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2.2rem 2rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .role-card:hover {
+      border-color: rgba(0, 229, 255, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 229, 255, 0.15);
+    }
+
+    .role-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .studio-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .status-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .status-badge.recruiting {
+      background: rgba(0, 229, 255, 0.12);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      color: var(--cyan-neon);
+    }
+
+    .status-badge.urgent {
+      background: rgba(216, 60, 255, 0.12);
+      border: 1px solid rgba(216, 60, 255, 0.4);
+      color: var(--magenta-neon);
+    }
+
+    .role-meta-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .role-field-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #6C6685;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .role-mission-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.35;
+      margin-top: 0.2rem;
+    }
+
+    .role-project-name {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+
+    .btn-view-role {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.4rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .btn-view-role:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(0, 229, 255, 0.4);
+      color: var(--cyan-neon);
+    }
+
+    /* Bottom Full-Width CTA Bar */
+    .post-role-bar {
+      width: 100%;
+      padding: 1.1rem 2rem;
+      background: rgba(14, 11, 26, 0.65);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #9D99B5;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .post-role-bar:hover {
+      background: rgba(20, 16, 38, 0.9);
+      border-color: var(--magenta-neon);
+      color: #FFFFFF;
+      box-shadow: 0 0 25px rgba(216, 60, 255, 0.25);
+    }
+
+    @media (max-width: 1024px) {
+      .hiring-cards-grid { grid-template-columns: 1fr; }
+      .hiring-header-desc { text-align: left; max-width: 100%; }
+    }
+
+
+    /* ---------------------------------------------------- Final CTA & Footer Section --- */
+    .final-cta-section {
+      position: relative;
+      width: 100%;
+      background-color: #08000F;
+      padding: 8rem 1.5rem 0;
+      overflow: hidden;
+    }
+
+    .final-cta-container {
+      position: relative;
+      max-width: 1280px;
+      margin: 0 auto;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 24px;
+      overflow: hidden;
+      background-image: url('public/community/hero.webp');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+    }
+
+    .final-cta-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(89.15deg, rgba(8, 0, 15, 0) 76.86%, #08000F 99.29%),
+        linear-gradient(270.16deg, rgba(8, 0, 15, 0) 75.84%, #08000F 99.86%),
+        linear-gradient(180deg, #08000F 0%, rgba(8, 0, 15, 0) 100%),
+        linear-gradient(180deg, rgba(8, 0, 15, 0) 0%, #08000F 100%),
+        rgba(8, 0, 15, 0.35);
+      z-index: 1;
+    }
+
+    .final-cta-content {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      max-width: 850px;
+      padding: 4rem 2rem;
+    }
+
+    .final-cta-title {
+      font-family: var(--font-hero);
+      font-weight: 800;
+      font-size: clamp(3rem, 6.5vw, 84px);
+      line-height: 1.02;
+      letter-spacing: 0px;
+      text-transform: uppercase;
+    }
+
+    .final-cta-title-white {
+      color: #FFFFFF;
+      display: block;
+    }
+
+    .final-cta-title-gradient {
+      background: var(--reapers-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+
+    /* Email Input & Download CTA Form */
+    .cta-form-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      max-width: 540px;
+      margin-top: 0.5rem;
+    }
+
+    .cta-email-input {
+      flex: 1;
+      height: 52px;
+      padding: 0 1.5rem;
+      background: rgba(14, 11, 26, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .cta-email-input:focus {
+      border-color: var(--cyan-neon);
+      box-shadow: 0 0 18px rgba(0, 229, 255, 0.3);
+    }
+
+    .cta-email-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-cta-download {
+      height: 52px;
+      padding: 0 2rem;
+      background: var(--reapers-gradient);
+      border: none;
+      border-radius: 12px;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      white-space: nowrap;
+      box-shadow: 0 10px 30px rgba(109, 53, 255, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    .btn-cta-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(109, 53, 255, 0.6), 0 0 25px rgba(0, 229, 255, 0.4);
+    }
+
+    /* Bottom Footer Bar */
+    .site-footer-bar {
+      max-width: 1280px;
+      margin: 6rem auto 0;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+    }
+
+    .footer-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .footer-link {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      color: #9D99B5;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+    }
+
+    .footer-link:hover,
+    .footer-link.active {
+      color: #00E5FF;
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+    }
+
+    /* Giant Watermark Text "REAPERS" at Bottom */
+    .footer-watermark-wrap {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      user-select: none;
+      pointer-events: none;
+      padding-top: 2rem;
+      margin-bottom: -1rem;
+    }
+
+    .footer-watermark-text {
+      font-family: var(--font-hero);
+      font-size: clamp(6rem, 18vw, 240px);
+      font-weight: 800;
+      line-height: 0.8;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.03);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .header-wrapper {
+        margin: 12px auto 0 !important;
+        padding: 0 0.75rem !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+      .navbar {
+        height: 68px !important;
+        padding: 0 0.75rem !important;
+        clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px) !important;
+      }
+      .navbar::before {
+        clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px) !important;
+      }
+      .nav-links { display: none !important; }
+      .brand-logo-img { height: 36px !important; }
+      .brand-name { font-size: 0.68rem !important; letter-spacing: 0.18em !important; }
+      .nav-actions { gap: 0.4rem !important; }
+      .icon-btn { width: 36px !important; height: 36px !important; }
+      .icon-btn svg { width: 16px !important; height: 16px !important; }
+      .btn-download {
+        padding: 0.5rem 0.8rem !important;
+        font-size: 0.72rem !important;
+        gap: 0.35rem !important;
+      }
+      .btn-download span { display: none !important; }
+
+      .site-footer-bar { flex-direction: column !important; gap: 1.25rem !important; text-align: center !important; }
+      .footer-nav-links { flex-wrap: wrap !important; justify-content: center !important; gap: 0.85rem 1.25rem !important; }
+    }
+
+    @media (max-width: 640px) {
+      .cta-form-row { flex-direction: column; width: 100%; }
+      .cta-email-input, .btn-cta-download { width: 100%; }
+    }
+
+
+    /* ---------------------------------------------------- Keyframes & Dynamic Animations --- */
+    /* Floating Glow Orbs Motion */
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(35px, -45px) scale(1.1); }
+      66% { transform: translate(-25px, 25px) scale(0.92); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    @keyframes floatOrbReverse {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-40px, 35px) scale(0.9); }
+      66% { transform: translate(30px, -25px) scale(1.08); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    /* Continuous Shifting Gradient Motion */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Ambient Watermark Breath */
+    @keyframes watermarkFloat {
+      0% { transform: translateY(-50%) scale(1) rotate(0deg); opacity: 0.05; }
+      50% { transform: translateY(-52%) scale(1.04) rotate(1deg); opacity: 0.09; }
+      100% { transform: translateY(-50%) scale(1) rotate(0deg); opacity: 0.05; }
+    }
+
+    /* 3D Mobile Phones Continuous Floating Sync */
+    @keyframes floatPhoneLeft {
+      0% { transform: translateY(-50%) rotate(-6deg) scale(0.88); }
+      50% { transform: translateY(-55%) rotate(-8deg) scale(0.91); }
+      100% { transform: translateY(-50%) rotate(-6deg) scale(0.88); }
+    }
+
+    @keyframes floatPhoneCenter {
+      0% { transform: translateY(-50%) scale(1.04); }
+      50% { transform: translateY(-44%) scale(1.08); }
+      100% { transform: translateY(-50%) scale(1.04); }
+    }
+
+    @keyframes floatPhoneRight {
+      0% { transform: translateY(-50%) rotate(6deg) scale(0.88); }
+      50% { transform: translateY(-54%) rotate(8deg) scale(0.91); }
+      100% { transform: translateY(-50%) rotate(6deg) scale(0.88); }
+    }
+
+    /* Hero Background Video Backdrop */
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.38;
+      z-index: 0;
+      pointer-events: none;
+      filter: saturate(1.2) contrast(1.1);
+    }
+
+    /* Liquid Ripple / Bubble Hover Class for All Buttons */
+    .btn-bubble {
+      position: relative !important;
+      overflow: hidden !important;
+      z-index: 1;
+    }
+
+    .btn-bubble::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.45) 0%, rgba(216, 60, 255, 0.25) 50%, transparent 80%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .btn-bubble:hover::after {
+      width: 380px;
+      height: 380px;
+      opacity: 1;
+    }
+
+    /* Scroll Reveal Animations — tuned override of ScrollCraft's own
+       [data-sc-in] defaults (14px/620ms) to keep this page's original,
+       slightly heavier 35px/800ms rise. */
+    [data-sc-in] {
+      transform: translate3d(0, 35px, 0);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Cyberpunk Typewriter Heading Animation */
+    .typing-title {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .typewriter-text {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.1em;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.9em;
+      color: #00E5FF;
+      text-shadow: 0 0 12px #00E5FF, 0 0 24px #D83CFF;
+      margin-left: 3px;
+      animation: blinkCursor 0.65s infinite ease-in-out;
+      line-height: 1;
+    }
+
+    @keyframes blinkCursor {
+      0%, 100% { opacity: 1; filter: brightness(1.2); }
+      50% { opacity: 0.15; filter: brightness(0.7); }
+    }
+
+    /* ==========================================================================
+       Distinct Heading Scroll Animations for Every Section
+       ========================================================================== */
+
+    /* Section 3: The People Behind The Arena - Light Shimmer & Masked Rise */
+    .people-title-anim-shimmer {
+      overflow: hidden;
+    }
+
+    .people-title-anim-shimmer .people-title-white,
+    .people-title-anim-shimmer .people-title-gradient {
+      display: block;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .people-title-anim-shimmer.is-active .people-title-white {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+
+    .people-title-anim-shimmer.is-active .people-title-gradient {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.25s;
+      position: relative;
+    }
+
+    .people-title-anim-shimmer.is-active .people-title-gradient::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+      transform: skewX(-25deg);
+      animation: titleLightShimmer 2.4s ease-in-out 0.6s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes titleLightShimmer {
+      0% { left: -100%; opacity: 0; }
+      20% { opacity: 1; }
+      60% { left: 140%; opacity: 0; }
+      100% { left: 140%; opacity: 0; }
+    }
+
+    /* Section 5: Guilds & Communities - Cyber Matrix Glitch & Hologram Unfold */
+    .guilds-title-glitch {
+      opacity: 0;
+      transform: scale(0.94);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .guilds-title-glitch.is-active {
+      opacity: 1;
+      transform: scale(1);
+      animation: matrixTitleGlitch 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes matrixTitleGlitch {
+      0% {
+        transform: scale(0.92) skewX(12deg);
+        filter: drop-shadow(4px 0 0 #00E5FF) drop-shadow(-4px 0 0 #D83CFF);
+        opacity: 0.2;
+      }
+      25% {
+        transform: scale(1.05) skewX(-10deg);
+        filter: drop-shadow(-3px 0 0 #00E5FF) drop-shadow(3px 0 0 #D83CFF);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(0.97) skewX(6deg);
+        filter: drop-shadow(2px 0 0 #00E5FF) drop-shadow(-2px 0 0 #D83CFF);
+      }
+      75% {
+        transform: scale(1.02) skewX(-3deg);
+        filter: drop-shadow(-1px 0 0 #00E5FF) drop-shadow(1px 0 0 #D83CFF);
+      }
+      100% {
+        transform: scale(1) skewX(0deg);
+        filter: none;
+        opacity: 1;
+      }
+    }
+
+    /* Section 6: Video Showcase - Cinematic Aperture Zoom & Letter-Spacing */
+    .showcase-title-zoom {
+      opacity: 0;
+      transform: scale(1.25);
+      letter-spacing: 0.18em;
+      transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: blur(8px);
+    }
+
+    .showcase-title-zoom.is-active {
+      opacity: 1;
+      transform: scale(1);
+      letter-spacing: 0px;
+      filter: blur(0px);
+    }
+
+    /* Section 7: App Banner - Bi-Directional Kinetic Split Slide */
+    .app-banner-title-split .split-line-left {
+      display: inline-block;
+      opacity: 0;
+      transform: translateX(-80px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+    }
+
+    .app-banner-title-split .split-line-right {
+      display: inline-block;
+      opacity: 0;
+      transform: translateX(80px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+    }
+
+    .app-banner-title-split.is-active .split-line-left,
+    .app-banner-title-split.is-active .split-line-right {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Section 8: Hiring Section - Holographic Iridescent Wave & Upward Rise */
+    .hiring-title-wave {
+      opacity: 0;
+      transform: perspective(600px) rotateX(25deg) translateY(35px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hiring-title-wave.is-active {
+      opacity: 1;
+      transform: perspective(600px) rotateX(0deg) translateY(0);
+    }
+
+    .hiring-title-wave.is-active .hiring-title-gradient {
+      animation: holoWaveShift 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes holoWaveShift {
+      0% { filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.4)); }
+      50% { filter: drop-shadow(0 0 25px rgba(216, 60, 255, 0.7)); }
+      100% { filter: drop-shadow(0 0 20px rgba(109, 53, 255, 0.6)); }
+    }
+
+    /* Section 9: Final CTA Section - Radial Shockwave Pulse & Scale Elastic */
+    .final-cta-title-pulse {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .final-cta-title-pulse.is-active {
+      opacity: 1;
+      transform: scale(1);
+      animation: ctaBeaconPulse 3s ease-in-out 0.8s infinite alternate;
+    }
+
+    @keyframes ctaBeaconPulse {
+      0% { filter: drop-shadow(0 4px 20px rgba(109, 53, 255, 0.4)); transform: scale(1); }
+      100% { filter: drop-shadow(0 0 45px rgba(216, 60, 255, 0.85)) drop-shadow(0 0 20px rgba(0, 229, 255, 0.6)); transform: scale(1.02); }
+    }
+
+    .bg-logo-left {
+      animation: floatOrb 16s ease-in-out infinite alternate !important;
+    }
+
+    .bg-logo-right {
+      animation: floatOrbReverse 18s ease-in-out infinite alternate !important;
+    }
+
+    /* Moving Gradients on Gradient Containers & Buttons */
+    .app-banner-box, .btn-download, .btn-cta-download {
+      background-size: 200% 200% !important;
+      animation: gradientShift 6s ease infinite !important;
+    }
+
+    .hiring-title-gradient, .people-title-gradient, .entry-title-gradient, .final-cta-title-gradient {
+      background-size: 200% 200% !important;
+      animation: gradientShift 5s ease infinite !important;
+    }
+
+    /* Phone Floating Animations */
+    .phone-left { animation: floatPhoneLeft 6s ease-in-out infinite !important; }
+    .phone-center { animation: floatPhoneCenter 5.5s ease-in-out infinite !important; }
+    .phone-right { animation: floatPhoneRight 6.5s ease-in-out infinite !important; }
+
+    /* Bento Gallery Collapsible Accordion */
+    .bento-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .bento-wrapper.bento-collapsed .bento-grid {
+      max-height: 640px;
+      overflow: hidden;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    .bento-expand-bar {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .bento-expand-btn {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.85rem 2.2rem;
+      border-radius: 9999px;
+      background: rgba(14, 11, 26, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      color: #FFFFFF;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .bento-expand-btn:hover {
+      border-color: var(--magenta-neon);
+      color: var(--cyan-neon);
+      box-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+
+    /* ---------------------------------------------------- Interactive Chatrooms Styling --- */
+    .chat-messages {
+      max-height: 260px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      padding-right: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: rgba(0, 229, 255, 0.3);
+      border-radius: 4px;
+    }
+
+    .channel-item {
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .channel-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #FFFFFF;
+    }
+
+    .channel-item.active {
+      background: rgba(0, 229, 255, 0.12);
+      border-left: 3px solid var(--cyan-neon);
+      color: var(--cyan-neon);
+    }
+
+    .reaction-chip {
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .reaction-chip:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .reaction-chip.active-reaction {
+      background: rgba(0, 229, 255, 0.15) !important;
+      border-color: var(--cyan-neon) !important;
+      color: var(--cyan-neon) !important;
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+      transform: scale(1.08);
+    }
+
+    .message-item {
+      animation: msgPopIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes msgPopIn {
+      0% { opacity: 0; transform: translateY(12px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+
+    /* Clean Cyberpunk TOC & Filter Pills Navigation */
+    .toc-bar, .hiring-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.65rem 0.8rem;
+      max-width: 1100px;
+      margin: 2rem auto 0;
+      padding: 0 1rem;
+    }
+
+    .toc-pill, .filter-pill {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #9D99B5;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .toc-pill:hover, .filter-pill:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .filter-pill.active {
+      background: rgba(0, 229, 255, 0.12);
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.3);
+    }
+
+
+    /* Ground Showcase Section & Video Box (No Floating / No 3D Tilt) */
+    .showcase-section,
+    .showcase-container,
+    .video-showcase-box {
+      transform: none !important;
+      will-change: auto !important;
+      animation: none !important;
+    }
+    
+    </style>
+</head>
+<body>
+
+  <span data-sc-progress></span>
+  <div class="sc-grain" aria-hidden="true"></div>
+
+  <!-- Main Hero Container -->
+  <div class="hero-container" data-sc-act="flow">
+    <!-- Background Video Backdrop -->
+    <video autoplay loop muted playsinline src="public/videos/vid-1.mp4" class="hero-video-bg" data-sc-parallax="-0.15"></video>
+    <header class="header-wrapper">
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li class="nav-link active"><a href="#arena">ARENA</a></li>
+          <li class="nav-link"><a href="#community">COMMUNITY</a></li>
+          <li class="nav-link"><a href="#showcase-demos">SHOWCASE</a></li>
+        </ul>
+        <a href="#" class="nav-brand" title="Reapers Homepage">
+          <img src="public/reapers-logo.png" alt="Reapers Logo" class="brand-logo-img">
+          <span class="brand-name">REAPERS</span>
+        </a>
+        <div class="nav-actions">
+          <button class="icon-btn btn-bubble" id="soundBtn" title="Toggle Sound">
+            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+          </button>
+          <button class="icon-btn btn-bubble" id="themeBtn" title="Toggle Theme">
+            <svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+          </button>
+          <a href="#download" class="btn-download btn-bubble">
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            <span>DOWNLOAD APP</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="hero-content">
+      <div class="hero-tagline">
+        <span class="tag-word tag-white" data-word="PLAY">PLAY.</span>
+        <span class="tag-word tag-cyan" data-word="CONNECT">CONNECT.</span>
+        <span class="tag-word tag-white" data-word="CREATE">CREATE.</span>
+        <span class="tag-word tag-magenta" data-word="DOMINATE">DOMINATE.</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-line1">
+          <span class="interactive-word" data-word="PAKISTAN">PAKISTAN'S</span>
+          <span class="interactive-word" data-word="UNIFIED">UNIFIED</span>
+        </span>
+        <span class="hero-title-line2">
+          <span class="interactive-word" data-word="GAMING">GAMING</span>
+          <span class="interactive-word" data-word="ARENA">ARENA</span>
+        </span>
+      </h1>
+    </main>
+  </div>
+
+  <!-- Count / Stats Section -->
+  <section class="stats-section" id="stats-section">
+    <div class="stats-container" data-sc-in data-sc-stagger="70">
+      <div class="stat-card">
+        <div class="stat-number-wrap">
+          <span class="stat-number" data-sc-count="0 120" data-sc-count-ms="1600">0</span>
+          <span class="stat-plus">+</span>
+        </div>
+        <div class="stat-label">01 / GAME STUDIOS</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number-wrap">
+          <span class="stat-number" data-sc-count="0 5" data-sc-count-ms="1600">0</span>
+          <span class="stat-plus">K+</span>
+        </div>
+        <div class="stat-label">02 / ACTIVE DEVELOPERS</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number-wrap">
+          <span class="stat-number" data-sc-count="0 50" data-sc-count-ms="1600">0</span>
+          <span class="stat-plus">+</span>
+        </div>
+        <div class="stat-label">03 / JAMS HOSTED</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Entry Sequence Section -->
+  <section class="entry-sequence-section" id="entry-sequence" data-sc-act="flow" data-sc-in>
+    <div class="parallax-fill-layer" data-sc-parallax="-0.12">
+      <img src="public/bg-logo.png" alt="" class="bg-logo-watermark bg-logo-left" id="watermarkLeft" aria-hidden="true">
+    </div>
+    <div class="parallax-fill-layer" data-sc-parallax="0.12">
+      <img src="public/bg-logo.png" alt="" class="bg-logo-watermark bg-logo-right" id="watermarkRight" aria-hidden="true">
+    </div>
+
+    <div class="entry-container">
+      <div class="entry-kicker">
+        <span class="kicker-dot-wrap">
+          <span class="dot-cyan">●</span>
+          <span class="dot-purple">●</span>
+        </span>
+        <span class="kicker-text">// ENTRY SEQUENCE</span>
+      </div>
+
+      <h2 class="entry-title">
+        <span class="entry-title-white">
+          <span class="interactive-word" data-word="NEW">A NEW</span>
+          <span class="interactive-word" data-word="ARENA">ARENA</span>
+        </span>
+        <span class="entry-title-gradient">
+          <span class="interactive-word" data-word="RISES">RISES</span><span class="dot-magenta">.</span>
+        </span>
+      </h2>
+
+      <div class="entry-divider"></div>
+
+      <div class="entry-sub-grid">
+        <div class="entry-sub-item left">
+          <div class="sub-line-white interactive-word" data-word="DEVELOPERS">BUILT BY DEVELOPERS.</div>
+          <div class="sub-line-grey interactive-word" data-word="PLAYERS">POWERED BY PLAYERS.</div>
+        </div>
+        <div class="entry-sub-item right">
+          <div class="sub-line-white interactive-word" data-word="GUILD">ENTER THE REAPERS GUILD.</div>
+          <div class="sub-line-gradient interactive-word" data-word="LEGACY">CLAIM YOUR LEGACY.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The People Behind The Arena Section -->
+  <section class="people-section" id="community" data-sc-act="flow">
+    <div class="people-container">
+      <div class="people-header" data-sc-in>
+        <h2 class="people-title people-title-anim-shimmer" id="peopleTitleHeading">
+          <span class="people-title-white">THE PEOPLE</span>
+          <span class="people-title-gradient">BEHIND THE ARENA<span class="dot-magenta">.</span></span>
+        </h2>
+        <p class="people-desc">
+          Meetups, game jams, mentor sessions and tournaments — fragments of the Reapers world, built in person across Pakistan.
+        </p>
+      </div>
+
+      <div class="bento-wrapper bento-collapsed" id="bentoWrapper">
+        <div class="bento-grid" data-sc-in data-sc-stagger="60">
+        <div class="bento-card bento-card-1" data-sc-reveal="iris" data-sc-reveal-at="0.05 0.55">
+          <img src="public/events/indie.webp" alt="Lahore Indie Gamedev Meetup" class="bento-img">
+          <div class="bento-overlay">
+            <div class="bento-meta">
+              <div class="bento-title-text">LAHORE INDIE GAMEDEV MEETUP</div>
+              <div class="bento-sub-text">LAHORE / 2026</div>
+            </div>
+            <div class="bento-num">01</div>
+          </div>
+        </div>
+
+        <div class="bento-top-right">
+          <div class="bento-card bento-card-2">
+            <img src="public/events/present.webp" alt="National Game Jam" class="bento-img">
+            <div class="bento-overlay">
+              <div class="bento-meta">
+                <div class="bento-title-text">NATIONAL GAME JAM</div>
+              </div>
+              <div class="bento-num">02</div>
+            </div>
+          </div>
+
+          <div class="bento-top-right-sub">
+            <div class="bento-card bento-card-3">
+              <img src="public/events/PGDA-event.webp" alt="Game Dev Meetup" class="bento-img">
+              <div class="bento-overlay">
+                <div class="bento-meta">
+                  <div class="bento-title-text">GAME DEV MEETUP</div>
+                </div>
+                <div class="bento-num">03</div>
+              </div>
+            </div>
+
+            <div class="bento-card bento-card-8">
+              <img src="Pics/Pics/Mentoring Sessions/DSC01093.webp" alt="Expert Session" class="bento-img">
+              <div class="bento-overlay">
+                <div class="bento-meta">
+                  <div class="bento-title-text">EXPERT SESSION</div>
+                </div>
+                <div class="bento-num">08</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card-4">
+          <img src="Pics/Pics/Events/DSC_0025.webp" alt="Networking Night" class="bento-img">
+          <div class="bento-overlay">
+            <div class="bento-meta">
+              <div class="bento-title-text">NETWORKING NIGHT</div>
+            </div>
+            <div class="bento-num">04</div>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card-5">
+          <img src="Pics/Pics/Mentoring Sessions/DSC00761.JPG.webp" alt="Mentorship" class="bento-img">
+          <div class="bento-overlay">
+            <div class="bento-meta">
+              <div class="bento-title-text">MENTORSHIP</div>
+            </div>
+            <div class="bento-num">05</div>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card-10">
+          <img src="Pics/Pics/Events/WhatsApp Image 2026-09-04 at 1.13.50 PM.webp" alt="1:1 Review" class="bento-img">
+          <div class="bento-overlay">
+            <div class="bento-meta">
+              <div class="bento-title-text">1:1 REVIEW</div>
+            </div>
+            <div class="bento-num">10</div>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card-6">
+          <img src="Pics/Pics/Events/WhatsApp Image 2026-09-04 at 1.13.51 PM (1).webp" alt="Reapers Community" class="bento-img">
+          <div class="bento-overlay">
+            <div class="bento-meta">
+              <div class="bento-title-text">REAPERS COMMUNITY</div>
+            </div>
+            <div class="bento-num">06</div>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card-7">
+          <img src="public/events/team.webp" alt="Community Session" class="bento-img">
+          <div class="bento-overlay">
+            <div class="bento-meta">
+              <div class="bento-title-text">COMMUNITY SESSION</div>
+            </div>
+            <div class="bento-num">07</div>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card-11">
+          <img src="Pics/Pics/Mentoring Sessions/WhatsApp Image 2026-09-04 at 1.13.52 PM (1).webp" alt="Guild Gathering" class="bento-img">
+          <div class="bento-overlay">
+            <div class="bento-meta">
+              <div class="bento-title-text">GUILD GATHERING</div>
+            </div>
+            <div class="bento-num">11</div>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card-9">
+          <img src="Pics/Pics/Events/lahoremeetup2026_7.webp" alt="Esports Floor" class="bento-img">
+          <div class="bento-overlay">
+            <div class="bento-meta">
+              <div class="bento-title-text">ESPORTS FLOOR</div>
+            </div>
+            <div class="bento-num">09</div>
+          </div>
+        </div>
+      </div> <!-- /.bento-grid -->
+        
+        <div class="bento-expand-bar">
+          <button id="bentoExpandBtn" class="bento-expand-btn btn-bubble">
+            <span>VIEW FULL ARCHIVE (12 FRAMES)</span>
+            <span id="expandIcon">▼</span>
+          </button>
+        </div>
+      </div> <!-- /.bento-wrapper -->
+
+      <div class="bento-footer">
+        <span>ARCHIVE — 12 FRAMES</span>
+        <span>REAPERS COMMUNITY</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chatrooms & Communities Section -->
+  <section class="chatrooms-section" id="chatrooms" data-sc-act="flow">
+    <div class="parallax-fill-layer" data-sc-parallax="-0.1">
+      <div class="chat-glow-orb"></div>
+    </div>
+    <div class="chatrooms-container">
+      <div class="people-header" data-sc-in>
+        <div>
+          <div class="entry-kicker" style="margin-bottom: 1rem;">
+            <span class="kicker-dot-wrap">
+              <span class="dot-cyan">●</span>
+              <span class="dot-purple">●</span>
+            </span>
+            <span class="kicker-text">// LIVE COMMUNITY ONLINE</span>
+          </div>
+          <h2 class="people-title typing-title" id="chatroomsTitleHeading">
+            <span class="people-title-white typewriter-text" id="typewriterLine1">CHATROOMS &amp;</span>
+            <span class="people-title-gradient typewriter-text" id="typewriterLine2">COMMUNITIES<span class="dot-magenta">.</span></span>
+          </h2>
+        </div>
+        <p class="people-desc">
+          Join Pakistan's gaming groups, or start your own room. Connect with developers, artists, and players in real-time.
+        </p>
+      </div>
+
+      <div class="chat-widget" data-sc-in data-sc-stagger="90">
+        <div class="chat-sidebar-channels">
+          <div class="widget-kicker-title">CHANNELS</div>
+          <ul class="channels-list" id="channelsList">
+            <li class="channel-item active" data-channel="general">
+              <span># GAME-DEV-GENERAL</span>
+              <span class="channel-count">210</span>
+            </li>
+            <li class="channel-item" data-channel="demo">
+              <span># DEMO-SHOWCASE</span>
+              <span class="channel-count">142</span>
+            </li>
+            <li class="channel-item" data-channel="lfg">
+              <span># LFG</span>
+              <span class="channel-count">98</span>
+            </li>
+            <li class="channel-item" data-channel="events">
+              <span># EVENTS</span>
+              <span class="channel-count">85</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="chat-stream-area">
+          <div>
+            <div class="stream-header">
+              <div class="stream-title" id="activeStreamTitle"># game-dev-general</div>
+              <div class="stream-status">
+                <span class="dot-cyan">●</span> STREAM ROOM
+              </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+              <div class="message-item">
+                <div class="user-avatar">LH</div>
+                <div class="message-body">
+                  <span class="user-name name-cyan">LHR_DEV</span>
+                  <p class="message-text">Anyone testing their Unreal 5.4 physics build tonight? Need feedback!</p>
+                </div>
+              </div>
+              <div class="message-item">
+                <div class="user-avatar">PI</div>
+                <div class="message-body">
+                  <span class="user-name name-blue">PIGD_PRO</span>
+                  <p class="message-text">Post it in #demo-showcase! We are running a live stream review session.</p>
+                </div>
+              </div>
+              <div class="message-item">
+                <div class="user-avatar">RP</div>
+                <div class="message-body">
+                  <span class="user-name name-magenta">RPR_LEADER</span>
+                  <p class="message-text">Registration for the PGDA Game Jam drops tomorrow at 6 PM!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="reactions-bar" id="reactionsBar">
+              <div class="reaction-chip" data-count="142"><span>🔥</span> <span class="chip-count">142</span></div>
+              <div class="reaction-chip" data-count="98"><span>🚀</span> <span class="chip-count">98</span></div>
+              <div class="reaction-chip" data-count="210"><span>💬</span> <span class="chip-count">210</span></div>
+              <div class="reaction-chip" data-count="85"><span>⚡</span> <span class="chip-count">85</span></div>
+            </div>
+            <form class="chat-input-bar" id="chatForm" onsubmit="event.preventDefault();">
+              <input type="text" id="chatInputField" class="chat-input-field" placeholder="Message #game-dev-general" autocomplete="off" required>
+              <button type="submit" id="chatSendBtn" class="send-btn btn-bubble" title="Send Message">
+                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="chat-sidebar-stats">
+          <div class="widget-kicker-title">COMMUNITY ACTIVITY</div>
+          <div class="activity-boxes">
+            <div class="activity-box">
+              <span class="activity-label">ONLINE NOW</span>
+              <span class="activity-val val-cyan">210</span>
+            </div>
+            <div class="activity-box">
+              <span class="activity-label">ACTIVE JAMS</span>
+              <span class="activity-val val-purple">3</span>
+            </div>
+            <div class="activity-box">
+              <span class="activity-label">DEMOS TODAY</span>
+              <span class="activity-val val-cyan">18</span>
+            </div>
+            <div class="activity-box">
+              <span class="activity-label">OPEN ROLES</span>
+              <span class="activity-val val-magenta">12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part of Something Bigger Guilds Section -->
+  <section class="guilds-section">
+    <div class="guilds-container">
+      <div class="guilds-header" data-sc-in>
+        <h2 class="people-title guilds-title-glitch" id="guildsTitleHeading">
+          <span class="people-title-white">PART OF SOMETHING</span>
+          <span class="people-title-gradient">BIGGER<span class="dot-magenta">.</span></span>
+        </h2>
+        <div class="guilds-kicker-right">
+          PARTNERED GAMING GUILDS & COMMUNITIES:
+        </div>
+      </div>
+
+      <div class="guilds-grid" data-sc-in data-sc-stagger="50">
+        <div class="guild-card">
+          <img src="public/community/CEGA.webp" alt="CEGA" class="guild-logo-img">
+          <span class="guild-name">CEGA</span>
+        </div>
+        <div class="guild-card">
+          <img src="public/community/IGDA.webp" alt="IGDA Pakistan" class="guild-logo-img">
+          <span class="guild-name">IGDA PAKISTAN</span>
+        </div>
+        <div class="guild-card">
+          <img src="public/community/PIGD.webp" alt="PIGD" class="guild-logo-img">
+          <span class="guild-name">PIGD</span>
+        </div>
+        <div class="guild-card">
+          <img src="public/community/pgda.webp" alt="PGDA" class="guild-logo-img">
+          <span class="guild-name">PGDA</span>
+        </div>
+        <div class="guild-card">
+          <img src="public/community/PakGameDev.webp" alt="Pak Game Devs" class="guild-logo-img">
+          <span class="guild-name">PAK GAME DEVS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discover What's Being Built Section -->
+  <section class="showcase-section" id="showcase-demos">
+    <div class="showcase-container">
+
+      <div class="people-header" data-sc-in>
+        <div>
+          <div class="entry-kicker" style="margin-bottom: 1rem;">
+            <span class="kicker-dot-wrap">
+              <span class="dot-cyan">●</span>
+              <span class="dot-purple">●</span>
+            </span>
+            <span class="kicker-text">// LIVE FEED · DEMO SHOWCASE</span>
+          </div>
+          <h2 class="people-title showcase-title-zoom" id="showcaseTitleHeading">
+            <span class="people-title-white">DISCOVER</span>
+            <span class="people-title-gradient">WHAT'S BEING BUILT<span class="dot-magenta">.</span></span>
+          </h2>
+        </div>
+        <p class="people-desc">
+          Watch indie gameplay demos, get community feedback, and connect with developers to hire or join a team.
+        </p>
+      </div>
+
+      <div class="video-showcase-box">
+        <div class="video-viewport" data-sc-reveal="left" data-sc-reveal-at="0.05 0.55">
+          <div class="video-top-bar">
+            <div class="demo-chips">
+              <span class="demo-chip chip-cyan" id="demoTagChip">DEMO #1</span>
+              <span class="demo-chip chip-dark" id="demoEngineChip">UNREAL 5</span>
+              <span class="demo-chip chip-dark" id="demoGenreChip">ACTION RPG</span>
+            </div>
+            <div class="live-pill" id="liveWatchPill">
+              <span class="dot-magenta">●</span> LIVE
+              <span class="live-watch-count" data-sc-count="12 1284" data-sc-count-at="0.1 0.8">12</span> WATCHING
+            </div>
+          </div>
+
+          <video id="showcaseVideo" autoplay loop muted playsinline src="public/videos/vid-1.mp4" class="showcase-video-elem"></video>
+
+          <div class="video-bottom-overlay">
+            <div class="now-playing-meta">
+              <span class="now-playing-label">NOW PLAYING</span>
+              <h3 class="now-playing-title" id="nowPlayingTitle">ASHFALL PROTOCOL</h3>
+            </div>
+            
+            <div class="video-actions">
+              <button id="videoMuteBtn" class="icon-btn-video" title="Toggle Sound">🔇</button>
+              <a href="#download" class="btn-download btn-watch-demo">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <span>WATCH DEMO</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-tabs-row">
+          <div class="video-tab-item active" data-index="0">
+            <div class="tab-meta-left">
+              <span class="tab-num">01</span>
+              <div class="tab-text-wrap">
+                <span class="tab-title-text">ASHFALL PROTOCOL</span>
+                <span class="tab-sub-text">ACTION RPG</span>
+              </div>
+            </div>
+            <span class="tab-arrow">→</span>
+          </div>
+
+          <div class="video-tab-item" data-index="1">
+            <div class="tab-meta-left">
+              <span class="tab-num">02</span>
+              <div class="tab-text-wrap">
+                <span class="tab-title-text">NEON PULSE ARENA</span>
+                <span class="tab-sub-text">MULTIPLAYER BRAWLER</span>
+              </div>
+            </div>
+            <span class="tab-arrow">→</span>
+          </div>
+
+          <div class="video-tab-item" data-index="2">
+            <div class="tab-meta-left">
+              <span class="tab-num">03</span>
+              <div class="tab-text-wrap">
+                <span class="tab-title-text">APEX FORGE</span>
+                <span class="tab-sub-text">TACTICAL FPS</span>
+              </div>
+            </div>
+            <span class="tab-arrow">→</span>
+          </div>
+        </div> <!-- /.video-tabs-row -->
+      </div> <!-- /.video-showcase-box -->
+    </div> <!-- /.showcase-container -->
+  </section>
+
+    <!-- App Banner Section (One App. Whole Scene.) -->
+  <section class="app-banner-section" data-sc-act="flow">
+    <div class="app-banner-container">
+
+      <div class="app-banner-box">
+
+        <!-- Background Emblem Logo Watermark (public/bg-logo.png) -->
+        <img src="public/bg-logo.png" alt="" class="app-banner-watermark" aria-hidden="true">
+
+        <!-- Left Content -->
+        <div class="app-banner-copy">
+          <h2 class="app-banner-title app-banner-title-split" id="appBannerTitleHeading">
+            <span class="split-line-left">ONE APP.</span><br>
+            <span class="split-line-right">WHOLE SCENE.</span>
+          </h2>
+
+          <p class="app-banner-desc" data-sc-in>
+            Chat, events, demo feedback, expert mentors, and hiring, together in one place — built for the people making Pakistan's games.
+          </p>
+
+          <div class="app-features-grid" data-sc-in data-sc-stagger="40">
+            <div class="app-feature-item">
+              <span class="app-feature-num">01</span>
+              <span>COMMUNITY</span>
+            </div>
+            <div class="app-feature-item">
+              <span class="app-feature-num">04</span>
+              <span>MENTORS</span>
+            </div>
+            <div class="app-feature-item">
+              <span class="app-feature-num">02</span>
+              <span>EVENTS</span>
+            </div>
+            <div class="app-feature-item">
+              <span class="app-feature-num">05</span>
+              <span>HIRING</span>
+            </div>
+            <div class="app-feature-item">
+              <span class="app-feature-num">03</span>
+              <span>DEMO FEEDBACK</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 3D Mobile Phones Stage -->
+        <div class="app-phones-stage">
+          <!-- Left Mobile Mockup -->
+          <div class="parallax-fill-layer" data-sc-parallax="-0.08">
+            <img src="public/mobile-left.png" alt="Reapers App Left Screen" class="phone-img phone-left">
+          </div>
+
+          <!-- Center Mobile Mockup (no parallax — it's the depth anchor the other two separate from) -->
+          <img src="public/mobile-center.png" alt="Reapers App Center Screen" class="phone-img phone-center">
+
+          <!-- Right Mobile Mockup -->
+          <div class="parallax-fill-layer" data-sc-parallax="0.08">
+            <img src="public/mobile-right.png" alt="Reapers App Right Screen" class="phone-img phone-right">
+          </div>
+
+          <!-- Floating Download App Button -->
+          <a href="#download" class="btn-download badge-download-floating">
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            <span>DOWNLOAD APP</span>
+          </a>
+
+          <!-- Floating Early Access Badge -->
+          <a href="#download" class="badge-early-access">
+            GET EARLY ACCESS
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Team Hiring & Matchmaking LFG Section -->
+  <section class="hiring-section" id="hiring">
+    <div class="hiring-glow-orb"></div>
+    <div class="hiring-container">
+
+      <!-- Top Header Row -->
+      <div class="hiring-header-row" data-sc-in>
+        <div class="hiring-header-left">
+          <div class="entry-kicker">
+            <span class="kicker-dot-wrap">
+              <span class="dot-cyan">●</span>
+              <span class="dot-purple">●</span>
+            </span>
+            <span class="kicker-text">// TEAM HIRING & MATCHMAKING · LFG</span>
+          </div>
+
+          <h2 class="hiring-title hiring-title-wave" id="hiringTitleHeading">
+            <span class="hiring-title-white">FIND YOUR </span>
+            <span class="hiring-title-gradient">SQUAD<span class="dot-magenta">.</span></span>
+          </h2>
+        </div>
+
+        <p class="hiring-header-desc">
+          Every great game starts with the right team. Open missions from studios recruiting across Pakistan.
+        </p>
+      </div>
+
+      <!-- Filter Pills Row -->
+      <div class="hiring-filters">
+        <a href="#hiring" class="filter-pill btn-bubble active">ALL ROLES</a>
+        <a href="#hiring" class="filter-pill btn-bubble">3D ARTIST</a>
+        <a href="#hiring" class="filter-pill btn-bubble">UNITY DEV</a>
+        <a href="#hiring" class="filter-pill btn-bubble">SOUND DESIGNER</a>
+      </div>
+
+      <!-- 3-Column Mission Cards -->
+      <div class="hiring-cards-grid" data-sc-in data-sc-stagger="70">
+
+        <!-- Card 1 -->
+        <div class="role-card">
+          <div>
+            <div class="role-card-header">
+              <span class="studio-name">Cyber-Blade Studio</span>
+              <span class="status-badge recruiting">● RECRUITING</span>
+            </div>
+
+            <div class="role-meta-block" style="margin-top: 1.5rem;">
+              <div>
+                <div class="role-field-label">
+                  <span class="dot-cyan">✳</span> MISSION
+                </div>
+                <h3 class="role-mission-title">Senior 3D Environment Artist</h3>
+              </div>
+
+              <div style="margin-top: 0.5rem;">
+                <div class="role-field-label">PROJECT</div>
+                <div class="role-project-name">PC SCI-FI RPG</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#hiring" class="btn-view-role btn-bubble">
+            <span>VIEW ROLE</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="role-card">
+          <div>
+            <div class="role-card-header">
+              <span class="studio-name">Neon Pulse Games</span>
+              <span class="status-badge recruiting">● RECRUITING</span>
+            </div>
+
+            <div class="role-meta-block" style="margin-top: 1.5rem;">
+              <div>
+                <div class="role-field-label">
+                  <span class="dot-cyan">✳</span> MISSION
+                </div>
+                <h3 class="role-mission-title">Gameplay Programmer</h3>
+              </div>
+
+              <div style="margin-top: 0.5rem;">
+                <div class="role-field-label">PROJECT</div>
+                <div class="role-project-name">MOBILE MULTIPLAYER BRAWLER</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#hiring" class="btn-view-role btn-bubble">
+            <span>VIEW ROLE</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="role-card">
+          <div>
+            <div class="role-card-header">
+              <span class="studio-name">Apex Forge Interactive</span>
+              <span class="status-badge urgent">● URGENT</span>
+            </div>
+
+            <div class="role-meta-block" style="margin-top: 1.5rem;">
+              <div>
+                <div class="role-field-label">
+                  <span class="dot-cyan">✳</span> MISSION
+                </div>
+                <h3 class="role-mission-title">Sound Designer & Composer</h3>
+              </div>
+
+              <div style="margin-top: 0.5rem;">
+                <div class="role-field-label">PROJECT</div>
+                <div class="role-project-name">TACTICAL FPS DEMO</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#hiring" class="btn-view-role btn-bubble">
+            <span>VIEW ROLE</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom Full Width Action Bar -->
+      <a href="#hiring" class="post-role-bar btn-bubble">
+        <span>+ POST OPEN ROLE IN GUILD DISCORD</span>
+        <span>↗</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Final CTA & Footer Section -->
+  <section class="final-cta-section" id="download" data-sc-act="flow">
+    <div class="final-cta-container">
+
+      <div class="final-cta-content">
+        <div class="entry-kicker" data-sc-in>
+          <span class="kicker-dot-wrap">
+            <span class="dot-purple">●</span>
+          </span>
+          <span class="kicker-text">// REAPERS / 010 — EARLY ACCESS</span>
+        </div>
+
+        <h2 class="final-cta-title final-cta-title-pulse" id="finalCtaTitleHeading">
+          <span class="final-cta-title-white">YOUR NEXT GAME</span>
+          <span class="final-cta-title-gradient">STARTS HERE<span class="dot-magenta">.</span></span>
+        </h2>
+
+        <form class="cta-form-row" data-sc-in onsubmit="event.preventDefault(); alert('Early access link requested!');">
+          <input type="email" class="cta-email-input" placeholder="you@studio.dev" required>
+          <button type="submit" class="btn-cta-download btn-bubble">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            <span>DOWNLOAD APP</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Status & Copyright Bar -->
+    <footer class="site-footer-bar">
+      <div>© 2026 REAPERS · PAKISTAN</div>
+      <nav class="footer-nav-links">
+        <a href="services.html" class="footer-link">SERVICES</a>
+        <a href="privacy.html" class="footer-link">PRIVACY POLICY</a>
+        <a href="terms.html" class="footer-link">TERMS &amp; CONDITIONS</a>
+      </nav>
+      <div>RPR // 001 · SYSTEM ONLINE</div>
+    </footer>
+
+    <!-- Giant Watermark Text "REAPERS" -->
+    <div class="footer-watermark-wrap" aria-hidden="true">
+      <span class="footer-watermark-text">REAPERS</span>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Video showcase switcher
+      const showcaseVideo = document.getElementById('showcaseVideo');
+      const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+      const demoTagChip = document.getElementById('demoTagChip');
+      const demoEngineChip = document.getElementById('demoEngineChip');
+      const demoGenreChip = document.getElementById('demoGenreChip');
+      const videoMuteBtn = document.getElementById('videoMuteBtn');
+      const videoTabs = document.querySelectorAll('.video-tab-item');
+
+      const videoData = [
+        {
+          num: '01',
+          title: 'ASHFALL PROTOCOL',
+          tag: 'DEMO #1',
+          engine: 'UNREAL 5',
+          genre: 'ACTION RPG',
+          src: 'public/videos/vid-1.mp4'
+        },
+        {
+          num: '02',
+          title: 'NEON PULSE ARENA',
+          tag: 'DEMO #2',
+          engine: 'UNITY 6',
+          genre: 'MULTIPLAYER BRAWLER',
+          src: 'public/videos/vid-4.mp4'
+        },
+        {
+          num: '03',
+          title: 'APEX FORGE',
+          tag: 'DEMO #3',
+          engine: 'UNREAL 5.4',
+          genre: 'TACTICAL FPS',
+          src: 'public/videos/vid-6.mp4'
+        }
+      ];
+
+      videoTabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          if (tab.classList.contains('active')) return;
+          videoTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const data = videoData[index];
+          showcaseVideo.style.opacity = '0.3';
+          setTimeout(() => {
+            showcaseVideo.src = data.src;
+            showcaseVideo.play();
+            showcaseVideo.style.opacity = '1';
+
+            nowPlayingTitle.textContent = data.title;
+            demoTagChip.textContent = data.tag;
+            demoEngineChip.textContent = data.engine;
+            demoGenreChip.textContent = data.genre;
+          }, 150);
+        });
+      });
+
+      if (videoMuteBtn && showcaseVideo) {
+        videoMuteBtn.addEventListener('click', () => {
+          showcaseVideo.muted = !showcaseVideo.muted;
+          videoMuteBtn.textContent = showcaseVideo.muted ? '🔇' : '🔊';
+        });
+      }
+    });
+  
+    // Web Audio API Mature Cyber SFX Engine
+    // Modern Web Audio API AAA Cyberpunk Gaming Sound Engine
+    class CyberAudioEngine {
+      constructor() {
+        this.ctx = null;
+        this.muted = false;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) this.ctx = new AudioCtx();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      // Contextual Hover SFX Variations (default, card, chip)
+      playHover(kind = 'default') {
+        if (this.muted) return;
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const now = this.ctx.currentTime;
+          const gain = this.ctx.createGain();
+
+          if (kind === 'card') {
+            // Cyber sub-bass swell for Bento cards & role cards
+            const osc = this.ctx.createOscillator();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(130, now);
+            osc.frequency.exponentialRampToValueAtTime(280, now + 0.08);
+
+            gain.gain.setValueAtTime(0.04, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.08);
+          } else if (kind === 'chip') {
+            // Ultra-short crisp neon blip for tags & pills
+            const osc = this.ctx.createOscillator();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(1600, now);
+            osc.frequency.exponentialRampToValueAtTime(2200, now + 0.03);
+
+            gain.gain.setValueAtTime(0.02, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.03);
+          } else {
+            // Dual FM glass glissando for buttons & links
+            const osc1 = this.ctx.createOscillator();
+            const osc2 = this.ctx.createOscillator();
+            osc1.type = 'sine';
+            osc2.type = 'triangle';
+
+            osc1.frequency.setValueAtTime(440, now);
+            osc1.frequency.exponentialRampToValueAtTime(880, now + 0.05);
+
+            osc2.frequency.setValueAtTime(660, now);
+            osc2.frequency.exponentialRampToValueAtTime(1320, now + 0.05);
+
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(2500, now);
+            filter.frequency.exponentialRampToValueAtTime(1200, now + 0.05);
+
+            gain.gain.setValueAtTime(0.03, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+            osc1.connect(filter);
+            osc2.connect(filter);
+            filter.connect(gain);
+            gain.connect(this.ctx.destination);
+
+            osc1.start(now);
+            osc2.start(now);
+            osc1.stop(now + 0.05);
+            osc2.stop(now + 0.05);
+          }
+        } catch (e) {}
+      }
+
+      // Contextual Click SFX Variations (default, primary/cta, tab)
+      playClick(kind = 'default') {
+        if (this.muted) return;
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const now = this.ctx.currentTime;
+          const gain = this.ctx.createGain();
+
+          if (kind === 'primary' || kind === 'cta') {
+            // Heavy AAA Tactical Sub Punch + Transient Metallic Click
+            const subOsc = this.ctx.createOscillator();
+            subOsc.type = 'sine';
+            subOsc.frequency.setValueAtTime(180, now);
+            subOsc.frequency.exponentialRampToValueAtTime(42, now + 0.09);
+
+            const clickOsc = this.ctx.createOscillator();
+            clickOsc.type = 'triangle';
+            clickOsc.frequency.setValueAtTime(1200, now);
+            clickOsc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
+
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+
+            subOsc.connect(gain);
+            clickOsc.connect(gain);
+            gain.connect(this.ctx.destination);
+
+            subOsc.start(now);
+            clickOsc.start(now);
+            subOsc.stop(now + 0.09);
+            clickOsc.stop(now + 0.04);
+          } else if (kind === 'tab') {
+            // High-Tech Cyber Switch Tone
+            const osc1 = this.ctx.createOscillator();
+            const osc2 = this.ctx.createOscillator();
+            osc1.type = 'sine';
+            osc2.type = 'sawtooth';
+
+            osc1.frequency.setValueAtTime(520, now);
+            osc1.frequency.exponentialRampToValueAtTime(840, now + 0.06);
+            osc2.frequency.setValueAtTime(260, now);
+
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(1400, now);
+
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+
+            osc1.connect(gain);
+            osc2.connect(filter);
+            filter.connect(gain);
+            gain.connect(this.ctx.destination);
+
+            osc1.start(now);
+            osc2.start(now);
+            osc1.stop(now + 0.06);
+            osc2.stop(now + 0.06);
+          } else {
+            // Standard Futuristic Cyber Snap
+            const osc = this.ctx.createOscillator();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(680, now);
+            osc.frequency.exponentialRampToValueAtTime(210, now + 0.05);
+
+            gain.gain.setValueAtTime(0.07, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.05);
+          }
+        } catch (e) {}
+      }
+
+      // Interactive Chat Message Send SFX
+      playMessageSend() {
+        if (this.muted) return;
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc1 = this.ctx.createOscillator();
+          const osc2 = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(520, now);
+          osc1.frequency.exponentialRampToValueAtTime(1480, now + 0.1);
+
+          osc2.type = 'triangle';
+          osc2.frequency.setValueAtTime(1040, now);
+          osc2.frequency.exponentialRampToValueAtTime(2960, now + 0.1);
+
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc1.start(now);
+          osc2.start(now);
+          osc1.stop(now + 0.12);
+          osc2.stop(now + 0.12);
+        } catch (e) {}
+      }
+
+      // Reaction & Sticker Bounce SFX
+      playStickerReact() {
+        if (this.muted) return;
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(320, now);
+          osc.frequency.exponentialRampToValueAtTime(1100, now + 0.04);
+          osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+
+          gain.gain.setValueAtTime(0.09, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } catch (e) {}
+      }
+
+      // Specialized AAA Audio Synthesizers for Title & Tagline Words
+      playWordClick(word) {
+        if (this.muted) return;
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const now = this.ctx.currentTime;
+          const gain = this.ctx.createGain();
+          const w = (word || '').toUpperCase();
+
+          if (w.includes('PLAY')) {
+            const osc1 = this.ctx.createOscillator();
+            const osc2 = this.ctx.createOscillator();
+            osc1.type = 'sine'; osc2.type = 'triangle';
+            osc1.frequency.setValueAtTime(520, now); osc1.frequency.exponentialRampToValueAtTime(1040, now + 0.12);
+            osc2.frequency.setValueAtTime(780, now); osc2.frequency.exponentialRampToValueAtTime(1560, now + 0.12);
+
+            gain.gain.setValueAtTime(0.1, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+            osc1.connect(gain); osc2.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc1.start(now); osc2.start(now);
+            osc1.stop(now + 0.15); osc2.stop(now + 0.15);
+          } else if (w.includes('CONNECT')) {
+            const freqs = [440, 660, 880];
+            freqs.forEach((f, idx) => {
+              const osc = this.ctx.createOscillator();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(f, now + idx * 0.03);
+              gain.gain.setValueAtTime(0.05, now + idx * 0.03);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.03 + 0.12);
+              osc.connect(gain);
+              osc.start(now + idx * 0.03);
+              osc.stop(now + idx * 0.03 + 0.12);
+            });
+            gain.connect(this.ctx.destination);
+          } else if (w.includes('CREATE')) {
+            const osc = this.ctx.createOscillator();
+            const mod = this.ctx.createOscillator();
+            const modGain = this.ctx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, now);
+            osc.frequency.exponentialRampToValueAtTime(1400, now + 0.14);
+
+            mod.type = 'sawtooth';
+            mod.frequency.setValueAtTime(150, now);
+            modGain.gain.setValueAtTime(200, now);
+
+            mod.connect(osc.frequency);
+            gain.gain.setValueAtTime(0.09, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now); mod.start(now);
+            osc.stop(now + 0.15); mod.stop(now + 0.15);
+          } else if (w.includes('DOMINATE')) {
+            const sub = this.ctx.createOscillator();
+            sub.type = 'sine';
+            sub.frequency.setValueAtTime(220, now);
+            sub.frequency.exponentialRampToValueAtTime(32, now + 0.2);
+
+            const zap = this.ctx.createOscillator();
+            zap.type = 'sawtooth';
+            zap.frequency.setValueAtTime(800, now);
+            zap.frequency.exponentialRampToValueAtTime(120, now + 0.1);
+
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(1600, now);
+
+            gain.gain.setValueAtTime(0.18, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+            sub.connect(gain);
+            zap.connect(filter);
+            filter.connect(gain);
+            gain.connect(this.ctx.destination);
+
+            sub.start(now); zap.start(now);
+            sub.stop(now + 0.22); zap.stop(now + 0.1);
+          } else if (w.includes('GAMING') || w.includes('ARENA')) {
+            const osc1 = this.ctx.createOscillator();
+            const osc2 = this.ctx.createOscillator();
+            osc1.type = 'sine'; osc2.type = 'sawtooth';
+            osc1.frequency.setValueAtTime(330, now); osc1.frequency.exponentialRampToValueAtTime(1320, now + 0.18);
+            osc2.frequency.setValueAtTime(165, now); osc2.frequency.exponentialRampToValueAtTime(660, now + 0.18);
+
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(800, now);
+            filter.frequency.exponentialRampToValueAtTime(3600, now + 0.18);
+
+            gain.gain.setValueAtTime(0.14, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+
+            osc1.connect(filter); osc2.connect(filter);
+            filter.connect(gain);
+            gain.connect(this.ctx.destination);
+
+            osc1.start(now); osc2.start(now);
+            osc1.stop(now + 0.2); osc2.stop(now + 0.2);
+          } else {
+            const osc = this.ctx.createOscillator();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(440, now);
+            osc.frequency.exponentialRampToValueAtTime(1100, now + 0.12);
+
+            gain.gain.setValueAtTime(0.08, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.14);
+          }
+        } catch (e) {}
+      }
+
+      // Sound Mute/Unmute Cyber Arpeggio SFX
+      playToggle() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const now = this.ctx.currentTime;
+          const gain = this.ctx.createGain();
+          const freqs = this.muted ? [784, 523, 392] : [392, 523, 784];
+
+          freqs.forEach((f, idx) => {
+            const osc = this.ctx.createOscillator();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(f, now + idx * 0.035);
+
+            gain.gain.setValueAtTime(0.04, now + idx * 0.035);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.035 + 0.08);
+
+            osc.connect(gain);
+            osc.start(now + idx * 0.035);
+            osc.stop(now + idx * 0.035 + 0.08);
+          });
+
+          gain.connect(this.ctx.destination);
+        } catch (e) {}
+      }
+    }
+
+    const cyberAudio = new CyberAudioEngine();
+
+    // Attach Contextual Audio Listeners to Interactive Elements
+    document.addEventListener('DOMContentLoaded', () => {
+      // Interactive Hero & Entry Title Words Click & Glitch Animations
+      const heroWordElems = document.querySelectorAll('.hero-tagline .tag-word, .hero-title .interactive-word, .entry-sequence-section .interactive-word');
+      heroWordElems.forEach(wordElem => {
+        wordElem.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const wordText = wordElem.getAttribute('data-word') || wordElem.textContent.trim();
+
+          // Visual Glitch Burst Animation Trigger
+          wordElem.classList.remove('word-clicked');
+          void wordElem.offsetWidth; // Force reflow
+          wordElem.classList.add('word-clicked');
+
+          // Audio SFX Trigger
+          if (typeof cyberAudio !== 'undefined') {
+            cyberAudio.playWordClick(wordText);
+          }
+        });
+      });
+      // CTAs & Primary Buttons
+      document.querySelectorAll('.btn-primary, .btn-download, .btn-cta-download, .btn-hero-primary').forEach(el => {
+        el.addEventListener('mouseenter', () => cyberAudio.playHover('default'));
+        el.addEventListener('click', () => cyberAudio.playClick('primary'));
+      });
+
+      // Cards & Containers
+      document.querySelectorAll('.bento-card, .role-card, .guild-card, .service-card, .legal-card').forEach(el => {
+        el.addEventListener('mouseenter', () => cyberAudio.playHover('card'));
+        el.addEventListener('click', () => cyberAudio.playClick('default'));
+      });
+
+      // Filter Pills & Tabs
+      document.querySelectorAll('.filter-pill, .toc-pill, .guild-chip, .video-tab-item, .channel-item').forEach(el => {
+        el.addEventListener('mouseenter', () => cyberAudio.playHover('chip'));
+        el.addEventListener('click', () => cyberAudio.playClick('tab'));
+      });
+
+      // General Buttons & Links
+      document.querySelectorAll('button:not(.btn-primary):not(.btn-download):not(.btn-cta-download), a:not(.btn-download):not(.btn-cta-download)').forEach(el => {
+        el.addEventListener('mouseenter', () => cyberAudio.playHover('default'));
+        el.addEventListener('click', () => cyberAudio.playClick('default'));
+      });
+
+      // Sound Toggle Button in Header
+      const soundBtn = document.getElementById('soundBtn');
+      if (soundBtn) {
+        soundBtn.addEventListener('click', () => {
+          cyberAudio.muted = !cyberAudio.muted;
+          cyberAudio.playToggle();
+          soundBtn.style.color = cyberAudio.muted ? '#6C6685' : '#00E5FF';
+          soundBtn.title = cyberAudio.muted ? 'Sound Muted' : 'Sound Enabled';
+        });
+      }
+
+      // Bento Gallery Accordion Expander
+      const bentoWrapper = document.getElementById('bentoWrapper');
+      const bentoExpandBtn = document.getElementById('bentoExpandBtn');
+      const expandIcon = document.getElementById('expandIcon');
+
+      if (bentoExpandBtn && bentoWrapper) {
+        bentoExpandBtn.addEventListener('click', () => {
+          const isCollapsed = bentoWrapper.classList.contains('bento-collapsed');
+          if (isCollapsed) {
+            bentoWrapper.classList.remove('bento-collapsed');
+            bentoExpandBtn.querySelector('span').textContent = 'COLLAPSE ARCHIVE';
+            if (expandIcon) expandIcon.textContent = '▲';
+          } else {
+            bentoWrapper.classList.add('bento-collapsed');
+            bentoExpandBtn.querySelector('span').textContent = 'VIEW FULL ARCHIVE (12 FRAMES)';
+            if (expandIcon) expandIcon.textContent = '▼';
+            bentoWrapper.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Cyberpunk Typewriter Animation for Chatrooms & Communities Heading
+      const chatroomsSec = document.getElementById('chatrooms');
+      const line1 = document.getElementById('typewriterLine1');
+      const line2 = document.getElementById('typewriterLine2');
+
+      let isTypingChatrooms = false;
+      let typewriterTimer1 = null;
+      let typewriterTimer2 = null;
+
+      function resetChatroomsTypewriter() {
+        isTypingChatrooms = false;
+        if (typewriterTimer1) clearTimeout(typewriterTimer1);
+        if (typewriterTimer2) clearTimeout(typewriterTimer2);
+        if (line1) line1.textContent = "CHATROOMS &";
+        if (line2) line2.innerHTML = `COMMUNITIES<span class="dot-magenta">.</span>`;
+      }
+
+      function runChatroomsTypewriter() {
+        if (!line1 || !line2) return;
+        isTypingChatrooms = true;
+
+        const text1 = "CHATROOMS &";
+        const text2 = "COMMUNITIES.";
+
+        line1.textContent = "";
+        line2.innerHTML = "";
+
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        cursor.textContent = '|';
+
+        let i = 0;
+        let j = 0;
+
+        line1.appendChild(cursor);
+
+        function typeLine1() {
+          if (!isTypingChatrooms) return;
+          if (i < text1.length) {
+            line1.insertBefore(document.createTextNode(text1.charAt(i)), cursor);
+            i++;
+            if (typeof cyberAudio !== 'undefined' && i % 2 === 0) cyberAudio.playHover('chip');
+            typewriterTimer1 = setTimeout(typeLine1, 55);
+          } else {
+            // Line 1 finished, move cursor to Line 2
+            if (line1.contains(cursor)) line1.removeChild(cursor);
+            line2.appendChild(cursor);
+            typewriterTimer2 = setTimeout(typeLine2, 100);
+          }
+        }
+
+        function typeLine2() {
+          if (!isTypingChatrooms) return;
+          if (j < text2.length - 1) { // Type characters up to before the period
+            line2.insertBefore(document.createTextNode(text2.charAt(j)), cursor);
+            j++;
+            if (typeof cyberAudio !== 'undefined') cyberAudio.playClick('tab');
+            typewriterTimer2 = setTimeout(typeLine2, 65);
+          } else if (j === text2.length - 1) { // Period character
+            j++;
+            const dotSpan = document.createElement('span');
+            dotSpan.className = 'dot-magenta';
+            dotSpan.textContent = '.';
+            line2.insertBefore(dotSpan, cursor);
+            if (typeof cyberAudio !== 'undefined') cyberAudio.playMessageSend();
+          }
+        }
+
+        typeLine1();
+      }
+
+      if (chatroomsSec && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (!isTypingChatrooms) {
+                runChatroomsTypewriter();
+              }
+            } else {
+              resetChatroomsTypewriter();
+            }
+          });
+        }, { threshold: 0.15 });
+        observer.observe(chatroomsSec);
+      } else {
+        runChatroomsTypewriter();
+      }
+
+      // Distinct Section Headings Observer - Re-triggers every time when entering viewport
+      const headingAnimElems = document.querySelectorAll(
+        '.people-title-anim-shimmer, .guilds-title-glitch, .showcase-title-zoom, .app-banner-title-split, .hiring-title-wave, .final-cta-title-pulse'
+      );
+
+      if ('IntersectionObserver' in window) {
+        const headingObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove('is-active');
+              void entry.target.offsetWidth; // Force reflow to restart CSS keyframe animations
+              entry.target.classList.add('is-active');
+            } else {
+              entry.target.classList.remove('is-active');
+            }
+          });
+        }, { threshold: 0.15 });
+
+        headingAnimElems.forEach(el => headingObserver.observe(el));
+      } else {
+        headingAnimElems.forEach(el => el.classList.add('is-active'));
+      }
+    });
+
+
+      // Interactive Chatroom System (Channel Switching, Live Message Posting & Reaction Counter)
+      const channelItems = document.querySelectorAll('#channelsList .channel-item');
+      const activeStreamTitle = document.getElementById('activeStreamTitle');
+      const chatMessages = document.getElementById('chatMessages');
+      const chatForm = document.getElementById('chatForm');
+      const chatInputField = document.getElementById('chatInputField');
+      const reactionChips = document.querySelectorAll('#reactionsBar .reaction-chip');
+
+      const channelData = {
+        general: {
+          title: '# game-dev-general',
+          placeholder: 'Message #game-dev-general',
+          messages: [
+            { avatar: 'LH', name: 'LHR_DEV', nameClass: 'name-cyan', text: 'Anyone testing their Unreal 5.4 physics build tonight? Need feedback!' },
+            { avatar: 'PI', name: 'PIGD_PRO', nameClass: 'name-blue', text: 'Post it in #demo-showcase! We are running a live stream review session.' },
+            { avatar: 'RP', name: 'RPR_LEADER', nameClass: 'name-magenta', text: 'Registration for the PGDA Game Jam drops tomorrow at 6 PM!' }
+          ]
+        },
+        demo: {
+          title: '# demo-showcase',
+          placeholder: 'Message #demo-showcase',
+          messages: [
+            { avatar: 'KH', name: 'KHI_INDIE', nameClass: 'name-cyan', text: 'Just dropped our new gameplay teaser for Ashfall Protocol! Check it out above.' },
+            { avatar: 'CB', name: 'CYBER_DEV', nameClass: 'name-blue', text: 'The lighting in Unreal 5 Lumen looks crazy good! What GPU are you running?' },
+            { avatar: 'IS', name: 'ISB_STUDIO', nameClass: 'name-magenta', text: '60 FPS locked on RTX 4070. Releasing a public demo next week!' }
+          ]
+        },
+        lfg: {
+          title: '# lfg',
+          placeholder: 'Message #lfg',
+          messages: [
+            { avatar: 'NX', name: 'NEXUS_ART', nameClass: 'name-cyan', text: 'LFG: Senior 3D Modeler looking for a team for the upcoming PGDA Jam!' },
+            { avatar: 'SW', name: 'SOUND_WAVE', nameClass: 'name-blue', text: 'Composer & SFX artist available. Worked on 3 published Steam titles.' },
+            { avatar: 'LD', name: 'LHR_DEV', nameClass: 'name-magenta', text: 'We need 1 Unity C# Dev for Mobile Brawler. DM me!' }
+          ]
+        },
+        events: {
+          title: '# events',
+          placeholder: 'Message #events',
+          messages: [
+            { avatar: 'PG', name: 'PGDA_OFFICIAL', nameClass: 'name-cyan', text: 'Lahore Indie Gamedev Meetup happening this Saturday at 5 PM!' },
+            { avatar: 'RG', name: 'REAPERS_GUILD', nameClass: 'name-blue', text: 'Live stream review & 1:1 mentor sessions start in 30 minutes!' },
+            { avatar: 'IG', name: 'IGDA_PAK', nameClass: 'name-magenta', text: 'Keynote speaker announced for National Game Jam 2026!' }
+          ]
+        }
+      };
+
+      function renderChannelMessages(chKey) {
+        const data = channelData[chKey];
+        if (!data) return;
+        
+        activeStreamTitle.textContent = data.title;
+        chatInputField.placeholder = data.placeholder;
+        
+        chatMessages.innerHTML = '';
+        data.messages.forEach(msg => {
+          const item = document.createElement('div');
+          item.className = 'message-item';
+          item.innerHTML = `
+            <div class="user-avatar">${msg.avatar}</div>
+            <div class="message-body">
+              <span class="user-name ${msg.nameClass}">${msg.name}</span>
+              <p class="message-text">${msg.text}</p>
+            </div>
+          `;
+          chatMessages.appendChild(item);
+        });
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      channelItems.forEach(item => {
+        item.addEventListener('click', () => {
+          if (item.classList.contains('active')) return;
+          channelItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          const chKey = item.getAttribute('data-channel');
+          renderChannelMessages(chKey);
+          if (typeof cyberAudio !== 'undefined') cyberAudio.playClick('tab');
+        });
+      });
+
+      // Reaction Chips (+1 Counter Toggle)
+      reactionChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          let count = parseInt(chip.getAttribute('data-count'), 10) || 0;
+          const isSelected = chip.classList.contains('active-reaction');
+          
+          if (isSelected) {
+            count -= 1;
+            chip.classList.remove('active-reaction');
+          } else {
+            count += 1;
+            chip.classList.add('active-reaction');
+          }
+          
+          chip.setAttribute('data-count', count);
+          chip.querySelector('.chip-count').textContent = count;
+          if (typeof cyberAudio !== 'undefined') cyberAudio.playStickerReact();
+        });
+      });
+
+      // Post New Live Message
+      if (chatForm && chatInputField) {
+        chatForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const text = chatInputField.value.trim();
+          if (!text) return;
+          if (typeof cyberAudio !== 'undefined') cyberAudio.playMessageSend();
+
+          const newItem = document.createElement('div');
+          newItem.className = 'message-item';
+          newItem.innerHTML = `
+            <div class="user-avatar" style="background: rgba(0,229,255,0.2); color:#00E5FF; border:1px solid #00E5FF;">YOU</div>
+            <div class="message-body">
+              <span class="user-name name-cyan">YOU</span>
+              <p class="message-text">${text}</p>
+            </div>
+          `;
+          chatMessages.appendChild(newItem);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          
+          // Also update current active channel in-memory model
+          const activeChannelElem = document.querySelector('#channelsList .channel-item.active');
+          if (activeChannelElem) {
+            const chKey = activeChannelElem.getAttribute('data-channel');
+            if (channelData[chKey]) {
+              channelData[chKey].messages.push({
+                avatar: 'YOU',
+                name: 'YOU',
+                nameClass: 'name-cyan',
+                text: text
+              });
+            }
+          }
+
+          chatInputField.value = '';
+          if (typeof cyberAudio !== 'undefined') cyberAudio.playClick();
+        });
+      }
+
+</script>
+
+<script src="scrollcraft.js"></script>
+<script>ScrollCraft.mount(document.body);</script>
+<script>
+  // Signature moment for #showcase-demos: "the arena floor fills up".
+  // data-sc-drift and the scrubbed data-sc-count on
+  // .live-watch-count are handled natively by the engine above; this is the
+  // one small bespoke touch — firing a one-time pulse on the LIVE pill once
+  // the section's own scroll progress crosses ~0.8.
+  (function () {
+    var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var act = document.getElementById('showcase-demos');
+    var pill = document.getElementById('liveWatchPill');
+    if (!act || !pill || reduced) return;
+    var fired = false;
+    function checkPeak() {
+      var p = parseFloat(getComputedStyle(act).getPropertyValue('--sc-p'));
+      if (!fired && p >= 0.8) {
+        fired = true;
+        pill.classList.add('live-pill--peak');
+      } else if (fired && p < 0.6) {
+        // Scrolled back up well past the peak — allow it to fire again.
+        fired = false;
+        pill.classList.remove('live-pill--peak');
+      }
+      requestAnimationFrame(checkPeak);
+    }
+    requestAnimationFrame(checkPeak);
+  })();
+</script>
+
+</body>
+</html>

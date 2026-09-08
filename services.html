@@ -2,29 +2,58 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Our Services · Reapers Gaming Arena</title>
   <meta name="description" content="Reapers Ecosystem Services — Community Chatrooms, Direct Messaging, Community Building, Event Discovery, Game Demo Showcase, Team Matchmaking, Expert Sessions, and Developer Profiles.">
-  <link rel="icon" href="assets/logo-160.webp" type="image/png">
+  <link rel="icon" href="public/reapers-logo.png">
 
-  <!-- Typography: Chakra Petch (Display), Outfit (Prose), IBM Plex Mono (Code/Labels) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="scrollcraft.css">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Clean, Aesthetic Gaming Legal & Services Styles */
-    body {
-      background-color: var(--sc-canvas);
-      color: var(--sc-ink);
-      font-family: var(--sc-font-text);
-      line-height: var(--sc-leading-body);
-      overflow-x: hidden;
+    /* Knight Warrior Font Import */
+    @font-face {
+      font-family: 'Knight Warrior';
+      src: local('Knight Warrior'), local('KNIGHT WARRIOR'), url('https://fonts.cdnfonts.com/s/95191/KnightWarrior.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
     }
 
-    /* Ambient 3D Cyber Grid & Particle Canvas */
+    :root {
+      --bg-dark: #05030A;
+      --bg-card: rgba(14, 11, 26, 0.75);
+      --font-hero: "Knight Warrior", "Chakra Petch", system-ui, -apple-system, sans-serif;
+      --font-display: "Chakra Petch", system-ui, -apple-system, sans-serif;
+      --font-body: "Outfit", system-ui, -apple-system, sans-serif;
+      --font-mono: "IBM Plex Mono", monospace;
+
+      --reapers-gradient: linear-gradient(95.18deg, #00E5FF 0.16%, #6D35FF 36.28%, #D83CFF 72.41%);
+      --cyan-neon: #00E5FF;
+      --purple-neon: #6D35FF;
+      --magenta-neon: #D83CFF;
+
+      --chamfer-lg: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient 3D Canvas Background */
     #services3dCanvas {
       position: fixed;
       top: 0;
@@ -33,249 +62,724 @@
       height: 100vh;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.55;
+      opacity: 0.45;
     }
 
-    .services-hero {
-      padding-top: clamp(6rem, 12vh, 9rem);
-      padding-bottom: 2rem;
-      text-align: center;
+    /* Floating Header - Exact Figma Specs */
+    .header-wrapper {
       position: relative;
-      z-index: 1;
+      z-index: 10;
+      width: 100%;
+      max-width: 1280px;
+      margin: 39px auto 0;
+      padding: 0 1.5rem;
     }
-    .legal-badge {
+
+    .navbar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 92px;
+      padding: 0 2.25rem;
+      background: linear-gradient(95deg, rgba(8, 12, 28, 0.78) 0%, rgba(14, 11, 26, 0.78) 50%, rgba(18, 8, 28, 0.78) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+      filter: drop-shadow(0 0 1px rgba(0, 229, 255, 0.4)) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7));
+    }
+
+    .navbar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      background: linear-gradient(90deg, rgba(0, 229, 255, 0.5) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(216, 60, 255, 0.5) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-link a {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: #9D99B5;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+    }
+
+    .nav-link a:hover, .nav-link.active a {
+      color: #FFFFFF;
+      text-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
+    }
+
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand-logo-img {
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.4));
+      transition: transform 0.3s ease;
+    }
+
+    .nav-brand:hover .brand-logo-img { transform: scale(1.08); }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      color: #FFFFFF;
+      margin-top: 2px;
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      color: #C0BDD5;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border-color: rgba(0, 229, 255, 0.4);
+    }
+
+    .icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+    .btn-download {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      font-family: var(--sc-font-mono);
-      font-size: var(--sc-t-xs);
-      letter-spacing: var(--sc-track-wide);
-      color: var(--sc-accent);
-      background: color-mix(in oklab, var(--sc-accent) 12%, transparent);
-      border: 1px solid color-mix(in oklab, var(--sc-accent) 35%, transparent);
-      padding: 0.4em 1em;
+      gap: 0.6rem;
+      padding: 0.65rem 1.4rem;
+      background: var(--reapers-gradient);
+      border: none;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(109, 53, 255, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    /* Hero Section */
+    .services-hero {
+      position: relative;
+      max-width: 1280px;
+      margin: 4rem auto 2rem;
+      padding: 0 1.5rem;
+      text-align: center;
+      z-index: 2;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .chat-glow-orb {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.14) 0%, rgba(108, 43, 255, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(-50%, 0) scale(1); }
+      50% { transform: translate(-45%, -30px) scale(1.08); }
+      100% { transform: translate(-50%, 0) scale(1); }
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .entry-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: #9D99B5;
+      text-transform: uppercase;
       margin-bottom: 1rem;
     }
-    .services-title {
-      font-family: var(--sc-font-display);
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: 800;
-      letter-spacing: var(--sc-track-snug);
-      text-transform: uppercase;
-      margin: 0;
-      color: var(--sc-ink);
+
+    .dot-cyan { color: var(--cyan-neon); }
+    .dot-purple { color: var(--purple-neon); }
+    .dot-magenta { color: var(--magenta-neon); }
+
+    /* Global Ultra-Bold Headings */
+    h1, h2, h3, h4, h5, h6,
+    .services-title, .service-title, .card-title {
+      font-weight: 800 !important;
+      letter-spacing: 0.02em;
     }
+
+    .services-title {
+      font-family: var(--font-hero);
+      font-weight: 800;
+      font-size: clamp(3rem, 6vw, 76px);
+      line-height: 1.05;
+      letter-spacing: 0px;
+      text-transform: uppercase;
+      background: var(--reapers-gradient);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 5s ease infinite;
+    }
+
+    .services-subtitle {
+      max-width: 680px;
+      margin: 1rem auto 0;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #9D99B5;
+    }
+
     .legal-meta-card {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-      font-family: var(--sc-font-mono);
-      font-size: var(--sc-t-xs);
-      color: var(--sc-ink-soft);
-      border-block: 1px solid var(--sc-hairline);
-      padding-block: 0.8rem;
-    }
-    .legal-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .legal-meta-item span {
-      color: var(--sc-accent-2);
+      gap: 2rem;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #6C6685;
+      text-transform: uppercase;
     }
 
-    /* Table of Contents Pills */
-    .toc-bar {
-      display: flex;
-      gap: 0.5rem;
-      overflow-x: auto;
-      padding-bottom: 0.8rem;
-      margin-block: 2rem 1.5rem;
-      scrollbar-width: thin;
+    .legal-meta-item span {
+      color: var(--cyan-neon);
+      font-weight: 700;
     }
-    .toc-pill {
-      font-family: var(--sc-font-mono);
-      font-size: 0.72rem;
-      color: var(--sc-ink-soft);
-      background: var(--sc-surface);
-      border: 1px solid var(--sc-hairline-strong);
-      padding: 0.4em 0.8em;
+
+        /* Clean Cyberpunk TOC & Filter Pills Navigation */
+    .toc-bar, .hiring-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.65rem 0.8rem;
+      max-width: 1100px;
+      margin: 2rem auto 0;
+      padding: 0 1rem;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .toc-pill, .filter-pill {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #9D99B5;
       white-space: nowrap;
       text-decoration: none;
-      transition: all 200ms var(--sc-ease-out);
-    }
-    .toc-pill:hover {
-      border-color: var(--sc-accent);
-      color: var(--sc-accent);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px color-mix(in oklab, var(--sc-accent) 25%, transparent);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
     }
 
-    /* Main Legal & Services Card Container */
+    .toc-pill:hover, .filter-pill:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .filter-pill.active {
+      background: rgba(0, 229, 255, 0.12);
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.3);
+    }
+
+    .toc-pill {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #9D99B5;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .toc-pill:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+
+    /* Main Services Grid Container */
     .services-main-wrap {
       position: relative;
-      z-index: 1;
-      margin-bottom: 4rem;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 2rem auto 6rem;
+      padding: 0 1.5rem;
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2rem;
     }
 
-    /* Sleek Cyber Glass Card */
+    /* Cyber Glass Service Card */
     .service-card {
-      background: var(--sc-surface);
-      border: 1px solid var(--sc-hairline-strong);
-      padding: clamp(1.5rem, 3vw, 2.2rem);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2.2rem;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
       position: relative;
-      transition: transform 0.25s var(--sc-ease-out), box-shadow 0.25s var(--sc-ease-out), border-color 0.25s ease;
-      scroll-margin-top: 90px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 1.5rem;
+      transition: all 0.3s ease;
+      scroll-margin-top: 100px;
     }
+
     .service-card:hover {
       transform: translateY(-5px);
-      border-color: var(--sc-accent);
-      box-shadow: 0 20px 40px color-mix(in oklab, var(--sc-accent) 18%, rgba(0,0,0,0.4));
+      border-color: rgba(0, 229, 255, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 229, 255, 0.15);
     }
 
-    .service-card--cyan:hover {
-      border-color: var(--sc-accent-2);
-      box-shadow: 0 20px 40px color-mix(in oklab, var(--sc-accent-2) 18%, rgba(0,0,0,0.4));
-    }
-    .service-card--magenta:hover {
-      border-color: var(--peak-magenta);
-      box-shadow: 0 20px 40px color-mix(in oklab, var(--peak-magenta) 18%, rgba(0,0,0,0.4));
-    }
-    .service-card--gold:hover {
-      border-color: var(--gold-accent);
-      box-shadow: 0 20px 40px color-mix(in oklab, var(--gold-accent) 18%, rgba(0,0,0,0.4));
-    }
-
-    /* Card Header & Accents */
     .service-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
+
     .service-icon-badge {
-      font-size: 1.6rem;
-      background: color-mix(in oklab, var(--sc-accent) 14%, transparent);
-      border: 1px solid color-mix(in oklab, var(--sc-accent) 30%, transparent);
+      font-size: 1.5rem;
       width: 48px;
       height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 6px;
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 12px;
     }
-    .service-icon-badge--cyan {
-      background: color-mix(in oklab, var(--sc-accent-2) 14%, transparent);
-      border-color: color-mix(in oklab, var(--sc-accent-2) 30%, transparent);
-    }
+
     .service-icon-badge--magenta {
-      background: color-mix(in oklab, var(--peak-magenta) 14%, transparent);
-      border-color: color-mix(in oklab, var(--peak-magenta) 30%, transparent);
-    }
-    .service-icon-badge--gold {
-      background: color-mix(in oklab, var(--gold-accent) 14%, transparent);
-      border-color: color-mix(in oklab, var(--gold-accent) 30%, transparent);
+      background: rgba(216, 60, 255, 0.08);
+      border-color: rgba(216, 60, 255, 0.3);
     }
 
     .service-num {
-      font-family: var(--sc-font-mono);
-      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
       font-weight: 700;
-      color: var(--sc-accent);
-      letter-spacing: 0.05em;
+      color: var(--cyan-neon);
+      letter-spacing: 0.15em;
     }
-    .service-num--cyan { color: var(--sc-accent-2); }
-    .service-num--magenta { color: var(--peak-magenta); }
-    .service-num--gold { color: var(--gold-accent); }
+
+    .service-num--magenta { color: var(--magenta-neon); }
 
     .service-title {
-      font-family: var(--sc-font-display);
-      font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+      font-family: var(--font-display);
+      font-size: 1.45rem;
       font-weight: 700;
-      color: var(--sc-ink);
-      margin: 0 0 0.75rem 0;
-      line-height: 1.3;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
     }
+
     .service-desc {
-      color: var(--sc-ink-soft);
-      font-size: var(--sc-t-base);
-      margin-bottom: 1.2rem;
+      color: #9D99B5;
+      font-size: 0.98rem;
       line-height: 1.6;
     }
 
     /* Embedded Interactive Live Widgets */
     .widget-box {
-      background: color-mix(in oklab, var(--sc-surface) 93%, var(--sc-canvas));
-      border: 1px solid var(--sc-hairline);
-      padding: 1rem 1.1rem;
-      margin-top: 0.8rem;
-      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.2rem;
     }
+
     .widget-label {
-      font-family: var(--sc-font-mono);
+      font-family: var(--font-mono);
       font-size: 0.72rem;
       font-weight: 700;
-      color: var(--sc-accent);
-      letter-spacing: 0.05em;
+      color: var(--cyan-neon);
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
       gap: 0.4rem;
     }
-    .widget-label--cyan { color: var(--sc-accent-2); }
-    .widget-label--magenta { color: var(--peak-magenta); }
-    .widget-label--gold { color: var(--gold-accent); }
 
-    /* Guild Logos Bar */
+    .widget-label--magenta { color: var(--magenta-neon); }
+
     .guild-bar {
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
-      margin-top: 0.6rem;
-    }
-    .guild-chip {
-      font-family: var(--sc-font-mono);
-      font-size: 0.68rem;
-      padding: 0.2em 0.55em;
-      background: color-mix(in oklab, var(--sc-accent-2) 12%, transparent);
-      border: 1px solid color-mix(in oklab, var(--sc-accent-2) 30%, transparent);
-      color: var(--sc-accent-2);
-      font-weight: 600;
+      margin-top: 0.75rem;
     }
 
-    /* Summary Tagline Card */
-    .summary-card {
-      background: color-mix(in oklab, var(--sc-surface) 95%, var(--sc-canvas));
-      border: 1px solid var(--sc-accent);
-      padding: clamp(1.8rem, 4vw, 3rem);
-      margin-top: 3.5rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+    .guild-chip {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.25em 0.6em;
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      color: var(--cyan-neon);
+      font-weight: 700;
+      border-radius: 4px;
     }
+
+    /* Summary Card */
+    .summary-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 20px;
+      padding: clamp(2rem, 5vw, 3.5rem);
+      margin-top: 4rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
     .summary-quote {
-      font-family: var(--sc-font-display);
-      font-size: clamp(1.15rem, 2.2vw, 1.6rem);
-      font-weight: 600;
-      color: var(--sc-ink);
-      max-width: 65ch;
-      margin: 0 auto 1.5rem auto;
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      font-weight: 700;
+      color: #FFFFFF;
+      max-width: 800px;
+      margin: 0 auto 1.8rem;
       line-height: 1.5;
-      font-style: italic;
+    }
+
+    /* Footer & Watermark */
+    .site-footer-bar {
+      max-width: 1280px;
+      margin: 4rem auto 0;
+      padding: 1.5rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+    }
+
+    .footer-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .footer-link {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      color: #9D99B5;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+    }
+
+    .footer-link:hover,
+    .footer-link.active {
+      color: #00E5FF;
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+    }
+
+    .footer-watermark-wrap {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      user-select: none;
+      pointer-events: none;
+      padding-top: 2rem;
+      margin-bottom: -1rem;
+    }
+
+    .footer-watermark-text {
+      font-family: var(--font-hero);
+      font-size: clamp(6rem, 18vw, 240px);
+      font-weight: 400;
+      line-height: 0.8;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.03);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Liquid Ripple / Bubble Hover Class for All Buttons */
+    .btn-bubble {
+      position: relative !important;
+      overflow: hidden !important;
+      z-index: 1;
+    }
+
+    .btn-bubble::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.45) 0%, rgba(216, 60, 255, 0.25) 50%, transparent 80%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .btn-bubble:hover::after {
+      width: 380px;
+      height: 380px;
+      opacity: 1;
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      position: relative;
+    }
+
+    /* Tablet & Desktop Medium Screens (max-width: 1024px) */
+    @media (max-width: 1024px) {
+      .header-wrapper {
+        margin: 24px auto 0 !important;
+        padding: 0 1.25rem !important;
+        max-width: 100% !important;
+      }
+      .navbar {
+        padding: 0 1.25rem !important;
+      }
+      .nav-links {
+        gap: 1.25rem !important;
+      }
+      .nav-link a {
+        font-size: 0.78rem !important;
+      }
+      .services-hero {
+        margin: 3rem auto 1.5rem !important;
+        padding: 0 1.25rem !important;
+      }
+      .services-main-wrap {
+        margin: 1.5rem auto 4rem !important;
+        padding: 0 1.25rem !important;
+      }
+      .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+        gap: 1.5rem !important;
+      }
+    }
+
+    /* Mobile Landscape & Mobile Screens (max-width: 768px) */
+    @media (max-width: 768px) {
+      .header-wrapper {
+        margin: 12px auto 0 !important;
+        padding: 0 0.75rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .navbar {
+        height: 68px !important;
+        padding: 0 0.75rem !important;
+        clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px) !important;
+      }
+      .navbar::before {
+        clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px) !important;
+      }
+      .nav-links { display: none !important; }
+      .brand-logo-img { height: 36px !important; }
+      .brand-name { font-size: 0.68rem !important; letter-spacing: 0.18em !important; }
+      .nav-actions { gap: 0.4rem !important; }
+      .icon-btn { width: 36px !important; height: 36px !important; }
+      .icon-btn svg { width: 16px !important; height: 16px !important; }
+      .btn-download {
+        padding: 0.5rem 0.8rem !important;
+        font-size: 0.72rem !important;
+        gap: 0.35rem !important;
+      }
+      .btn-download span { display: none !important; }
+
+      .services-hero {
+        padding: 2.5rem 0.85rem 1.5rem !important;
+        margin: 1rem auto 1rem !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .entry-kicker {
+        font-size: 0.68rem !important;
+        letter-spacing: 0.14em !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+      }
+      .services-title {
+        font-size: clamp(2rem, 7.5vw, 3.2rem) !important;
+        line-height: 1.1 !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
+      }
+      .services-subtitle {
+        font-size: 0.92rem !important;
+        line-height: 1.5 !important;
+      }
+      .legal-meta-card {
+        flex-direction: column !important;
+        gap: 0.65rem !important;
+        padding: 0.75rem 1rem !important;
+        text-align: center !important;
+        margin-top: 1.25rem !important;
+      }
+      .toc-bar {
+        padding: 0 0.25rem !important;
+        gap: 0.4rem !important;
+        margin-top: 1.25rem !important;
+      }
+      .toc-pill {
+        padding: 0.45rem 0.75rem !important;
+        font-size: 0.68rem !important;
+      }
+      .services-main-wrap {
+        padding: 0 0.75rem !important;
+        margin: 1.25rem auto 3rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .services-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+        padding: 0 !important;
+      }
+      .service-card {
+        padding: 1.4rem 1.1rem !important;
+        border-radius: 14px !important;
+      }
+      .service-header {
+        gap: 0.5rem !important;
+      }
+      .service-card-footer {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+      }
+      .site-footer-bar { flex-direction: column !important; gap: 1.25rem !important; text-align: center !important; margin-top: 2.5rem !important; }
+      .footer-nav-links { flex-wrap: wrap !important; justify-content: center !important; gap: 0.85rem 1.25rem !important; }
+      .footer-watermark-text { font-size: clamp(3.2rem, 16vw, 120px) !important; }
+    }
+
+    /* Small Phone Screens (max-width: 480px) */
+    @media (max-width: 480px) {
+      .services-hero { padding: 2rem 0.5rem 1rem !important; }
+      .services-main-wrap { padding: 0 0.5rem !important; }
+      .service-card { padding: 1.25rem 0.85rem !important; }
+      .btn-download span { display: none !important; }
     }
   </style>
 </head>
@@ -284,33 +788,46 @@
   <!-- Ambient 3D Particle Canvas -->
   <canvas id="services3dCanvas"></canvas>
 
-  <!-- Fixed HUD Navigation Header -->
-  <header class="hud" id="hud">
-    <div class="hud__inner sc-wrap">
-      <a class="hud__brand" href="index.html#top" aria-label="Reapers home">
-        <img src="assets/logo-160.webp" alt="Reapers Logo" width="44" height="44">
-        <span class="hud__word">Reapers</span>
+  <!-- Floating Glass Navbar -->
+  <div class="header-wrapper">
+    <header class="navbar">
+      <ul class="nav-links">
+        <li class="nav-link"><a href="arena.html#arena">ARENA</a></li>
+        <li class="nav-link"><a href="arena.html#community">COMMUNITY</a></li>
+        <li class="nav-link"><a href="arena.html#showcase-demos">SHOWCASE</a></li>
+      </ul>
+      <a href="arena.html" class="nav-brand" title="Reapers Homepage">
+        <img src="public/reapers-logo.png" alt="Reapers Logo" class="brand-logo-img">
+        <span class="brand-name">REAPERS</span>
       </a>
-
-      <div style="display: flex; align-items: center; gap: 0.5rem;">
-        <button class="hud__audio-btn" id="audioToggleBtn" title="Toggle Sound Effects">
-          <span id="audioIcon">🔊</span> <span id="audioText">SFX ON</span>
+      <div class="nav-actions">
+        <button class="icon-btn btn-bubble" id="soundBtn" title="Toggle Sound">
+          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
         </button>
-        <button class="hud__theme-btn" id="themeToggleBtn" title="Toggle Light / Dark Theme">
-          <span id="themeIcon">☀️</span> <span id="themeText">LIGHT</span>
-        </button>
-        <a class="hud__cta" href="index.html#close">Download App</a>
+        <a href="arena.html#download" class="btn-download btn-bubble">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          <span>DOWNLOAD APP</span>
+        </a>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 
   <main>
+    <div class="chat-glow-orb"></div>
+
     <!-- Services Hero Section -->
-    <section class="services-hero sc-wrap">
-      <div class="legal-badge">⚡ REAPERS GAMING PLATFORM &amp; ECOSYSTEM</div>
-      <h1 class="services-title">Our Services</h1>
-      <p class="sc-body" style="max-width: 64ch; margin: 0.8rem auto 0 auto; font-size: 1.1rem; color: var(--sc-ink-soft);">
-        Reapers is a community and networking platform built for gamers and game developers in Pakistan and beyond. Here's what we offer:
+    <section class="services-hero reveal-on-scroll">
+      <div class="entry-kicker">
+        <span class="kicker-dot-wrap">
+          <span class="dot-cyan">●</span>
+          <span class="dot-purple">●</span>
+        </span>
+        <span>⚡ // REAPERS PLATFORM ECOSYSTEM</span>
+      </div>
+
+      <h1 class="services-title">OUR SERVICES<span class="dot-magenta">.</span></h1>
+      <p class="services-subtitle">
+        Reapers is a community and networking platform built for gamers and game developers in Pakistan and beyond. Here is what we offer:
       </p>
 
       <div class="legal-meta-card">
@@ -321,23 +838,23 @@
 
       <!-- Quick TOC Navigation Pills -->
       <div class="toc-bar">
-        <a href="#sec-chat" class="toc-pill">01. Chatrooms</a>
-        <a href="#sec-dm" class="toc-pill">02. Direct Messaging</a>
-        <a href="#sec-build" class="toc-pill">03. Community Building</a>
-        <a href="#sec-events" class="toc-pill">04. Event Discovery</a>
-        <a href="#sec-demo" class="toc-pill">05. Demo Showcase</a>
-        <a href="#sec-hiring" class="toc-pill">06. Team Matchmaking</a>
-        <a href="#sec-expert" class="toc-pill">07. Expert Sessions</a>
-        <a href="#sec-profile" class="toc-pill">08. Developer Profiles</a>
+        <a href="#sec-chat" class="toc-pill btn-bubble">01. Chatrooms</a>
+        <a href="#sec-dm" class="toc-pill btn-bubble">02. Direct Messaging</a>
+        <a href="#sec-build" class="toc-pill btn-bubble">03. Community Building</a>
+        <a href="#sec-events" class="toc-pill btn-bubble">04. Event Discovery</a>
+        <a href="#sec-demo" class="toc-pill btn-bubble">05. Demo Showcase</a>
+        <a href="#sec-hiring" class="toc-pill btn-bubble">06. Team Matchmaking</a>
+        <a href="#sec-expert" class="toc-pill btn-bubble">07. Expert Sessions</a>
+        <a href="#sec-profile" class="toc-pill btn-bubble">08. Developer Profiles</a>
       </div>
     </section>
 
     <!-- Main Services Grid -->
-    <div class="sc-wrap services-main-wrap">
+    <div class="services-main-wrap reveal-on-scroll">
       <div class="services-grid">
 
         <!-- 1. Community Chatrooms -->
-        <article class="service-card blade" id="sec-chat">
+        <article class="service-card" id="sec-chat">
           <div>
             <div class="service-header">
               <div class="service-icon-badge">💬</div>
@@ -350,40 +867,30 @@
           </div>
 
           <div class="widget-box">
-            <div class="widget-label">⚡ LIVE COMMUNITY CHATROOM STREAM</div>
-            <div id="serviceChatBody" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 120px; overflow-y: auto; font-family: var(--sc-font-mono); font-size: 0.78rem; color: var(--sc-ink); background: color-mix(in oklab, var(--sc-surface) 80%, var(--sc-canvas)); padding: 0.6rem 0.8rem; border-left: 3px solid var(--sc-accent);">
-              <div><span style="color: var(--sc-accent); font-weight: 700;">LHR_DEV:</span> Anyone testing their Unreal 5.4 physics build tonight?</div>
-              <div><span style="color: var(--sc-accent-2); font-weight: 700;">PIGD_PRO:</span> Post it in #demo-showcase for live review!</div>
-              <div><span style="color: var(--peak-magenta); font-weight: 700;">RPR_LEADER:</span> Registration for PGDA Game Jam drops tomorrow! 🚀</div>
-            </div>
-
-            <div style="display: flex; gap: 0.4rem; margin-top: 0.6rem; flex-wrap: wrap;">
-              <button class="svc-react-btn" style="font-family: var(--sc-font-mono); font-size: 0.72rem; padding: 0.2rem 0.5rem; background: var(--sc-surface); border: 1px solid var(--sc-hairline-strong); color: var(--sc-ink-soft); cursor: pointer;">🔥 <span class="svc-react-count">142</span></button>
-              <button class="svc-react-btn" style="font-family: var(--sc-font-mono); font-size: 0.72rem; padding: 0.2rem 0.5rem; background: var(--sc-surface); border: 1px solid var(--sc-hairline-strong); color: var(--sc-ink-soft); cursor: pointer;">🚀 <span class="svc-react-count">98</span></button>
-              <button class="svc-react-btn" style="font-family: var(--sc-font-mono); font-size: 0.72rem; padding: 0.2rem 0.5rem; background: var(--sc-surface); border: 1px solid var(--sc-hairline-strong); color: var(--sc-ink-soft); cursor: pointer;">🎮 <span class="svc-react-count">210</span></button>
-            </div>
-
-            <form id="svcChatForm" style="display: flex; gap: 0.4rem; margin-top: 0.6rem;">
-              <input type="text" id="svcChatInput" placeholder="Send a message to chat..." style="flex: 1; background: var(--sc-surface); border: 1px solid var(--sc-hairline-strong); color: var(--sc-ink); font-family: var(--sc-font-mono); font-size: 0.75rem; padding: 0.3rem 0.6rem; border-radius: 3px;" required>
-              <button type="submit" style="background: var(--sc-accent); color: var(--sc-accent-ink); border: none; font-family: var(--sc-font-mono); font-size: 0.72rem; font-weight: 700; padding: 0.3rem 0.7rem; cursor: pointer; border-radius: 3px; text-transform: uppercase;">SEND</button>
-            </form>
-
-            <div class="guild-bar" style="margin-top: 0.6rem;">
-              <span class="guild-chip">CEGA</span>
-              <span class="guild-chip">IGDA PAKISTAN</span>
-              <span class="guild-chip">PIGD</span>
-              <span class="guild-chip">PGDA</span>
-              <span class="guild-chip">PAK GAME DEVS</span>
+            <div class="widget-label">⚡ ACTIVE CHANNELS &amp; GUILDS</div>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+              <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.75rem;">
+                <span style="background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.3); color: var(--cyan-neon); padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 700;"># GAME-DEV</span>
+                <span style="background: rgba(109, 53, 255, 0.1); border: 1px solid rgba(109, 53, 255, 0.3); color: var(--purple-neon); padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 700;"># DEMO-SHOWCASE</span>
+                <span style="background: rgba(216, 60, 255, 0.1); border: 1px solid rgba(216, 60, 255, 0.3); color: var(--magenta-neon); padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 700;"># LFG-ARENA</span>
+              </div>
+              <div class="guild-bar" style="margin-top: 0.2rem;">
+                <span class="guild-chip">CEGA</span>
+                <span class="guild-chip">IGDA PAKISTAN</span>
+                <span class="guild-chip">PIGD</span>
+                <span class="guild-chip">PGDA</span>
+                <span class="guild-chip">PAK GAME DEVS</span>
+              </div>
             </div>
           </div>
         </article>
 
         <!-- 2. Direct Messaging -->
-        <article class="service-card service-card--cyan blade" id="sec-dm">
+        <article class="service-card" id="sec-dm">
           <div>
             <div class="service-header">
-              <div class="service-icon-badge service-icon-badge--cyan">✉️</div>
-              <span class="service-num service-num--cyan">SERVICE 02</span>
+              <div class="service-icon-badge">✉️</div>
+              <span class="service-num">SERVICE 02</span>
             </div>
             <h2 class="service-title">2. Direct Messaging</h2>
             <p class="service-desc">
@@ -392,14 +899,14 @@
           </div>
 
           <div class="widget-box">
-            <div class="widget-label widget-label--cyan">📩 1-ON-1 ENCRYPTED DIRECT MESSAGING</div>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8rem;">
-              <div style="background: color-mix(in oklab, var(--sc-surface) 80%, var(--sc-canvas)); padding: 0.5rem 0.7rem; border-radius: 4px; align-self: flex-start; max-width: 90%;">
-                <span style="font-family: var(--sc-font-mono); color: var(--sc-accent-2); font-size: 0.7rem; display: block; font-weight: 700;">@ApexDeveloper:</span>
+            <div class="widget-label">📩 1-ON-1 ENCRYPTED DIRECT MESSAGING</div>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem;">
+              <div style="background: rgba(0, 0, 0, 0.4); padding: 0.6rem 0.8rem; border-radius: 8px; align-self: flex-start; max-width: 90%; border-left: 3px solid var(--purple-neon);">
+                <span style="font-family: var(--font-mono); color: var(--purple-neon); font-size: 0.72rem; display: block; font-weight: 700;">@ApexDeveloper:</span>
                 Hey! Loved your 3D environment demo. Open for a co-op jam?
               </div>
-              <div style="background: color-mix(in oklab, var(--sc-accent-2) 15%, var(--sc-surface)); padding: 0.5rem 0.7rem; border-radius: 4px; align-self: flex-end; max-width: 90%; border: 1px solid var(--sc-accent-2);">
-                <span style="font-family: var(--sc-font-mono); color: var(--sc-accent-2); font-size: 0.7rem; display: block; font-weight: 700;">@You:</span>
+              <div style="background: rgba(0, 229, 255, 0.1); padding: 0.6rem 0.8rem; border-radius: 8px; align-self: flex-end; max-width: 90%; border: 1px solid var(--cyan-neon);">
+                <span style="font-family: var(--font-mono); color: var(--cyan-neon); font-size: 0.72rem; display: block; font-weight: 700;">@You:</span>
                 Thanks! Absolutely, let's connect on Discord &amp; build it.
               </div>
             </div>
@@ -407,7 +914,7 @@
         </article>
 
         <!-- 3. Community Building -->
-        <article class="service-card service-card--magenta blade" id="sec-build">
+        <article class="service-card" id="sec-build">
           <div>
             <div class="service-header">
               <div class="service-icon-badge service-icon-badge--magenta">🏰</div>
@@ -421,22 +928,22 @@
 
           <div class="widget-box">
             <div class="widget-label widget-label--magenta">🛠️ COMMUNITY &amp; GUILD CREATOR</div>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-              <input type="text" id="communityNameInput" value="Cyber Blade Studio HQ" readonly style="background: var(--sc-surface); border: 1px solid var(--sc-hairline-strong); color: var(--sc-ink); font-family: var(--sc-font-mono); font-size: 0.78rem; padding: 0.4rem 0.6rem;">
-              <div style="display: flex; gap: 0.4rem; font-family: var(--sc-font-mono); font-size: 0.7rem; color: var(--sc-ink-soft);">
-                <span style="background: var(--sc-surface); padding: 0.2rem 0.5rem; border: 1px solid var(--sc-hairline);">🌐 PUBLIC</span>
-                <span style="background: var(--sc-surface); padding: 0.2rem 0.5rem; border: 1px solid var(--sc-hairline);">👥 1,420 MEMBERS</span>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+              <input type="text" id="communityNameInput" value="Cyber Blade Studio HQ" readonly style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.15); color: #FFFFFF; font-family: var(--font-mono); font-size: 0.8rem; padding: 0.5rem 0.8rem; border-radius: 6px;">
+              <div style="display: flex; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; color: #9D99B5;">
+                <span style="background: rgba(0, 229, 255, 0.08); padding: 0.3rem 0.6rem; border: 1px solid rgba(0, 229, 255, 0.3); color: var(--cyan-neon); border-radius: 4px;">🌐 PUBLIC</span>
+                <span style="background: rgba(216, 60, 255, 0.08); padding: 0.3rem 0.6rem; border: 1px solid rgba(216, 60, 255, 0.3); color: var(--magenta-neon); border-radius: 4px;">👥 1,420 MEMBERS</span>
               </div>
             </div>
           </div>
         </article>
 
         <!-- 4. Event Discovery & Hosting -->
-        <article class="service-card service-card--gold blade" id="sec-events">
+        <article class="service-card" id="sec-events">
           <div>
             <div class="service-header">
-              <div class="service-icon-badge service-icon-badge--gold">📅</div>
-              <span class="service-num service-num--gold">SERVICE 04</span>
+              <div class="service-icon-badge">📅</div>
+              <span class="service-num">SERVICE 04</span>
             </div>
             <h2 class="service-title">4. Event Discovery &amp; Hosting</h2>
             <p class="service-desc">
@@ -445,11 +952,11 @@
           </div>
 
           <div class="widget-box">
-            <div class="widget-label widget-label--gold">🎟️ EVENT SPOTLIGHT &amp; HOSTING</div>
-            <div style="font-family: var(--sc-font-mono); font-size: 0.8rem; color: var(--sc-ink);">
-              <div style="font-weight: 700; color: var(--gold-accent); margin-bottom: 0.2rem;">PGDA NATIONAL GAME JAM 2026</div>
-              <div style="font-size: 0.72rem; color: var(--sc-ink-soft); margin-bottom: 0.5rem;">📍 Lahore Expo &amp; Online · 48-Hour Sprint</div>
-              <button id="rsvpBtn" style="background: var(--gold-accent); color: #000; border: none; font-family: var(--sc-font-mono); font-size: 0.72rem; font-weight: 700; padding: 0.4em 0.8em; cursor: pointer; text-transform: uppercase; width: 100%;">
+            <div class="widget-label">🎟️ EVENT SPOTLIGHT &amp; HOSTING</div>
+            <div style="font-family: var(--font-mono); font-size: 0.82rem; color: #FFFFFF;">
+              <div style="font-weight: 700; color: var(--cyan-neon); margin-bottom: 0.3rem;">PGDA NATIONAL GAME JAM 2026</div>
+              <div style="font-size: 0.75rem; color: #9D99B5; margin-bottom: 0.75rem;">📍 Lahore Expo &amp; Online · 48-Hour Sprint</div>
+              <button id="rsvpBtn" class="btn-bubble" style="background: var(--reapers-gradient); color: #FFFFFF; border: none; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; padding: 0.6rem 1rem; cursor: pointer; text-transform: uppercase; width: 100%; border-radius: 6px; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);">
                 ✓ RSVP FOR EVENT (482 ATTENDING)
               </button>
             </div>
@@ -457,7 +964,7 @@
         </article>
 
         <!-- 5. Game Demo Showcase -->
-        <article class="service-card blade" id="sec-demo">
+        <article class="service-card" id="sec-demo">
           <div>
             <div class="service-header">
               <div class="service-icon-badge">🎮</div>
@@ -471,9 +978,9 @@
 
           <div class="widget-box">
             <div class="widget-label">📹 GAMEPLAY DEMO SHOWCASE FEED</div>
-            <div style="position: relative; border: 1px solid var(--sc-hairline-strong); overflow: hidden; border-radius: 4px;">
+            <div style="position: relative; border: 1px solid rgba(255, 255, 255, 0.15); overflow: hidden; border-radius: 8px;">
               <video id="serviceDemoVid" autoplay loop muted playsinline src="public/videos/vid-1.mp4" style="width: 100%; height: 135px; object-fit: cover; display: block;"></video>
-              <div style="position: absolute; bottom: 6px; left: 8px; font-family: var(--sc-font-mono); font-size: 0.7rem; background: rgba(0,0,0,0.8); padding: 0.2rem 0.5rem; color: var(--sc-accent);">
+              <div style="position: absolute; bottom: 8px; left: 8px; font-family: var(--font-mono); font-size: 0.72rem; background: rgba(5, 3, 10, 0.85); backdrop-filter: blur(12px); padding: 0.3rem 0.6rem; color: var(--cyan-neon); border-radius: 4px; border: 1px solid rgba(0, 229, 255, 0.4);">
                 ⭐ 4.9/5.0 COMMUNITY RATING (128 REVIEWS)
               </div>
             </div>
@@ -481,11 +988,11 @@
         </article>
 
         <!-- 6. Team Hiring & Matchmaking -->
-        <article class="service-card service-card--cyan blade" id="sec-hiring">
+        <article class="service-card" id="sec-hiring">
           <div>
             <div class="service-header">
-              <div class="service-icon-badge service-icon-badge--cyan">🤝</div>
-              <span class="service-num service-num--cyan">SERVICE 06</span>
+              <div class="service-icon-badge">🤝</div>
+              <span class="service-num">SERVICE 06</span>
             </div>
             <h2 class="service-title">6. Team Hiring &amp; Matchmaking</h2>
             <p class="service-desc">
@@ -494,18 +1001,18 @@
           </div>
 
           <div class="widget-box">
-            <div class="widget-label widget-label--cyan">⚡ LFG MATCHMAKING FILTERS</div>
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
-              <span style="font-family: var(--sc-font-mono); font-size: 0.7rem; padding: 0.25rem 0.6rem; background: var(--sc-accent-2); color: #000; font-weight: 700; border-radius: 2px;">3D ARTIST</span>
-              <span style="font-family: var(--sc-font-mono); font-size: 0.7rem; padding: 0.25rem 0.6rem; background: var(--sc-surface); color: var(--sc-ink-soft); border: 1px solid var(--sc-hairline); border-radius: 2px;">UNITY DEV</span>
-              <span style="font-family: var(--sc-font-mono); font-size: 0.7rem; padding: 0.25rem 0.6rem; background: var(--sc-surface); color: var(--sc-ink-soft); border: 1px solid var(--sc-hairline); border-radius: 2px;">UNREAL 5</span>
-              <span style="font-family: var(--sc-font-mono); font-size: 0.7rem; padding: 0.25rem 0.6rem; background: var(--sc-surface); color: var(--sc-ink-soft); border: 1px solid var(--sc-hairline); border-radius: 2px;">SOUND</span>
+            <div class="widget-label">⚡ LFG MATCHMAKING FILTERS</div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; padding: 0.35rem 0.75rem; background: rgba(0, 229, 255, 0.12); color: var(--cyan-neon); font-weight: 700; border-radius: 9999px; border: 1px solid var(--cyan-neon);">3D ARTIST</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; padding: 0.35rem 0.75rem; background: rgba(255, 255, 255, 0.04); color: #9D99B5; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 9999px;">UNITY DEV</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; padding: 0.35rem 0.75rem; background: rgba(255, 255, 255, 0.04); color: #9D99B5; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 9999px;">UNREAL 5</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; padding: 0.35rem 0.75rem; background: rgba(255, 255, 255, 0.04); color: #9D99B5; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 9999px;">SOUND</span>
             </div>
           </div>
         </article>
 
         <!-- 7. Expert Guidance Sessions -->
-        <article class="service-card service-card--magenta blade" id="sec-expert">
+        <article class="service-card" id="sec-expert">
           <div>
             <div class="service-header">
               <div class="service-icon-badge service-icon-badge--magenta">🎓</div>
@@ -519,12 +1026,12 @@
 
           <div class="widget-box">
             <div class="widget-label widget-label--magenta">⏱️ 10-15 MIN MENTOR CALL BOOKING</div>
-            <div style="font-family: var(--sc-font-mono); font-size: 0.78rem; color: var(--sc-ink); display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-family: var(--font-mono); font-size: 0.82rem; color: #FFFFFF; display: flex; justify-content: space-between; align-items: center;">
               <div>
-                <strong style="color: var(--peak-magenta); display: block;">Senior Unreal Architect</strong>
-                <span style="font-size: 0.7rem; color: var(--sc-ink-soft);">Next slot: Today @ 5:30 PM</span>
+                <strong style="color: var(--magenta-neon); display: block;">Senior Unreal Architect</strong>
+                <span style="font-size: 0.72rem; color: #9D99B5;">Next slot: Today @ 5:30 PM</span>
               </div>
-              <button id="bookExpertBtn" style="background: var(--peak-magenta); color: #fff; border: none; font-family: var(--sc-font-mono); font-size: 0.7rem; font-weight: 700; padding: 0.4em 0.8em; cursor: pointer; border-radius: 2px;">
+              <button id="bookExpertBtn" class="btn-bubble" style="background: rgba(216, 60, 255, 0.15); color: var(--magenta-neon); border: 1px solid var(--magenta-neon); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; padding: 0.5rem 1rem; cursor: pointer; border-radius: 6px;">
                 BOOK 15M
               </button>
             </div>
@@ -532,7 +1039,7 @@
         </article>
 
         <!-- 8. Developer & Gamer Profiles -->
-        <article class="service-card blade" id="sec-profile">
+        <article class="service-card" id="sec-profile">
           <div>
             <div class="service-header">
               <div class="service-icon-badge">🛡️</div>
@@ -546,13 +1053,13 @@
 
           <div class="widget-box">
             <div class="widget-label">🪪 REAPERS GAMER ID &amp; DEV PORTFOLIO CARD</div>
-            <div style="display: flex; align-items: center; gap: 0.8rem;">
-              <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--sc-accent); color: var(--sc-accent-ink); display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: var(--sc-font-display);">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--reapers-gradient); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: var(--font-display); box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);">
                 RPR
               </div>
-              <div style="font-family: var(--sc-font-mono); font-size: 0.75rem;">
-                <div style="color: var(--sc-ink); font-weight: 700;">Zayn_Dev · LVL 42 VERIFIED</div>
-                <div style="color: var(--sc-accent-2); font-size: 0.68rem;">C++ · Unreal 5 · Gameplay Shader Art</div>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem;">
+                <div style="color: #FFFFFF; font-weight: 700;">Zayn_Dev · LVL 42 VERIFIED</div>
+                <div style="color: var(--cyan-neon); font-size: 0.72rem;">C++ · Unreal 5 · Gameplay Shader Art</div>
               </div>
             </div>
           </div>
@@ -561,144 +1068,169 @@
       </div>
 
       <!-- Summary Callout Card -->
-      <div class="summary-card blade">
+      <div class="summary-card">
         <p class="summary-quote">
           "Reapers brings community, events, feedback, and mentorship together in one platform — built for the people making and playing games."
         </p>
-        <a href="index.html#close" class="hud__cta" style="display: inline-block; padding: 0.8rem 2.2rem; font-size: 1rem; border-radius: 4px;">JOIN REAPERS TODAY →</a>
+        <a href="arena.html#download" class="btn-download btn-bubble" style="display: inline-flex; padding: 0.9rem 2.5rem; font-size: 0.9rem;">JOIN REAPERS TODAY →</a>
       </div>
     </div>
   </main>
 
-  <!-- Global Footer -->
-  <footer class="close__foot sc-wrap" style="display: flex; flex-direction: column; width: 100%; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--sc-hairline);">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; width: 100%;">
-      <div>
-        <p class="close__foot-mark" style="font-size: 1.2rem; font-weight: 700; font-family: var(--sc-font-display);">Reapers</p>
-        <p class="sc-body" style="margin-top: 0.3rem; color: var(--sc-ink-soft);">Play. Connect. Create. Dominate.</p>
-      </div>
-      <nav class="close__foot-links" style="display: flex; gap: 1.2rem; flex-wrap: wrap;">
-        <a href="services.html" style="color: var(--sc-accent);">Services</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms &amp; Conditions</a>
-        <a href="https://www.instagram.com/houseofthereapers?igsi=MWN2NWdseXc5NzE4cA==" target="_blank" rel="noopener">Instagram</a>
-        <a href="mailto:reapers.support@gmail.com">Email</a>
-      </nav>
-    </div>
-
-    <!-- Giant REAPERS Footer Banner -->
-    <div class="footer-giant-brand" style="width: 100%; text-align: center; overflow: hidden; margin-top: clamp(2.5rem, 5vw, 5rem); padding-top: 1rem; border-top: 1px solid var(--sc-hairline);">
-      <div class="footer-giant-title" style="font-family: var(--sc-font-display); font-weight: 900; font-size: clamp(4.5rem, 18vw, 17rem); line-height: 0.82; letter-spacing: -0.04em; text-transform: uppercase; color: var(--sc-ink); opacity: 0.95; user-select: none; margin: 0; padding-bottom: 0.1em; width: 100%;">
-        REAPERS
-      </div>
-    </div>
+  <!-- Global Footer Bar -->
+  <footer class="site-footer-bar">
+    <div>© 2026 REAPERS · PAKISTAN</div>
+    <nav class="footer-nav-links">
+      <a href="services.html" class="footer-link active">SERVICES</a>
+      <a href="privacy.html" class="footer-link">PRIVACY POLICY</a>
+      <a href="terms.html" class="footer-link">TERMS &amp; CONDITIONS</a>
+    </nav>
+    <div>RPR // 001 · SERVICES ECOSYSTEM</div>
   </footer>
 
-  <script src="scrollcraft.js"></script>
+  <!-- Giant REAPERS Watermark -->
+  <div class="footer-watermark-wrap" aria-hidden="true">
+    <span class="footer-watermark-text">REAPERS</span>
+  </div>
+
   <script>
-    (function () {
-      'use strict';
-
-      // 1. Theme Controller
-      var savedTheme = localStorage.getItem('reapers-theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-
-      var themeBtn = document.getElementById('themeToggleBtn');
-      var themeIcon = document.getElementById('themeIcon');
-      var themeText = document.getElementById('themeText');
-
-      function updateThemeUI(theme) {
-        if (themeIcon && themeText) {
-          if (theme === 'light') {
-            themeIcon.textContent = '☀️';
-            themeText.textContent = 'LIGHT';
-          } else {
-            themeIcon.textContent = '🌙';
-            themeText.textContent = 'DARK';
-          }
+    class CyberAudioEngine {
+      constructor() { this.ctx = null; this.muted = false; }
+      init() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) this.ctx = new AudioCtx();
         }
+        if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
       }
-      updateThemeUI(savedTheme);
-
-      if (themeBtn) {
-        themeBtn.addEventListener('click', function () {
-          var current = document.documentElement.getAttribute('data-theme') || 'light';
-          var nextTheme = (current === 'light') ? 'dark' : 'light';
-          document.documentElement.setAttribute('data-theme', nextTheme);
-          localStorage.setItem('reapers-theme', nextTheme);
-          updateThemeUI(nextTheme);
-        });
-      }
-
-      // 2. Audio Synthesizer
-      var audioCtx = null;
-      var soundMuted = false;
-      function getAudioContext() {
-        if (!audioCtx && typeof AudioContext !== 'undefined') {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-        return audioCtx;
-      }
-      function playZapSFX() {
-        if (soundMuted) return;
+      playHover(kind = 'default') {
+        if (this.muted) return; this.init(); if (!this.ctx) return;
         try {
-          var ctx = getAudioContext();
-          if (!ctx) return;
-          var osc = ctx.createOscillator();
-          var gain = ctx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(680, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.08);
-          gain.gain.setValueAtTime(0.06, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
-          osc.connect(gain); gain.connect(ctx.destination);
-          osc.start(); osc.stop(ctx.currentTime + 0.08);
-        } catch(e) {}
-      }
-
-      var audioBtn = document.getElementById('audioToggleBtn');
-      if (audioBtn) {
-        audioBtn.addEventListener('click', function() {
-          soundMuted = !soundMuted;
-          if (soundMuted) {
-            document.getElementById('audioIcon').textContent = '🔇';
-            document.getElementById('audioText').textContent = 'SFX OFF';
+          const now = this.ctx.currentTime; const gain = this.ctx.createGain();
+          if (kind === 'card') {
+            const osc = this.ctx.createOscillator(); osc.type = 'sine';
+            osc.frequency.setValueAtTime(130, now); osc.frequency.exponentialRampToValueAtTime(280, now + 0.08);
+            gain.gain.setValueAtTime(0.04, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+            osc.connect(gain); gain.connect(this.ctx.destination); osc.start(now); osc.stop(now + 0.08);
+          } else if (kind === 'chip') {
+            const osc = this.ctx.createOscillator(); osc.type = 'triangle';
+            osc.frequency.setValueAtTime(1600, now); osc.frequency.exponentialRampToValueAtTime(2200, now + 0.03);
+            gain.gain.setValueAtTime(0.02, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+            osc.connect(gain); gain.connect(this.ctx.destination); osc.start(now); osc.stop(now + 0.03);
           } else {
-            document.getElementById('audioIcon').textContent = '🔊';
-            document.getElementById('audioText').textContent = 'SFX ON';
-            playZapSFX();
+            const osc1 = this.ctx.createOscillator(); const osc2 = this.ctx.createOscillator();
+            osc1.type = 'sine'; osc2.type = 'triangle';
+            osc1.frequency.setValueAtTime(440, now); osc1.frequency.exponentialRampToValueAtTime(880, now + 0.05);
+            osc2.frequency.setValueAtTime(660, now); osc2.frequency.exponentialRampToValueAtTime(1320, now + 0.05);
+            const filter = this.ctx.createBiquadFilter(); filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(2500, now); filter.frequency.exponentialRampToValueAtTime(1200, now + 0.05);
+            gain.gain.setValueAtTime(0.03, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+            osc1.connect(filter); osc2.connect(filter); filter.connect(gain); gain.connect(this.ctx.destination);
+            osc1.start(now); osc2.start(now); osc1.stop(now + 0.05); osc2.stop(now + 0.05);
           }
+        } catch (e) {}
+      }
+      playClick(kind = 'default') {
+        if (this.muted) return; this.init(); if (!this.ctx) return;
+        try {
+          const now = this.ctx.currentTime; const gain = this.ctx.createGain();
+          if (kind === 'primary' || kind === 'cta') {
+            const subOsc = this.ctx.createOscillator(); subOsc.type = 'sine';
+            subOsc.frequency.setValueAtTime(180, now); subOsc.frequency.exponentialRampToValueAtTime(42, now + 0.09);
+            const clickOsc = this.ctx.createOscillator(); clickOsc.type = 'triangle';
+            clickOsc.frequency.setValueAtTime(1200, now); clickOsc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
+            gain.gain.setValueAtTime(0.12, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+            subOsc.connect(gain); clickOsc.connect(gain); gain.connect(this.ctx.destination);
+            subOsc.start(now); clickOsc.start(now); subOsc.stop(now + 0.09); clickOsc.stop(now + 0.04);
+          } else if (kind === 'tab') {
+            const osc1 = this.ctx.createOscillator(); const osc2 = this.ctx.createOscillator();
+            osc1.type = 'sine'; osc2.type = 'sawtooth';
+            osc1.frequency.setValueAtTime(520, now); osc1.frequency.exponentialRampToValueAtTime(840, now + 0.06);
+            osc2.frequency.setValueAtTime(260, now);
+            const filter = this.ctx.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.setValueAtTime(1400, now);
+            gain.gain.setValueAtTime(0.06, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+            osc1.connect(gain); osc2.connect(filter); filter.connect(gain); gain.connect(this.ctx.destination);
+            osc1.start(now); osc2.start(now); osc1.stop(now + 0.06); osc2.stop(now + 0.06);
+          } else {
+            const osc = this.ctx.createOscillator(); osc.type = 'triangle';
+            osc.frequency.setValueAtTime(680, now); osc.frequency.exponentialRampToValueAtTime(210, now + 0.05);
+            gain.gain.setValueAtTime(0.07, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+            osc.connect(gain); gain.connect(this.ctx.destination); osc.start(now); osc.stop(now + 0.05);
+          }
+        } catch (e) {}
+      }
+      playToggle() {
+        this.init(); if (!this.ctx) return;
+        try {
+          const now = this.ctx.currentTime; const gain = this.ctx.createGain();
+          const freqs = this.muted ? [784, 523, 392] : [392, 523, 784];
+          freqs.forEach((f, idx) => {
+            const osc = this.ctx.createOscillator(); osc.type = 'sine';
+            osc.frequency.setValueAtTime(f, now + idx * 0.035);
+            gain.gain.setValueAtTime(0.04, now + idx * 0.035);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.035 + 0.08);
+            osc.connect(gain); osc.start(now + idx * 0.035); osc.stop(now + idx * 0.035 + 0.08);
+          });
+          gain.connect(this.ctx.destination);
+        } catch (e) {}
+      }
+    }
+
+    const cyberAudio = new CyberAudioEngine();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.btn-download, .btn-bubble').forEach(el => {
+        el.addEventListener('mouseenter', () => cyberAudio.playHover('default'));
+        el.addEventListener('click', () => cyberAudio.playClick('primary'));
+      });
+      document.querySelectorAll('.service-card').forEach(el => {
+        el.addEventListener('mouseenter', () => cyberAudio.playHover('card'));
+        el.addEventListener('click', () => cyberAudio.playClick('default'));
+      });
+      document.querySelectorAll('.toc-pill, .guild-chip').forEach(el => {
+        el.addEventListener('mouseenter', () => cyberAudio.playHover('chip'));
+        el.addEventListener('click', () => cyberAudio.playClick('tab'));
+      });
+
+      const soundBtn = document.getElementById('soundBtn');
+      if (soundBtn) {
+        soundBtn.addEventListener('click', () => {
+          cyberAudio.muted = !cyberAudio.muted;
+          cyberAudio.playToggle();
+          soundBtn.style.color = cyberAudio.muted ? '#6C6685' : '#00E5FF';
         });
       }
 
-      // 3. Interactive Buttons
-      var rsvpBtn = document.getElementById('rsvpBtn');
+      // Interactive Widgets in Services Page
+      const rsvpBtn = document.getElementById('rsvpBtn');
       if (rsvpBtn) {
-        rsvpBtn.addEventListener('click', function() {
-          playZapSFX();
+        rsvpBtn.addEventListener('click', () => {
+          cyberAudio.playClick();
           rsvpBtn.textContent = '✓ RSVP CONFIRMED (483 ATTENDING)';
-          rsvpBtn.style.background = '#00FF9D';
-          rsvpBtn.style.color = '#000';
+          rsvpBtn.style.background = 'rgba(0, 229, 255, 0.2)';
+          rsvpBtn.style.color = '#00E5FF';
+          rsvpBtn.style.border = '1px solid #00E5FF';
         });
       }
 
-      var bookExpertBtn = document.getElementById('bookExpertBtn');
+      const bookExpertBtn = document.getElementById('bookExpertBtn');
       if (bookExpertBtn) {
-        bookExpertBtn.addEventListener('click', function() {
-          playZapSFX();
+        bookExpertBtn.addEventListener('click', () => {
+          cyberAudio.playClick();
           bookExpertBtn.textContent = '✓ RESERVED';
-          bookExpertBtn.style.background = '#00FF9D';
-          bookExpertBtn.style.color = '#000';
+          bookExpertBtn.style.background = 'rgba(216, 60, 255, 0.2)';
+          bookExpertBtn.style.color = '#D83CFF';
+          bookExpertBtn.style.border = '1px solid #D83CFF';
         });
       }
 
-      // 4. Subtle 3D WebGL Background Particles
-      var canvas = document.getElementById('services3dCanvas');
+
+      // 3D Particles Canvas
+      const canvas = document.getElementById('services3dCanvas');
       if (canvas) {
-        var ctx = canvas.getContext('2d');
-        var particles = [];
-        var numParticles = 40;
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const numParticles = 45;
 
         function resizeCanvas() {
           canvas.width = window.innerWidth;
@@ -707,21 +1239,20 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        for (var i = 0; i < numParticles; i++) {
+        for (let i = 0; i < numParticles; i++) {
           particles.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.3,
-            vy: (Math.random() - 0.5) * 0.3,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
             radius: Math.random() * 2 + 1
           });
         }
 
         function drawParticles() {
-          var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-          particles.forEach(function(p, idx) {
+          particles.forEach((p, idx) => {
             p.x += p.vx;
             p.y += p.vy;
 
@@ -730,22 +1261,20 @@
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = isDark ? 'rgba(0, 255, 157, 0.25)' : 'rgba(0, 119, 255, 0.25)';
+            ctx.fillStyle = 'rgba(0, 229, 255, 0.3)';
             ctx.fill();
 
-            for (var j = idx + 1; j < particles.length; j++) {
-              var p2 = particles[j];
-              var dx = p.x - p2.x;
-              var dy = p.y - p2.y;
-              var dist = Math.sqrt(dx * dx + dy * dy);
+            for (let j = idx + 1; j < particles.length; j++) {
+              const p2 = particles[j];
+              const dx = p.x - p2.x;
+              const dy = p.y - p2.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
 
-              if (dist < 120) {
+              if (dist < 130) {
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(p2.x, p2.y);
-                ctx.strokeStyle = isDark 
-                  ? 'rgba(0, 240, 255, ' + (0.1 * (1 - dist / 120)) + ')' 
-                  : 'rgba(0, 168, 89, ' + (0.12 * (1 - dist / 120)) + ')';
+                ctx.strokeStyle = 'rgba(109, 53, 255, ' + (0.12 * (1 - dist / 130)) + ')';
                 ctx.lineWidth = 0.8;
                 ctx.stroke();
               }
@@ -757,40 +1286,19 @@
         drawParticles();
       }
 
-      // 6. Interactive Chat Form & Reactions in Services Page
-      var svcChatForm = document.getElementById('svcChatForm');
-      var svcChatInput = document.getElementById('svcChatInput');
-      var svcChatBody = document.getElementById('serviceChatBody');
-
-      if (svcChatForm && svcChatInput && svcChatBody) {
-        svcChatForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          var msg = svcChatInput.value.trim();
-          if (!msg) return;
-          playZapSFX();
-
-          var div = document.createElement('div');
-          div.innerHTML = '<span style="color: var(--sc-accent); font-weight: 700;">YOU:</span> ' + msg.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-          svcChatBody.appendChild(div);
-          svcChatInput.value = '';
-          svcChatBody.scrollTop = svcChatBody.scrollHeight;
-        });
+      // Scroll Reveal
+      const revealElems = document.querySelectorAll('.reveal-on-scroll');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('is-visible');
+          });
+        }, { threshold: 0.1 });
+        revealElems.forEach(el => observer.observe(el));
+      } else {
+        revealElems.forEach(el => el.classList.add('is-visible'));
       }
-
-      document.querySelectorAll('.svc-react-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          playZapSFX();
-          var countSpan = btn.querySelector('.svc-react-count');
-          if (countSpan) {
-            var current = parseInt(countSpan.textContent, 10) || 0;
-            countSpan.textContent = current + 1;
-            btn.style.borderColor = 'var(--sc-accent)';
-            btn.style.color = 'var(--sc-accent)';
-          }
-        });
-      });
-
-    })();
+    });
   </script>
 </body>
 </html>
