@@ -2161,25 +2161,35 @@
       border-top: 1px solid rgba(var(--hairline-rgb), 0.05);
     }
 
-    .people-section .people-header {
+    .people-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2.5rem;
+      width: 100%;
       flex-wrap: nowrap;
     }
 
-    .people-section .people-title {
-      font-size: clamp(1.8rem, 4vw, 3.2rem) !important;
-      line-height: 1.15;
+    .people-header > div:first-child {
+      flex: 1 1 auto;
+      min-width: 0;
     }
 
     @media (max-width: 991px) {
-      .people-section .people-header {
-        flex-direction: column;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 1rem;
+      .people-header,
+      .people-section .people-header,
+      .showcase-section .people-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        flex-wrap: wrap !important;
+        gap: 1.25rem !important;
       }
-      .people-section .people-desc {
-        text-align: left;
-        max-width: 100%;
+      .people-desc,
+      .people-section .people-desc,
+      .showcase-section .people-desc {
+        text-align: left !important;
+        max-width: 100% !important;
+        margin-bottom: 0 !important;
       }
     }
 
@@ -2191,20 +2201,12 @@
       gap: 3.5rem;
     }
 
-    .people-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
     .people-title {
       font-family: var(--font-hero) !important;
       font-weight: 400 !important;
       font-style: normal !important;
-      font-size: clamp(2.2rem, 7.5vw, 120px) !important;
-      line-height: clamp(2rem, 6.8vw, 104px) !important;
+      font-size: clamp(2.2rem, 5.5vw, 84px) !important;
+      line-height: clamp(2rem, 5vw, 76px) !important;
       letter-spacing: 0px !important;
       text-transform: uppercase !important;
       text-align: left !important;
@@ -2221,12 +2223,14 @@
     }
 
     .people-desc {
-      max-width: 480px;
+      flex: 0 0 auto;
+      max-width: 440px;
       font-family: var(--font-body);
       font-size: 0.95rem;
       line-height: 1.6;
       color: var(--text-muted);
       text-align: left;
+      margin-bottom: 0.4rem;
     }
 
     
@@ -2483,12 +2487,12 @@
       flex-wrap: nowrap;
       width: 100%;
       margin-bottom: 0.5rem;
-      gap: 2rem;
+      gap: 2.5rem;
     }
 
-    .showcase-section .people-title {
-      font-size: clamp(1.8rem, 4vw, 3.2rem) !important;
-      line-height: 1.15;
+    .showcase-section .people-header > div:first-child {
+      flex: 1 1 auto;
+      min-width: 0;
     }
 
     .text-white-heading {
