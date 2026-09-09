@@ -43,24 +43,24 @@
 }
 
 :root[data-theme="light"] {
-  /* --- High-Energy Cyber Light Palette ------------------------------------- */
-  --sc-canvas:          #F0F3F9;   /* High-Tech Crisp Light Grey */
+  /* --- Reapers High-Tech Cyber Alabaster Palette --------------------------- */
+  --sc-canvas:          #F5F7FB;   /* High-Tech Crisp Alabaster */
   --sc-surface:         #FFFFFF;   /* Pure White Card Surface */
-  --sc-ink:             #0F172A;   /* Obsidian Deep Charcoal Text */
+  --sc-ink:             #0B0F19;   /* Obsidian Deep Slate Text */
   --sc-ink-soft:        #475569;   /* Slate Steel Subtitle Prose */
-  --sc-accent:          #00A859;   /* High-Contrast Emerald Green */
-  --sc-accent-2:        #0077FF;   /* Electric Sapphire Cyan */
-  --sc-accent-ink:      #FFFFFF;   /* Crisp White on Emerald Buttons */
-  --peak-magenta:       #D9006C;   /* Deep Electric Neon Pink */
+  --sc-accent:          #0084A8;   /* High-Contrast Electric Cyber Cyan */
+  --sc-accent-2:        #6D35FF;   /* Reapers Electric Purple */
+  --sc-accent-ink:      #FFFFFF;   /* Crisp White Text on Buttons */
+  --peak-magenta:       #C01E85;   /* Deep Electric Neon Pink */
   --gold-accent:        #D97706;   /* Solar Amber Boss Accent */
 
-  --sc-hairline:        rgba(0, 168, 89, 0.22);
-  --sc-hairline-strong: rgba(15, 23, 42, 0.16);
+  --sc-hairline:        rgba(0, 132, 168, 0.20);
+  --sc-hairline-strong: rgba(15, 23, 42, 0.14);
 
   --sc-shadow-color:    215 25% 15%;
-  --sc-e1: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --sc-e2: 0 4px 16px rgba(0, 0, 0, 0.10);
-  --sc-e3: 0 12px 32px rgba(0, 0, 0, 0.14);
+  --sc-e1: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --sc-e2: 0 4px 16px rgba(15, 23, 42, 0.08);
+  --sc-e3: 0 12px 32px rgba(15, 23, 42, 0.12);
 
   --sc-edge: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }

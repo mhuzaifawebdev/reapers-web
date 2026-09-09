@@ -72,25 +72,12 @@
       justify-content: space-between;
       height: 92px;
       padding: 0 2.25rem;
-      background: linear-gradient(95deg, rgba(8, 12, 28, 0.78) 0%, rgba(14, 11, 26, 0.78) 50%, rgba(18, 8, 28, 0.78) 100%);
+      background: #080D1A66;
+      border: 1px solid #FFFFFF1A;
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
-      filter: drop-shadow(0 0 1px rgba(0, 229, 255, 0.4)) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7));
-    }
-
-    .navbar::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      padding: 1px;
-      background: linear-gradient(90deg, rgba(0, 229, 255, 0.5) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(216, 60, 255, 0.5) 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
-      pointer-events: none;
-      z-index: 2;
+      filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7));
     }
 
     .nav-links {
@@ -124,7 +111,7 @@
     }
 
     .brand-logo-img {
-      height: 54px;
+      height: 72px;
       width: auto;
       object-fit: contain;
       filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.4));
@@ -132,17 +119,6 @@
     }
 
     .nav-brand:hover .brand-logo-img { transform: scale(1.08); }
-
-    .brand-name {
-      font-family: var(--font-display);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.25em;
-      color: #FFFFFF;
-      margin-top: 2px;
-      text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-      text-transform: uppercase;
-    }
 
     .nav-actions {
       display: flex;
@@ -177,8 +153,10 @@
       align-items: center;
       gap: 0.6rem;
       padding: 0.65rem 1.4rem;
-      background: var(--reapers-gradient);
-      border: none;
+      background: linear-gradient(96.05deg, #00E5FF -4.98%, #6D35FF 46.36%, #D83CFF 97.69%);
+      border: 1px solid;
+      border-image-source: linear-gradient(93.12deg, #117383 1.5%, #46096C 98.5%);
+      border-image-slice: 1;
       color: #FFFFFF;
       font-family: var(--font-display);
       font-weight: 800;
@@ -189,6 +167,12 @@
       cursor: pointer;
       box-shadow: 0 4px 20px rgba(109, 53, 255, 0.4);
       transition: all 0.25s ease;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
     }
 
     /* Legal Hero Section */
@@ -578,11 +562,12 @@
 
     .footer-watermark-text {
       font-family: var(--font-hero);
-      font-size: clamp(6rem, 18vw, 240px);
       font-weight: 400;
-      line-height: 0.8;
-      letter-spacing: 0.02em;
+      font-size: clamp(4rem, 31.26vw, 450.14px);
+      line-height: 0.893;
+      letter-spacing: 0;
       color: rgba(255, 255, 255, 0.03);
+      text-align: center;
       text-transform: uppercase;
       white-space: nowrap;
     }
@@ -678,12 +663,8 @@
         padding: 0 0.75rem !important;
         clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px) !important;
       }
-      .navbar::before {
-        clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px) !important;
-      }
       .nav-links { display: none !important; }
-      .brand-logo-img { height: 36px !important; }
-      .brand-name { font-size: 0.68rem !important; letter-spacing: 0.18em !important; }
+      .brand-logo-img { height: 54px !important; }
       .nav-actions { gap: 0.4rem !important; }
       .icon-btn { width: 36px !important; height: 36px !important; }
       .icon-btn svg { width: 16px !important; height: 16px !important; }
@@ -753,7 +734,6 @@
       }
       .site-footer-bar { flex-direction: column !important; gap: 1.25rem !important; text-align: center !important; margin-top: 2.5rem !important; }
       .footer-nav-links { flex-wrap: wrap !important; justify-content: center !important; gap: 0.85rem 1.25rem !important; }
-      .footer-watermark-text { font-size: clamp(3.2rem, 16vw, 120px) !important; }
     }
 
     /* Small Phone Screens (max-width: 480px) */
@@ -777,8 +757,7 @@
         <li class="nav-link"><a href="index.html#showcase-demos">SHOWCASE</a></li>
       </ul>
       <a href="index.html" class="nav-brand" title="Reapers Homepage">
-        <img src="public/reapers-logo.webp" alt="Reapers Logo" class="brand-logo-img">
-        <span class="brand-name">REAPERS</span>
+        <img src="public/Reapers.png" alt="Reapers Logo" class="brand-logo-img">
       </a>
       <div class="nav-actions">
         <button class="icon-btn btn-bubble" id="soundBtn" title="Toggle Sound">
@@ -1055,8 +1034,8 @@
       <a href="services.html" class="footer-link">SERVICES</a>
       <a href="privacy.html" class="footer-link">PRIVACY POLICY</a>
       <a href="terms.html" class="footer-link active">TERMS &amp; CONDITIONS</a>
+      <a href="https://www.instagram.com/houseofthereapers?stkn=MWN2NWdseXc5NzE4cA==&amp;utm_source=ig_contact_invite" target="_blank" rel="noopener noreferrer" class="footer-link">INSTAGRAM</a>
     </nav>
-    <div>RPR // 001 · TERMS &amp; CONDITIONS</div>
   </footer>
 
   <!-- Giant REAPERS Watermark -->
